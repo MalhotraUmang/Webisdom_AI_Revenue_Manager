@@ -1,542 +1,307 @@
-🧾 Found 100 clients to process in 'Clients'.
+
+✅ Initialized Gemini instances.
+🧾 Found 100 clients in 'Clients'.
 
 🔹 Processing batch 1 (5 clients)...
-⏩ Skipping CLIENT-2824 — already processed.
-⏩ Skipping CLIENT-9935 — already processed.
-⏩ Skipping CLIENT-4811 — already processed.
-⏩ Skipping CLIENT-1106 — already processed.
-⏩ Skipping CLIENT-3547 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 2 (5 clients)...
-⏩ Skipping CLIENT-6635 — already processed.
-⏩ Skipping CLIENT-5803 — already processed.
-⏩ Skipping CLIENT-2307 — already processed.
-⏩ Skipping CLIENT-7065 — already processed.
-⏩ Skipping CLIENT-3677 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 3 (5 clients)...
-⏩ Skipping CLIENT-1916 — already processed.
-⏩ Skipping CLIENT-4456 — already processed.
-⏩ Skipping CLIENT-8517 — already processed.
-⏩ Skipping CLIENT-7543 — already processed.
-⏩ Skipping CLIENT-2796 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 4 (5 clients)...
-⏩ Skipping CLIENT-8668 — already processed.
-⏩ Skipping CLIENT-6573 — already processed.
-⏩ Skipping CLIENT-9201 — already processed.
-⏩ Skipping CLIENT-9837 — already processed.
-⏩ Skipping CLIENT-6947 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 5 (5 clients)...
-⏩ Skipping CLIENT-2403 — already processed.
-⏩ Skipping CLIENT-8787 — already processed.
-⏩ Skipping CLIENT-7537 — already processed.
-⏩ Skipping CLIENT-4681 — already processed.
-⏩ Skipping CLIENT-1117 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 6 (5 clients)...
-⏩ Skipping CLIENT-2160 — already processed.
-⏩ Skipping CLIENT-8744 — already processed.
-⏩ Skipping CLIENT-8062 — already processed.
-⏩ Skipping CLIENT-7596 — already processed.
-⏩ Skipping CLIENT-3296 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 7 (5 clients)...
-⏩ Skipping CLIENT-9856 — already processed.
-⏩ Skipping CLIENT-4502 — already processed.
-⏩ Skipping CLIENT-5345 — already processed.
-⏩ Skipping CLIENT-4566 — already processed.
-⏩ Skipping CLIENT-8811 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 8 (5 clients)...
-⏩ Skipping CLIENT-2122 — already processed.
-⏩ Skipping CLIENT-2343 — already processed.
-⏩ Skipping CLIENT-3144 — already processed.
-⏩ Skipping CLIENT-2200 — already processed.
-⏩ Skipping CLIENT-5002 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 9 (5 clients)...
-⏩ Skipping CLIENT-5905 — already processed.
-⏩ Skipping CLIENT-3546 — already processed.
-⏩ Skipping CLIENT-9280 — already processed.
-⏩ Skipping CLIENT-1058 — already processed.
-⏩ Skipping CLIENT-8007 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 10 (5 clients)...
-⏩ Skipping CLIENT-3426 — already processed.
-⏩ Skipping CLIENT-2684 — already processed.
-⏩ Skipping CLIENT-3662 — already processed.
-⏩ Skipping CLIENT-7745 — already processed.
-⏩ Skipping CLIENT-4644 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 11 (5 clients)...
-⏩ Skipping CLIENT-7528 — already processed.
-⏩ Skipping CLIENT-2889 — already processed.
-⏩ Skipping CLIENT-8119 — already processed.
-⏩ Skipping CLIENT-5173 — already processed.
-⏩ Skipping CLIENT-6409 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 12 (5 clients)...
-⏩ Skipping CLIENT-7691 — already processed.
-⏩ Skipping CLIENT-7211 — already processed.
-⏩ Skipping CLIENT-9977 — already processed.
-⏩ Skipping CLIENT-8238 — already processed.
-⏩ Skipping CLIENT-9445 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 13 (5 clients)...
-⏩ Skipping CLIENT-4262 — already processed.
-⏩ Skipping CLIENT-4185 — already processed.
-⏩ Skipping CLIENT-1090 — already processed.
-⏩ Skipping CLIENT-1822 — already processed.
-⏩ Skipping CLIENT-9270 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 14 (5 clients)...
-⏩ Skipping CLIENT-5543 — already processed.
-⏩ Skipping CLIENT-2269 — already processed.
-⏩ Skipping CLIENT-3267 — already processed.
-⏩ Skipping CLIENT-6421 — already processed.
-⏩ Skipping CLIENT-8814 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 15 (5 clients)...
-⏩ Skipping CLIENT-4595 — already processed.
-⏩ Skipping CLIENT-3704 — already processed.
-⏩ Skipping CLIENT-1444 — already processed.
-⏩ Skipping CLIENT-5262 — already processed.
-⏩ Skipping CLIENT-5558 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 16 (5 clients)...
-⏩ Skipping CLIENT-1317 — already processed.
-⏩ Skipping CLIENT-5051 — already processed.
-⏩ Skipping CLIENT-8758 — already processed.
-⏩ Skipping CLIENT-3749 — already processed.
-⏩ Skipping CLIENT-6111 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 17 (5 clients)...
-⏩ Skipping CLIENT-4978 — already processed.
-⏩ Skipping CLIENT-9728 — already processed.
-⏩ Skipping CLIENT-2729 — already processed.
-⏩ Skipping CLIENT-9548 — already processed.
-⏩ Skipping CLIENT-5397 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 18 (5 clients)...
-⏩ Skipping CLIENT-7209 — already processed.
-⏩ Skipping CLIENT-5232 — already processed.
-⏩ Skipping CLIENT-7658 — already processed.
-⏩ Skipping CLIENT-5820 — already processed.
-⏩ Skipping CLIENT-7971 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 19 (5 clients)...
-⏩ Skipping CLIENT-5118 — already processed.
-⏩ Skipping CLIENT-5530 — already processed.
-⏩ Skipping CLIENT-4727 — already processed.
-⏩ Skipping CLIENT-1893 — already processed.
-⏩ Skipping CLIENT-8690 — already processed.
 💾 Batch saved to Clients sheet.
 
 🔹 Processing batch 20 (5 clients)...
-⏩ Skipping CLIENT-2869 — already processed.
-⏩ Skipping CLIENT-5978 — already processed.
-⏩ Skipping CLIENT-7232 — already processed.
-⏩ Skipping CLIENT-2625 — already processed.
-⏩ Skipping CLIENT-3573 — already processed.
 💾 Batch saved to Clients sheet.
 
-🎯 Generating campaign for CLIENT-2824 ...
-📣 Campaign ready for CLIENT-2824.
-🎯 Generating campaign for CLIENT-9935 ...
-📣 Campaign ready for CLIENT-9935.
-🎯 Generating campaign for CLIENT-4811 ...
-📣 Campaign ready for CLIENT-4811.
-🎯 Generating campaign for CLIENT-1106 ...
-📣 Campaign ready for CLIENT-1106.
-🎯 Generating campaign for CLIENT-3547 ...
-📣 Campaign ready for CLIENT-3547.
-🎯 Generating campaign for CLIENT-6635 ...
-📣 Campaign ready for CLIENT-6635.
-🎯 Generating campaign for CLIENT-5803 ...
-📣 Campaign ready for CLIENT-5803.
-🎯 Generating campaign for CLIENT-2307 ...
-📣 Campaign ready for CLIENT-2307.
-🎯 Generating campaign for CLIENT-7065 ...
-📣 Campaign ready for CLIENT-7065.
-🎯 Generating campaign for CLIENT-3677 ...
-📣 Campaign ready for CLIENT-3677.
-🎯 Generating campaign for CLIENT-1916 ...
-📣 Campaign ready for CLIENT-1916.
-🎯 Generating campaign for CLIENT-4456 ...
-📣 Campaign ready for CLIENT-4456.
-🎯 Generating campaign for CLIENT-8517 ...
-📣 Campaign ready for CLIENT-8517.
-🎯 Generating campaign for CLIENT-7543 ...
-📣 Campaign ready for CLIENT-7543.
-🎯 Generating campaign for CLIENT-2796 ...
-📣 Campaign ready for CLIENT-2796.
-🎯 Generating campaign for CLIENT-8668 ...
-📣 Campaign ready for CLIENT-8668.
-🎯 Generating campaign for CLIENT-6573 ...
-⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to:: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15
-Please retry in 58.240381222s. [links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-2.5-flash-lite"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 15
-}
-, retry_delay {
-  seconds: 58
-}
-]
-⏳ Waiting 60 seconds due to rate limit...
+📢 Processing 16 campaigns...
+🎯 CMP-0001 — Target 'Romantic' matched 8 clients.
+👥 Matching Clients:
+   - Saira Varghese | saira.varghese@yahoo.com | +91-9887383353
+   - Gatik Rout | gatik.rout@yahoo.com | +91-8322911750
+   - Devansh Wagle | devansh.wagle@outlook.com | +91-7311921364
+   - Gokul Vyas | gokul.vyas@outlook.com | +91-8107856359
+   - Inaaya Karpe | inaaya..karpe@outlook.com | +91-7941762617
+   - Rohan Manda | rohan.manda@outlook.com | +91-7002015363
+   - Eva Suri | eva.suri@outlook.com | +91-8581789003
+   - Samar Desai | samar.desai@outlook.com | +91-7491303187
+🎯 CMP-0002 — Target 'Foodie' matched 21 clients.
+👥 Matching Clients:
+   - Reyansh Bala | reyansh.bala@yahoo.com | +91-8562538784
+   - Darshit Batta | darshit.batta@gmail.com | +91-8947394721
+   - Gokul Kamdar | gokul.kamdar@gmail.com | +91-8400892213
+   - Nirvaan Garde | nirvaan.garde@yahoo.com | +91-8995207143
+   - Ranbir Biswas | ranbir.biswas@gmail.com | +91-9582389072
+   - Siya Bora | siya.bora@yahoo.com | +91-7461119893
+   - Kabir Buch | kabir.buch@hotmail.com | +91-7175839779
+   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
+   - Neysa Sem | neysa.sem@gmail.com | +91-9196626801
+   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
+   - Lakshay Taneja | lakshay.taneja@yahoo.com | +91-8402796353
+   - Eshani Mahajan | eshani.mahajan@outlook.com | +91-7358289731
+   - Kismat Bhattacharyya | kismat.bhattacharyya@gmail.com | +91-7475001311
+   - Zeeshan Chandra | zeeshan.chandra@hotmail.com | +91-7672990766
+   - Ayesha Halder | ayesha.halder@hotmail.com | +91-9982134968
+   - Rasha Chakrabarti | rasha.chakrabarti@gmail.com | +91-9082211707
+   - Nayantara Barad | nayantara.barad@gmail.com | +91-8021716703
+   - Shalv Goyal | shalv.goyal@outlook.com | +91-7144373968
+   - Vritika Ganguly | vritika.ganguly@hotmail.com | +91-8178116296
+   - Piya Uppal | piya.uppal@outlook.com | +91-7061014413
+   - Shanaya Krishna | shanaya.krishna@outlook.com | +91-8450792614
+🎯 CMP-0003 — Target 'Family' matched 7 clients.
+👥 Matching Clients:
+   - Prisha Mand | prisha.mand@hotmail.com | +91-7529928531
+   - Madhav Hari | madhav.hari@hotmail.com | +91-7877573028
+   - Biju Kumar | biju.kumar@yahoo.com | +91-9986590433
+   - Rhea Thakur | rhea.thakur@hotmail.com | +91-8238109043
+   - Gatik Sant | gatik.sant@hotmail.com | +91-7409752747
+   - Mishti Krishna | mishti.krishna@gmail.com | +91-8755681449
+   - Charvi Biswas | charvi.biswas@yahoo.com | +91-7774869157
+🎯 CMP-0004 — Target 'Business' matched 9 clients.
+👥 Matching Clients:
+   - Shanaya Doctor | shanaya.doctor@gmail.com | +91-8874814104
+   - Ela Roy | ela.roy@hotmail.com | +91-9347130107
+   - Pari Bassi | pari.bassi@yahoo.com | +91-8022656187
+   - Zain Chowdhury | zain.chowdhury@yahoo.com | +91-9332672658
+   - Adira Ranganathan | adira.ranganathan@hotmail.com | +91-9460003983
+   - Romil Randhawa | romil.randhawa@hotmail.com | +91-8235462358
+   - Misha Sengupta | misha.sengupta@yahoo.com | +91-7808125361
+   - Vedika Chokshi | vedika.chokshi@yahoo.com | +91-7524180323
+   - Anaya Chanda | anaya.chanda@yahoo.com | +91-7386199716
+🎯 CMP-0005 — Target 'Budget' matched 1 clients.
+👥 Matching Clients:
+   - Rhea Shetty | rhea.shetty@hotmail.com | +91-7393110513
+🎯 CMP-0006 — Target 'Adventurer' matched 5 clients.
+👥 Matching Clients:
+   - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
+   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
+   - Lakshit Chopra | lakshit.chopra@outlook.com | +91-9780498535
+   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
+   - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
+🎯 CMP-0007 — Target 'Leisure' matched 49 clients.
+👥 Matching Clients:
+   - Prisha Mand | prisha.mand@hotmail.com | +91-7529928531
+   - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
+   - Darshit Saran | darshit.saran@outlook.com | +91-9215004426
+   - Chirag Khosla | chirag.khosla@hotmail.com | +91-9278309288
+   - Veer Kohli | veer.kohli@outlook.com | +91-9198093905
+   - Devansh Wagle | devansh.wagle@outlook.com | +91-7311921364
+   - Gokul Kamdar | gokul.kamdar@gmail.com | +91-8400892213
+   - Romil Chacko | romil.chacko@hotmail.com | +91-8723714594
+   - Siya Bora | siya.bora@yahoo.com | +91-7461119893
+   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
+   - Romil Ram | romil.ram@yahoo.com | +91-7848058795
+   - Fateh Mani | fateh.mani@gmail.com | +91-7437906683
+   - Miraan Toor | miraan.toor@yahoo.com | +91-7323867816
+   - Lavanya Dar | lavanya.dar@gmail.com | +91-7692613448
+   - Neysa Bhagat | neysa.bhagat@gmail.com | +91-7820712499
+   - Anahita Kapadia | anahita.kapadia@hotmail.com | +91-9932286706
+   - Madhav Hari | madhav.hari@hotmail.com | +91-7877573028
+   - Kabir Buch | kabir.buch@hotmail.com | +91-7175839779
+   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
+   - Biju Kumar | biju.kumar@yahoo.com | +91-9986590433
+   - Biju Jayaraman | biju.jayaraman@outlook.com | +91-7658331849
+   - Rhea Shetty | rhea.shetty@hotmail.com | +91-7393110513
+   - Kismat Kamdar | kismat.kamdar@outlook.com | +91-8521793530
+   - Eshani Mahajan | eshani.mahajan@outlook.com | +91-7358289731
+   - Rhea Thakur | rhea.thakur@hotmail.com | +91-8238109043
+   - Kismat Bhattacharyya | kismat.bhattacharyya@gmail.com | +91-7475001311
+   - Stuvan Badal | stuvan.badal@yahoo.com | +91-8789285388
+   - Veer Shetty | veer.shetty@gmail.com | +91-7076171909
+   - Khushi Magar | khushi.magar@hotmail.com | +91-9307175731
+   - Ishaan Upadhyay | ishaan.upadhyay@yahoo.com | +91-8419756609
+   - Vritika Sangha | vritika.sangha@gmail.com | +91-9276541494
+   - Ahana Shere | ahana..shere@hotmail.com | +91-8312949619
+   - Gatik Sant | gatik.sant@hotmail.com | +91-7409752747
+   - Aayush Dar | aayush.dar@outlook.com | +91-8262841912
+   - Mishti Krishna | mishti.krishna@gmail.com | +91-8755681449
+   - Seher Gara | seher.gara@hotmail.com | +91-9655081584
+   - Amani Dada | amani.dada@gmail.com | +91-8799218175
+   - Nehmat Amble | nehmat.amble@hotmail.com | +91-8826041936
+   - Nayantara Barad | nayantara.barad@gmail.com | +91-8021716703
+   - Shlok Sahni | shlok.sahni@gmail.com | +91-9025660391
+   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
+   - Aarush Shankar | aarush.shankar@outlook.com | +91-7433469665
+   - Shalv Goyal | shalv.goyal@outlook.com | +91-7144373968
+   - Khushi Sankar | khushi.sankar@outlook.com | +91-8734456162
+   - Charvi Biswas | charvi.biswas@yahoo.com | +91-7774869157
+   - Romil Agarwal | romil.agarwal@hotmail.com | +91-8636249944
+   - Vritika Ganguly | vritika.ganguly@hotmail.com | +91-8178116296
+   - Piya Uppal | piya.uppal@outlook.com | +91-7061014413
+   - Ojas Tank | ojas.tank@yahoo.com | +91-9134028502
+🎯 CMP-0008 — Target 'Group' matched 10 clients.
+👥 Matching Clients:
+   - Lakshit Arora | lakshit.arora@yahoo.com | +91-8277878193
+   - Divij Dayal | divij.dayal@hotmail.com | +91-9961631043
+   - Eva Kumer | eva.kumer@yahoo.com | +91-9197954227
+   - Biju Kumar | biju.kumar@yahoo.com | +91-9986590433
+   - Rhea Shetty | rhea.shetty@hotmail.com | +91-7393110513
+   - Armaan Rao | armaan.rao@gmail.com | +91-9452693270
+   - Stuvan Badal | stuvan.badal@yahoo.com | +91-8789285388
+   - Ahana Shere | ahana..shere@hotmail.com | +91-8312949619
+   - Saanvi Raj | saanvi.raj@gmail.com | +91-7051887601
+   - Farhan Tara | farhan.tara@hotmail.com | +91-9445766910
+🎯 CMP-0009 — Target 'Spa' matched 46 clients.
+👥 Matching Clients:
+   - Reyansh Bala | reyansh.bala@yahoo.com | +91-8562538784
+   - Darshit Saran | darshit.saran@outlook.com | +91-9215004426
+   - Veer Kohli | veer.kohli@outlook.com | +91-9198093905
+   - Tiya Gade | tiya.gade@hotmail.com | +91-8795536363
+   - Sahil Desai | sahil.desai@hotmail.com | +91-8483894378
+   - Darshit Batta | darshit.batta@gmail.com | +91-8947394721
+   - Gokul Kamdar | gokul.kamdar@gmail.com | +91-8400892213
+   - Nirvaan Garde | nirvaan.garde@yahoo.com | +91-8995207143
+   - Ranbir Biswas | ranbir.biswas@gmail.com | +91-9582389072
+   - Siya Bora | siya.bora@yahoo.com | +91-7461119893
+   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
+   - Romil Ram | romil.ram@yahoo.com | +91-7848058795
+   - Fateh Mani | fateh.mani@gmail.com | +91-7437906683
+   - Miraan Toor | miraan.toor@yahoo.com | +91-7323867816
+   - Neysa Bhagat | neysa.bhagat@gmail.com | +91-7820712499
+   - Anahita Kapadia | anahita.kapadia@hotmail.com | +91-9932286706
+   - Kabir Buch | kabir.buch@hotmail.com | +91-7175839779
+   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
+   - Neysa Sem | neysa.sem@gmail.com | +91-9196626801
+   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
+   - Lakshay Taneja | lakshay.taneja@yahoo.com | +91-8402796353
+   - Eshani Mahajan | eshani.mahajan@outlook.com | +91-7358289731
+   - Shalv Cheema | shalv.cheema@gmail.com | +91-9690270361
+   - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
+   - Kismat Bhattacharyya | kismat.bhattacharyya@gmail.com | +91-7475001311
+   - Veer Shetty | veer.shetty@gmail.com | +91-7076171909
+   - Khushi Magar | khushi.magar@hotmail.com | +91-9307175731
+   - Ishaan Upadhyay | ishaan.upadhyay@yahoo.com | +91-8419756609
+   - Vritika Sangha | vritika.sangha@gmail.com | +91-9276541494
+   - Anahi Chawla | anahi.chawla@yahoo.com | +91-9727448798
+   - Seher Gara | seher.gara@hotmail.com | +91-9655081584
+   - Emir Bhargava | emir.bhargava@yahoo.com | +91-7653333347
+   - Neysa Shere | neysa.shere@hotmail.com | +91-7612037769
+   - Amani Dada | amani.dada@gmail.com | +91-8799218175
+   - Ayesha Halder | ayesha.halder@hotmail.com | +91-9982134968
+   - Nehmat Amble | nehmat.amble@hotmail.com | +91-8826041936
+   - Rasha Chakrabarti | rasha.chakrabarti@gmail.com | +91-9082211707
+   - Nayantara Barad | nayantara.barad@gmail.com | +91-8021716703
+   - Shlok Sahni | shlok.sahni@gmail.com | +91-9025660391
+   - Shalv Goyal | shalv.goyal@outlook.com | +91-7144373968
+   - Rohan Rout | rohan.rout@gmail.com | +91-9161681235
+   - Khushi Sankar | khushi.sankar@outlook.com | +91-8734456162
+   - Romil Agarwal | romil.agarwal@hotmail.com | +91-8636249944
+   - Vritika Ganguly | vritika.ganguly@hotmail.com | +91-8178116296
+   - Ojas Tank | ojas.tank@yahoo.com | +91-9134028502
+   - Shanaya Krishna | shanaya.krishna@outlook.com | +91-8450792614
+🎯 CMP-0010 — Target 'Solo' matched 7 clients.
+👥 Matching Clients:
+   - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
+   - Tushar Buch | tushar.buch@gmail.com | +91-8965446398
+   - Arnav Gaba | arnav.gaba@gmail.com | +91-9406664293
+   - Kabir Raval | kabir.raval@gmail.com | +91-7523086384
+   - Arhaan Koshy | arhaan.koshy@outlook.com | +91-8858429676
+   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
+   - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
+🎯 CMP-0011 — Target 'Kid-Friendly' matched 5 clients.
+👥 Matching Clients:
+   - Prisha Mand | prisha.mand@hotmail.com | +91-7529928531
+   - Madhav Hari | madhav.hari@hotmail.com | +91-7877573028
+   - Rhea Thakur | rhea.thakur@hotmail.com | +91-8238109043
+   - Gatik Sant | gatik.sant@hotmail.com | +91-7409752747
+   - Mishti Krishna | mishti.krishna@gmail.com | +91-8755681449
+🎯 CMP-0012 — Target 'wellness' matched 15 clients.
+👥 Matching Clients:
+   - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
+   - Chirag Khosla | chirag.khosla@hotmail.com | +91-9278309288
+   - Romil Chacko | romil.chacko@hotmail.com | +91-8723714594
+   - Lavanya Dar | lavanya.dar@gmail.com | +91-7692613448
+   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
+   - Tushar Buch | tushar.buch@gmail.com | +91-8965446398
+   - Adah Rout | adah.rout@yahoo.com | +91-9245640319
+   - Arnav Gaba | arnav.gaba@gmail.com | +91-9406664293
+   - Biju Jayaraman | biju.jayaraman@outlook.com | +91-7658331849
+   - Zeeshan Chandra | zeeshan.chandra@hotmail.com | +91-7672990766
+   - Kabir Raval | kabir.raval@gmail.com | +91-7523086384
+   - Arhaan Koshy | arhaan.koshy@outlook.com | +91-8858429676
+   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
+   - Priyansh Mandal | priyansh.mandal@gmail.com | +91-7804325884
+   - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
+🎯 CMP-0013 — Target 'anniversary' matched 7 clients.
+👥 Matching Clients:
+   - Saira Varghese | saira.varghese@yahoo.com | +91-9887383353
+   - Gatik Rout | gatik.rout@yahoo.com | +91-8322911750
+   - Gokul Vyas | gokul.vyas@outlook.com | +91-8107856359
+   - Inaaya Karpe | inaaya..karpe@outlook.com | +91-7941762617
+   - Rohan Manda | rohan.manda@outlook.com | +91-7002015363
+   - Eva Suri | eva.suri@outlook.com | +91-8581789003
+   - Samar Desai | samar.desai@outlook.com | +91-7491303187
+🎯 CMP-0014 — Target 'villa' matched 7 clients.
+👥 Matching Clients:
+   - Lakshit Arora | lakshit.arora@yahoo.com | +91-8277878193
+   - Divij Dayal | divij.dayal@hotmail.com | +91-9961631043
+   - Eva Kumer | eva.kumer@yahoo.com | +91-9197954227
+   - Rhea Shetty | rhea.shetty@hotmail.com | +91-7393110513
+   - Armaan Rao | armaan.rao@gmail.com | +91-9452693270
+   - Stuvan Badal | stuvan.badal@yahoo.com | +91-8789285388
+   - Farhan Tara | farhan.tara@hotmail.com | +91-9445766910
+🆔 Assigned Campaign ID: CMP-0015
+🎯 CMP-0015 — Target 'productivity' matched 5 clients.
+👥 Matching Clients:
+   - Ela Roy | ela.roy@hotmail.com | +91-9347130107
+   - Adira Ranganathan | adira.ranganathan@hotmail.com | +91-9460003983
+   - Misha Sengupta | misha.sengupta@yahoo.com | +91-7808125361
+   - Vedika Chokshi | vedika.chokshi@yahoo.com | +91-7524180323
+   - Anaya Chanda | anaya.chanda@yahoo.com | +91-7386199716
+🆔 Assigned Campaign ID: CMP-0016
+🎯 CMP-0016 — Target 'connectivity' matched 4 clients.
+👥 Matching Clients:
+   - Shanaya Doctor | shanaya.doctor@gmail.com | +91-8874814104
+   - Ela Roy | ela.roy@hotmail.com | +91-9347130107
+   - Zain Chowdhury | zain.chowdhury@yahoo.com | +91-9332672658
+   - Anaya Chanda | anaya.chanda@yahoo.com | +91-7386199716
 
-📣 Campaign ready for CLIENT-6573.
-🎯 Generating campaign for CLIENT-9201 ...
-📣 Campaign ready for CLIENT-9201.
-🎯 Generating campaign for CLIENT-9837 ...
-📣 Campaign ready for CLIENT-9837.
-🎯 Generating campaign for CLIENT-6947 ...
-📣 Campaign ready for CLIENT-6947.
-🎯 Generating campaign for CLIENT-2403 ...
-📣 Campaign ready for CLIENT-2403.
-🎯 Generating campaign for CLIENT-8787 ...
-📣 Campaign ready for CLIENT-8787.
-🎯 Generating campaign for CLIENT-7537 ...
-📣 Campaign ready for CLIENT-7537.
-🎯 Generating campaign for CLIENT-4681 ...
-📣 Campaign ready for CLIENT-4681.
-🎯 Generating campaign for CLIENT-1117 ...
-📣 Campaign ready for CLIENT-1117.
-🎯 Generating campaign for CLIENT-2160 ...
-📣 Campaign ready for CLIENT-2160.
-🎯 Generating campaign for CLIENT-8744 ...
-📣 Campaign ready for CLIENT-8744.
-🎯 Generating campaign for CLIENT-8062 ...
-📣 Campaign ready for CLIENT-8062.
-🎯 Generating campaign for CLIENT-7596 ...
-📣 Campaign ready for CLIENT-7596.
-🎯 Generating campaign for CLIENT-3296 ...
-📣 Campaign ready for CLIENT-3296.
-🎯 Generating campaign for CLIENT-9856 ...
-📣 Campaign ready for CLIENT-9856.
-🎯 Generating campaign for CLIENT-4502 ...
-📣 Campaign ready for CLIENT-4502.
-🎯 Generating campaign for CLIENT-5345 ...
-📣 Campaign ready for CLIENT-5345.
-🎯 Generating campaign for CLIENT-4566 ...
-📣 Campaign ready for CLIENT-4566.
-🎯 Generating campaign for CLIENT-8811 ...
-📣 Campaign ready for CLIENT-8811.
-🎯 Generating campaign for CLIENT-2122 ...
-📣 Campaign ready for CLIENT-2122.
-
-🎯 Generating campaign for CLIENT-2343 ...
-⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to:: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15
-Please retry in 56.356591051s. [links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-2.5-flash-lite"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 15
-}
-, retry_delay {
-  seconds: 56
-}
-]
-⏳ Waiting 60 seconds due to rate limit...
-
-📣 Campaign ready for CLIENT-2343.
-🎯 Generating campaign for CLIENT-3144 ...
-📣 Campaign ready for CLIENT-3144.
-🎯 Generating campaign for CLIENT-2200 ...
-📣 Campaign ready for CLIENT-2200.
-🎯 Generating campaign for CLIENT-5002 ...
-📣 Campaign ready for CLIENT-5002.
-🎯 Generating campaign for CLIENT-5905 ...
-📣 Campaign ready for CLIENT-5905.
-🎯 Generating campaign for CLIENT-3546 ...
-📣 Campaign ready for CLIENT-3546.
-🎯 Generating campaign for CLIENT-9280 ...
-📣 Campaign ready for CLIENT-9280.
-🎯 Generating campaign for CLIENT-1058 ...
-📣 Campaign ready for CLIENT-1058.
-🎯 Generating campaign for CLIENT-8007 ...
-📣 Campaign ready for CLIENT-8007.
-🎯 Generating campaign for CLIENT-3426 ...
-📣 Campaign ready for CLIENT-3426.
-🎯 Generating campaign for CLIENT-2684 ...
-📣 Campaign ready for CLIENT-2684.
-🎯 Generating campaign for CLIENT-3662 ...
-📣 Campaign ready for CLIENT-3662.
-🎯 Generating campaign for CLIENT-7745 ...
-📣 Campaign ready for CLIENT-7745.
-🎯 Generating campaign for CLIENT-4644 ...
-📣 Campaign ready for CLIENT-4644.
-🎯 Generating campaign for CLIENT-7528 ...
-📣 Campaign ready for CLIENT-7528.
-🎯 Generating campaign for CLIENT-2889 ...
-📣 Campaign ready for CLIENT-2889.
-🎯 Generating campaign for CLIENT-8119 ...
-📣 Campaign ready for CLIENT-8119.
-🎯 Generating campaign for CLIENT-5173 ...
-📣 Campaign ready for CLIENT-5173.
-🎯 Generating campaign for CLIENT-6409 ...
-📣 Campaign ready for CLIENT-6409.
-
-🎯 Generating campaign for CLIENT-7691 ...
-⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, pleease check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15
-Please retry in 57.244148769s. [links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-2.5-flash-lite"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 15
-}
-, retry_delay {
-  seconds: 57
-}
-]
-⏳ Waiting 60 seconds due to rate limit...
-
-📣 Campaign ready for CLIENT-7691.
-🎯 Generating campaign for CLIENT-7211 ...
-📣 Campaign ready for CLIENT-7211.
-🎯 Generating campaign for CLIENT-9977 ...
-📣 Campaign ready for CLIENT-9977.
-🎯 Generating campaign for CLIENT-8238 ...
-📣 Campaign ready for CLIENT-8238.
-🎯 Generating campaign for CLIENT-9445 ...
-📣 Campaign ready for CLIENT-9445.
-🎯 Generating campaign for CLIENT-4262 ...
-📣 Campaign ready for CLIENT-4262.
-🎯 Generating campaign for CLIENT-4185 ...
-📣 Campaign ready for CLIENT-4185.
-🎯 Generating campaign for CLIENT-1090 ...
-📣 Campaign ready for CLIENT-1090.
-🎯 Generating campaign for CLIENT-1822 ...
-📣 Campaign ready for CLIENT-1822.
-🎯 Generating campaign for CLIENT-9270 ...
-📣 Campaign ready for CLIENT-9270.
-🎯 Generating campaign for CLIENT-5543 ...
-📣 Campaign ready for CLIENT-5543.
-🎯 Generating campaign for CLIENT-2269 ...
-📣 Campaign ready for CLIENT-2269.
-🎯 Generating campaign for CLIENT-3267 ...
-📣 Campaign ready for CLIENT-3267.
-🎯 Generating campaign for CLIENT-6421 ...
-📣 Campaign ready for CLIENT-6421.
-🎯 Generating campaign for CLIENT-8814 ...
-📣 Campaign ready for CLIENT-8814.
-🎯 Generating campaign for CLIENT-4595 ...
-📣 Campaign ready for CLIENT-4595.
-🎯 Generating campaign for CLIENT-3704 ...
-📣 Campaign ready for CLIENT-3704.
-🎯 Generating campaign for CLIENT-1444 ...
-📣 Campaign ready for CLIENT-1444.
-🎯 Generating campaign for CLIENT-5262 ...
-📣 Campaign ready for CLIENT-5262.
-🎯 Generating campaign for CLIENT-5558 ...
-📣 Campaign ready for CLIENT-5558.
-
-🎯 Generating campaign for CLIENT-1317 ...
-⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, please check your plan and billing details.  For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15       
-Please retry in 53.672259957s. [links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-2.5-flash-lite"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 15
-}
-, retry_delay {
-  seconds: 53
-}
-]
-⏳ Waiting 60 seconds due to rate limit...
-
-📣 Campaign ready for CLIENT-1317.
-🎯 Generating campaign for CLIENT-5051 ...
-📣 Campaign ready for CLIENT-5051.
-🎯 Generating campaign for CLIENT-8758 ...
-📣 Campaign ready for CLIENT-8758.
-🎯 Generating campaign for CLIENT-3749 ...
-📣 Campaign ready for CLIENT-3749.
-🎯 Generating campaign for CLIENT-6111 ...
-📣 Campaign ready for CLIENT-6111.
-🎯 Generating campaign for CLIENT-4978 ...
-📣 Campaign ready for CLIENT-4978.
-🎯 Generating campaign for CLIENT-9728 ...
-📣 Campaign ready for CLIENT-9728.
-🎯 Generating campaign for CLIENT-2729 ...
-📣 Campaign ready for CLIENT-2729.
-🎯 Generating campaign for CLIENT-9548 ...
-📣 Campaign ready for CLIENT-9548.
-🎯 Generating campaign for CLIENT-5397 ...
-📣 Campaign ready for CLIENT-5397.
-🎯 Generating campaign for CLIENT-7209 ...
-📣 Campaign ready for CLIENT-7209.
-🎯 Generating campaign for CLIENT-5232 ...
-📣 Campaign ready for CLIENT-5232.
-🎯 Generating campaign for CLIENT-7658 ...
-📣 Campaign ready for CLIENT-7658.
-🎯 Generating campaign for CLIENT-5820 ...
-📣 Campaign ready for CLIENT-5820.
-🎯 Generating campaign for CLIENT-7971 ...
-📣 Campaign ready for CLIENT-7971.
-🎯 Generating campaign for CLIENT-5118 ...
-📣 Campaign ready for CLIENT-5118.
-🎯 Generating campaign for CLIENT-5530 ...
-📣 Campaign ready for CLIENT-5530.
-🎯 Generating campaign for CLIENT-4727 ...
-📣 Campaign ready for CLIENT-4727.
-
-🎯 Generating campaign for CLIENT-1893 ...
-⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, please check your plan and billing details.  For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15       
-Please retry in 57.925034219s. [links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-2.5-flash-lite"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 15
-}
-, retry_delay {
-  seconds: 57
-}
-]
-⏳ Waiting 60 seconds due to rate limit...
-
-📣 Campaign ready for CLIENT-1893.
-🎯 Generating campaign for CLIENT-8690 ...
-📣 Campaign ready for CLIENT-8690.
-🎯 Generating campaign for CLIENT-2869 ...
-📣 Campaign ready for CLIENT-2869.
-🎯 Generating campaign for CLIENT-5978 ...
-📣 Campaign ready for CLIENT-5978.
-🎯 Generating campaign for CLIENT-7232 ...
-📣 Campaign ready for CLIENT-7232.
-🎯 Generating campaign for CLIENT-2625 ...
-📣 Campaign ready for CLIENT-2625.
-🎯 Generating campaign for CLIENT-3573 ...
-📣 Campaign ready for CLIENT-3573.
-
-✅ All campaign details saved to 'Campaigns' sheet.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+✅ All campaign details updated successfully.
