@@ -1,0 +1,542 @@
+🧾 Found 100 clients to process in 'Clients'.
+
+🔹 Processing batch 1 (5 clients)...
+⏩ Skipping CLIENT-2824 — already processed.
+⏩ Skipping CLIENT-9935 — already processed.
+⏩ Skipping CLIENT-4811 — already processed.
+⏩ Skipping CLIENT-1106 — already processed.
+⏩ Skipping CLIENT-3547 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 2 (5 clients)...
+⏩ Skipping CLIENT-6635 — already processed.
+⏩ Skipping CLIENT-5803 — already processed.
+⏩ Skipping CLIENT-2307 — already processed.
+⏩ Skipping CLIENT-7065 — already processed.
+⏩ Skipping CLIENT-3677 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 3 (5 clients)...
+⏩ Skipping CLIENT-1916 — already processed.
+⏩ Skipping CLIENT-4456 — already processed.
+⏩ Skipping CLIENT-8517 — already processed.
+⏩ Skipping CLIENT-7543 — already processed.
+⏩ Skipping CLIENT-2796 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 4 (5 clients)...
+⏩ Skipping CLIENT-8668 — already processed.
+⏩ Skipping CLIENT-6573 — already processed.
+⏩ Skipping CLIENT-9201 — already processed.
+⏩ Skipping CLIENT-9837 — already processed.
+⏩ Skipping CLIENT-6947 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 5 (5 clients)...
+⏩ Skipping CLIENT-2403 — already processed.
+⏩ Skipping CLIENT-8787 — already processed.
+⏩ Skipping CLIENT-7537 — already processed.
+⏩ Skipping CLIENT-4681 — already processed.
+⏩ Skipping CLIENT-1117 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 6 (5 clients)...
+⏩ Skipping CLIENT-2160 — already processed.
+⏩ Skipping CLIENT-8744 — already processed.
+⏩ Skipping CLIENT-8062 — already processed.
+⏩ Skipping CLIENT-7596 — already processed.
+⏩ Skipping CLIENT-3296 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 7 (5 clients)...
+⏩ Skipping CLIENT-9856 — already processed.
+⏩ Skipping CLIENT-4502 — already processed.
+⏩ Skipping CLIENT-5345 — already processed.
+⏩ Skipping CLIENT-4566 — already processed.
+⏩ Skipping CLIENT-8811 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 8 (5 clients)...
+⏩ Skipping CLIENT-2122 — already processed.
+⏩ Skipping CLIENT-2343 — already processed.
+⏩ Skipping CLIENT-3144 — already processed.
+⏩ Skipping CLIENT-2200 — already processed.
+⏩ Skipping CLIENT-5002 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 9 (5 clients)...
+⏩ Skipping CLIENT-5905 — already processed.
+⏩ Skipping CLIENT-3546 — already processed.
+⏩ Skipping CLIENT-9280 — already processed.
+⏩ Skipping CLIENT-1058 — already processed.
+⏩ Skipping CLIENT-8007 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 10 (5 clients)...
+⏩ Skipping CLIENT-3426 — already processed.
+⏩ Skipping CLIENT-2684 — already processed.
+⏩ Skipping CLIENT-3662 — already processed.
+⏩ Skipping CLIENT-7745 — already processed.
+⏩ Skipping CLIENT-4644 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 11 (5 clients)...
+⏩ Skipping CLIENT-7528 — already processed.
+⏩ Skipping CLIENT-2889 — already processed.
+⏩ Skipping CLIENT-8119 — already processed.
+⏩ Skipping CLIENT-5173 — already processed.
+⏩ Skipping CLIENT-6409 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 12 (5 clients)...
+⏩ Skipping CLIENT-7691 — already processed.
+⏩ Skipping CLIENT-7211 — already processed.
+⏩ Skipping CLIENT-9977 — already processed.
+⏩ Skipping CLIENT-8238 — already processed.
+⏩ Skipping CLIENT-9445 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 13 (5 clients)...
+⏩ Skipping CLIENT-4262 — already processed.
+⏩ Skipping CLIENT-4185 — already processed.
+⏩ Skipping CLIENT-1090 — already processed.
+⏩ Skipping CLIENT-1822 — already processed.
+⏩ Skipping CLIENT-9270 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 14 (5 clients)...
+⏩ Skipping CLIENT-5543 — already processed.
+⏩ Skipping CLIENT-2269 — already processed.
+⏩ Skipping CLIENT-3267 — already processed.
+⏩ Skipping CLIENT-6421 — already processed.
+⏩ Skipping CLIENT-8814 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 15 (5 clients)...
+⏩ Skipping CLIENT-4595 — already processed.
+⏩ Skipping CLIENT-3704 — already processed.
+⏩ Skipping CLIENT-1444 — already processed.
+⏩ Skipping CLIENT-5262 — already processed.
+⏩ Skipping CLIENT-5558 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 16 (5 clients)...
+⏩ Skipping CLIENT-1317 — already processed.
+⏩ Skipping CLIENT-5051 — already processed.
+⏩ Skipping CLIENT-8758 — already processed.
+⏩ Skipping CLIENT-3749 — already processed.
+⏩ Skipping CLIENT-6111 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 17 (5 clients)...
+⏩ Skipping CLIENT-4978 — already processed.
+⏩ Skipping CLIENT-9728 — already processed.
+⏩ Skipping CLIENT-2729 — already processed.
+⏩ Skipping CLIENT-9548 — already processed.
+⏩ Skipping CLIENT-5397 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 18 (5 clients)...
+⏩ Skipping CLIENT-7209 — already processed.
+⏩ Skipping CLIENT-5232 — already processed.
+⏩ Skipping CLIENT-7658 — already processed.
+⏩ Skipping CLIENT-5820 — already processed.
+⏩ Skipping CLIENT-7971 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 19 (5 clients)...
+⏩ Skipping CLIENT-5118 — already processed.
+⏩ Skipping CLIENT-5530 — already processed.
+⏩ Skipping CLIENT-4727 — already processed.
+⏩ Skipping CLIENT-1893 — already processed.
+⏩ Skipping CLIENT-8690 — already processed.
+💾 Batch saved to Clients sheet.
+
+🔹 Processing batch 20 (5 clients)...
+⏩ Skipping CLIENT-2869 — already processed.
+⏩ Skipping CLIENT-5978 — already processed.
+⏩ Skipping CLIENT-7232 — already processed.
+⏩ Skipping CLIENT-2625 — already processed.
+⏩ Skipping CLIENT-3573 — already processed.
+💾 Batch saved to Clients sheet.
+
+🎯 Generating campaign for CLIENT-2824 ...
+📣 Campaign ready for CLIENT-2824.
+🎯 Generating campaign for CLIENT-9935 ...
+📣 Campaign ready for CLIENT-9935.
+🎯 Generating campaign for CLIENT-4811 ...
+📣 Campaign ready for CLIENT-4811.
+🎯 Generating campaign for CLIENT-1106 ...
+📣 Campaign ready for CLIENT-1106.
+🎯 Generating campaign for CLIENT-3547 ...
+📣 Campaign ready for CLIENT-3547.
+🎯 Generating campaign for CLIENT-6635 ...
+📣 Campaign ready for CLIENT-6635.
+🎯 Generating campaign for CLIENT-5803 ...
+📣 Campaign ready for CLIENT-5803.
+🎯 Generating campaign for CLIENT-2307 ...
+📣 Campaign ready for CLIENT-2307.
+🎯 Generating campaign for CLIENT-7065 ...
+📣 Campaign ready for CLIENT-7065.
+🎯 Generating campaign for CLIENT-3677 ...
+📣 Campaign ready for CLIENT-3677.
+🎯 Generating campaign for CLIENT-1916 ...
+📣 Campaign ready for CLIENT-1916.
+🎯 Generating campaign for CLIENT-4456 ...
+📣 Campaign ready for CLIENT-4456.
+🎯 Generating campaign for CLIENT-8517 ...
+📣 Campaign ready for CLIENT-8517.
+🎯 Generating campaign for CLIENT-7543 ...
+📣 Campaign ready for CLIENT-7543.
+🎯 Generating campaign for CLIENT-2796 ...
+📣 Campaign ready for CLIENT-2796.
+🎯 Generating campaign for CLIENT-8668 ...
+📣 Campaign ready for CLIENT-8668.
+🎯 Generating campaign for CLIENT-6573 ...
+⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to:: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15
+Please retry in 58.240381222s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash-lite"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 58
+}
+]
+⏳ Waiting 60 seconds due to rate limit...
+
+📣 Campaign ready for CLIENT-6573.
+🎯 Generating campaign for CLIENT-9201 ...
+📣 Campaign ready for CLIENT-9201.
+🎯 Generating campaign for CLIENT-9837 ...
+📣 Campaign ready for CLIENT-9837.
+🎯 Generating campaign for CLIENT-6947 ...
+📣 Campaign ready for CLIENT-6947.
+🎯 Generating campaign for CLIENT-2403 ...
+📣 Campaign ready for CLIENT-2403.
+🎯 Generating campaign for CLIENT-8787 ...
+📣 Campaign ready for CLIENT-8787.
+🎯 Generating campaign for CLIENT-7537 ...
+📣 Campaign ready for CLIENT-7537.
+🎯 Generating campaign for CLIENT-4681 ...
+📣 Campaign ready for CLIENT-4681.
+🎯 Generating campaign for CLIENT-1117 ...
+📣 Campaign ready for CLIENT-1117.
+🎯 Generating campaign for CLIENT-2160 ...
+📣 Campaign ready for CLIENT-2160.
+🎯 Generating campaign for CLIENT-8744 ...
+📣 Campaign ready for CLIENT-8744.
+🎯 Generating campaign for CLIENT-8062 ...
+📣 Campaign ready for CLIENT-8062.
+🎯 Generating campaign for CLIENT-7596 ...
+📣 Campaign ready for CLIENT-7596.
+🎯 Generating campaign for CLIENT-3296 ...
+📣 Campaign ready for CLIENT-3296.
+🎯 Generating campaign for CLIENT-9856 ...
+📣 Campaign ready for CLIENT-9856.
+🎯 Generating campaign for CLIENT-4502 ...
+📣 Campaign ready for CLIENT-4502.
+🎯 Generating campaign for CLIENT-5345 ...
+📣 Campaign ready for CLIENT-5345.
+🎯 Generating campaign for CLIENT-4566 ...
+📣 Campaign ready for CLIENT-4566.
+🎯 Generating campaign for CLIENT-8811 ...
+📣 Campaign ready for CLIENT-8811.
+🎯 Generating campaign for CLIENT-2122 ...
+📣 Campaign ready for CLIENT-2122.
+
+🎯 Generating campaign for CLIENT-2343 ...
+⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to:: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15
+Please retry in 56.356591051s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash-lite"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 56
+}
+]
+⏳ Waiting 60 seconds due to rate limit...
+
+📣 Campaign ready for CLIENT-2343.
+🎯 Generating campaign for CLIENT-3144 ...
+📣 Campaign ready for CLIENT-3144.
+🎯 Generating campaign for CLIENT-2200 ...
+📣 Campaign ready for CLIENT-2200.
+🎯 Generating campaign for CLIENT-5002 ...
+📣 Campaign ready for CLIENT-5002.
+🎯 Generating campaign for CLIENT-5905 ...
+📣 Campaign ready for CLIENT-5905.
+🎯 Generating campaign for CLIENT-3546 ...
+📣 Campaign ready for CLIENT-3546.
+🎯 Generating campaign for CLIENT-9280 ...
+📣 Campaign ready for CLIENT-9280.
+🎯 Generating campaign for CLIENT-1058 ...
+📣 Campaign ready for CLIENT-1058.
+🎯 Generating campaign for CLIENT-8007 ...
+📣 Campaign ready for CLIENT-8007.
+🎯 Generating campaign for CLIENT-3426 ...
+📣 Campaign ready for CLIENT-3426.
+🎯 Generating campaign for CLIENT-2684 ...
+📣 Campaign ready for CLIENT-2684.
+🎯 Generating campaign for CLIENT-3662 ...
+📣 Campaign ready for CLIENT-3662.
+🎯 Generating campaign for CLIENT-7745 ...
+📣 Campaign ready for CLIENT-7745.
+🎯 Generating campaign for CLIENT-4644 ...
+📣 Campaign ready for CLIENT-4644.
+🎯 Generating campaign for CLIENT-7528 ...
+📣 Campaign ready for CLIENT-7528.
+🎯 Generating campaign for CLIENT-2889 ...
+📣 Campaign ready for CLIENT-2889.
+🎯 Generating campaign for CLIENT-8119 ...
+📣 Campaign ready for CLIENT-8119.
+🎯 Generating campaign for CLIENT-5173 ...
+📣 Campaign ready for CLIENT-5173.
+🎯 Generating campaign for CLIENT-6409 ...
+📣 Campaign ready for CLIENT-6409.
+
+🎯 Generating campaign for CLIENT-7691 ...
+⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, pleease check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15
+Please retry in 57.244148769s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash-lite"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 57
+}
+]
+⏳ Waiting 60 seconds due to rate limit...
+
+📣 Campaign ready for CLIENT-7691.
+🎯 Generating campaign for CLIENT-7211 ...
+📣 Campaign ready for CLIENT-7211.
+🎯 Generating campaign for CLIENT-9977 ...
+📣 Campaign ready for CLIENT-9977.
+🎯 Generating campaign for CLIENT-8238 ...
+📣 Campaign ready for CLIENT-8238.
+🎯 Generating campaign for CLIENT-9445 ...
+📣 Campaign ready for CLIENT-9445.
+🎯 Generating campaign for CLIENT-4262 ...
+📣 Campaign ready for CLIENT-4262.
+🎯 Generating campaign for CLIENT-4185 ...
+📣 Campaign ready for CLIENT-4185.
+🎯 Generating campaign for CLIENT-1090 ...
+📣 Campaign ready for CLIENT-1090.
+🎯 Generating campaign for CLIENT-1822 ...
+📣 Campaign ready for CLIENT-1822.
+🎯 Generating campaign for CLIENT-9270 ...
+📣 Campaign ready for CLIENT-9270.
+🎯 Generating campaign for CLIENT-5543 ...
+📣 Campaign ready for CLIENT-5543.
+🎯 Generating campaign for CLIENT-2269 ...
+📣 Campaign ready for CLIENT-2269.
+🎯 Generating campaign for CLIENT-3267 ...
+📣 Campaign ready for CLIENT-3267.
+🎯 Generating campaign for CLIENT-6421 ...
+📣 Campaign ready for CLIENT-6421.
+🎯 Generating campaign for CLIENT-8814 ...
+📣 Campaign ready for CLIENT-8814.
+🎯 Generating campaign for CLIENT-4595 ...
+📣 Campaign ready for CLIENT-4595.
+🎯 Generating campaign for CLIENT-3704 ...
+📣 Campaign ready for CLIENT-3704.
+🎯 Generating campaign for CLIENT-1444 ...
+📣 Campaign ready for CLIENT-1444.
+🎯 Generating campaign for CLIENT-5262 ...
+📣 Campaign ready for CLIENT-5262.
+🎯 Generating campaign for CLIENT-5558 ...
+📣 Campaign ready for CLIENT-5558.
+
+🎯 Generating campaign for CLIENT-1317 ...
+⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, please check your plan and billing details.  For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15       
+Please retry in 53.672259957s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash-lite"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 53
+}
+]
+⏳ Waiting 60 seconds due to rate limit...
+
+📣 Campaign ready for CLIENT-1317.
+🎯 Generating campaign for CLIENT-5051 ...
+📣 Campaign ready for CLIENT-5051.
+🎯 Generating campaign for CLIENT-8758 ...
+📣 Campaign ready for CLIENT-8758.
+🎯 Generating campaign for CLIENT-3749 ...
+📣 Campaign ready for CLIENT-3749.
+🎯 Generating campaign for CLIENT-6111 ...
+📣 Campaign ready for CLIENT-6111.
+🎯 Generating campaign for CLIENT-4978 ...
+📣 Campaign ready for CLIENT-4978.
+🎯 Generating campaign for CLIENT-9728 ...
+📣 Campaign ready for CLIENT-9728.
+🎯 Generating campaign for CLIENT-2729 ...
+📣 Campaign ready for CLIENT-2729.
+🎯 Generating campaign for CLIENT-9548 ...
+📣 Campaign ready for CLIENT-9548.
+🎯 Generating campaign for CLIENT-5397 ...
+📣 Campaign ready for CLIENT-5397.
+🎯 Generating campaign for CLIENT-7209 ...
+📣 Campaign ready for CLIENT-7209.
+🎯 Generating campaign for CLIENT-5232 ...
+📣 Campaign ready for CLIENT-5232.
+🎯 Generating campaign for CLIENT-7658 ...
+📣 Campaign ready for CLIENT-7658.
+🎯 Generating campaign for CLIENT-5820 ...
+📣 Campaign ready for CLIENT-5820.
+🎯 Generating campaign for CLIENT-7971 ...
+📣 Campaign ready for CLIENT-7971.
+🎯 Generating campaign for CLIENT-5118 ...
+📣 Campaign ready for CLIENT-5118.
+🎯 Generating campaign for CLIENT-5530 ...
+📣 Campaign ready for CLIENT-5530.
+🎯 Generating campaign for CLIENT-4727 ...
+📣 Campaign ready for CLIENT-4727.
+
+🎯 Generating campaign for CLIENT-1893 ...
+⚠️ Gemini call failed (attempt 1): 429 You exceeded your current quota, please check your plan and billing details.  For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15       
+Please retry in 57.925034219s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash-lite"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 57
+}
+]
+⏳ Waiting 60 seconds due to rate limit...
+
+📣 Campaign ready for CLIENT-1893.
+🎯 Generating campaign for CLIENT-8690 ...
+📣 Campaign ready for CLIENT-8690.
+🎯 Generating campaign for CLIENT-2869 ...
+📣 Campaign ready for CLIENT-2869.
+🎯 Generating campaign for CLIENT-5978 ...
+📣 Campaign ready for CLIENT-5978.
+🎯 Generating campaign for CLIENT-7232 ...
+📣 Campaign ready for CLIENT-7232.
+🎯 Generating campaign for CLIENT-2625 ...
+📣 Campaign ready for CLIENT-2625.
+🎯 Generating campaign for CLIENT-3573 ...
+📣 Campaign ready for CLIENT-3573.
+
+✅ All campaign details saved to 'Campaigns' sheet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
