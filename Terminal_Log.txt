@@ -1,101 +1,115 @@
 
+Overall Sanity Check:
+	It should indicate updating all auto-gen columns.
+
+A new chat record: 
+	Only Client Type/Interests/Traits/Category columns cleared.
+
+A new campaign record:
+	Only Campaign ID and Campaign Status columns cleared.
+
+
 ✅ Initialized Gemini instances.
-🧾 Found 100 clients in 'Clients'.
+🧾 Found 101 clients in 'Clients'.
 
 🔹 Processing batch 1 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 2 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 3 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 4 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 5 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 6 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 7 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 8 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 9 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 10 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 11 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 12 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 13 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 14 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 15 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 16 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 17 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 18 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 19 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 20 (5 clients)...
-💾 Batch saved to Clients sheet.
+🔍 Checking for updates in Clients sheet...
+✅ No new client updates — skipping Clients sheet write.
 
-📢 Processing 16 campaigns...
-🎯 CMP-0001 — Target 'Romantic' matched 8 clients.
-👥 Matching Clients:
-   - Saira Varghese | saira.varghese@yahoo.com | +91-9887383353
-   - Gatik Rout | gatik.rout@yahoo.com | +91-8322911750
-   - Devansh Wagle | devansh.wagle@outlook.com | +91-7311921364
-   - Gokul Vyas | gokul.vyas@outlook.com | +91-8107856359
-   - Inaaya Karpe | inaaya..karpe@outlook.com | +91-7941762617
-   - Rohan Manda | rohan.manda@outlook.com | +91-7002015363
-   - Eva Suri | eva.suri@outlook.com | +91-8581789003
-   - Samar Desai | samar.desai@outlook.com | +91-7491303187
-🎯 CMP-0002 — Target 'Foodie' matched 21 clients.
-👥 Matching Clients:
-   - Reyansh Bala | reyansh.bala@yahoo.com | +91-8562538784
-   - Darshit Batta | darshit.batta@gmail.com | +91-8947394721
-   - Gokul Kamdar | gokul.kamdar@gmail.com | +91-8400892213
-   - Nirvaan Garde | nirvaan.garde@yahoo.com | +91-8995207143
-   - Ranbir Biswas | ranbir.biswas@gmail.com | +91-9582389072
-   - Siya Bora | siya.bora@yahoo.com | +91-7461119893
-   - Kabir Buch | kabir.buch@hotmail.com | +91-7175839779
-   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
-   - Neysa Sem | neysa.sem@gmail.com | +91-9196626801
-   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
-   - Lakshay Taneja | lakshay.taneja@yahoo.com | +91-8402796353
-   - Eshani Mahajan | eshani.mahajan@outlook.com | +91-7358289731
-   - Kismat Bhattacharyya | kismat.bhattacharyya@gmail.com | +91-7475001311
-   - Zeeshan Chandra | zeeshan.chandra@hotmail.com | +91-7672990766
-   - Ayesha Halder | ayesha.halder@hotmail.com | +91-9982134968
-   - Rasha Chakrabarti | rasha.chakrabarti@gmail.com | +91-9082211707
-   - Nayantara Barad | nayantara.barad@gmail.com | +91-8021716703
-   - Shalv Goyal | shalv.goyal@outlook.com | +91-7144373968
-   - Vritika Ganguly | vritika.ganguly@hotmail.com | +91-8178116296
-   - Piya Uppal | piya.uppal@outlook.com | +91-7061014413
-   - Shanaya Krishna | shanaya.krishna@outlook.com | +91-8450792614
+🔹 Processing batch 21 (1 clients)...
+🔍 Analyzing client CLIENT-9999 ...
+✅ CLIENT-9999 profile updated.
+🧩 Inferring category for CLIENT-9999 ...
+🏷️ CLIENT-9999 category: Budget Leisure, Experience Seeker, Value Focused
+🔍 Checking for updates in Clients sheet...
+🟡 Detected updates in column: Client Type
+💾 Changes found — updating Clients sheet...
+📝 Updating columns individually: Client Type, Client Interests, Client Traits, Client Category
+✅ Column 'Client Type' updated (I)
+✅ Column 'Client Interests' updated (J)
+✅ Column 'Client Traits' updated (K)
+✅ Column 'Client Category' updated (L)
+✅ Partial update completed for sheet 'Clients'.
+
+📢 Processing 20 campaigns...
+⏸️ Skipping CMP-0001 — status INACTIVE (no update).
+⏸️ Skipping CMP-0002 — status INACTIVE (no update).
 🎯 CMP-0003 — Target 'Family' matched 7 clients.
 👥 Matching Clients:
    - Prisha Mand | prisha.mand@hotmail.com | +91-7529928531
@@ -105,20 +119,8 @@
    - Gatik Sant | gatik.sant@hotmail.com | +91-7409752747
    - Mishti Krishna | mishti.krishna@gmail.com | +91-8755681449
    - Charvi Biswas | charvi.biswas@yahoo.com | +91-7774869157
-🎯 CMP-0004 — Target 'Business' matched 9 clients.
-👥 Matching Clients:
-   - Shanaya Doctor | shanaya.doctor@gmail.com | +91-8874814104
-   - Ela Roy | ela.roy@hotmail.com | +91-9347130107
-   - Pari Bassi | pari.bassi@yahoo.com | +91-8022656187
-   - Zain Chowdhury | zain.chowdhury@yahoo.com | +91-9332672658
-   - Adira Ranganathan | adira.ranganathan@hotmail.com | +91-9460003983
-   - Romil Randhawa | romil.randhawa@hotmail.com | +91-8235462358
-   - Misha Sengupta | misha.sengupta@yahoo.com | +91-7808125361
-   - Vedika Chokshi | vedika.chokshi@yahoo.com | +91-7524180323
-   - Anaya Chanda | anaya.chanda@yahoo.com | +91-7386199716
-🎯 CMP-0005 — Target 'Budget' matched 1 clients.
-👥 Matching Clients:
-   - Rhea Shetty | rhea.shetty@hotmail.com | +91-7393110513
+⏸️ Skipping CMP-0004 — status INACTIVE (no update).
+⏸️ Skipping CMP-0005 — status INACTIVE (no update).
 🎯 CMP-0006 — Target 'Adventurer' matched 5 clients.
 👥 Matching Clients:
    - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
@@ -126,69 +128,8 @@
    - Lakshit Chopra | lakshit.chopra@outlook.com | +91-9780498535
    - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
    - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
-🎯 CMP-0007 — Target 'Leisure' matched 49 clients.
-👥 Matching Clients:
-   - Prisha Mand | prisha.mand@hotmail.com | +91-7529928531
-   - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
-   - Darshit Saran | darshit.saran@outlook.com | +91-9215004426
-   - Chirag Khosla | chirag.khosla@hotmail.com | +91-9278309288
-   - Veer Kohli | veer.kohli@outlook.com | +91-9198093905
-   - Devansh Wagle | devansh.wagle@outlook.com | +91-7311921364
-   - Gokul Kamdar | gokul.kamdar@gmail.com | +91-8400892213
-   - Romil Chacko | romil.chacko@hotmail.com | +91-8723714594
-   - Siya Bora | siya.bora@yahoo.com | +91-7461119893
-   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
-   - Romil Ram | romil.ram@yahoo.com | +91-7848058795
-   - Fateh Mani | fateh.mani@gmail.com | +91-7437906683
-   - Miraan Toor | miraan.toor@yahoo.com | +91-7323867816
-   - Lavanya Dar | lavanya.dar@gmail.com | +91-7692613448
-   - Neysa Bhagat | neysa.bhagat@gmail.com | +91-7820712499
-   - Anahita Kapadia | anahita.kapadia@hotmail.com | +91-9932286706
-   - Madhav Hari | madhav.hari@hotmail.com | +91-7877573028
-   - Kabir Buch | kabir.buch@hotmail.com | +91-7175839779
-   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
-   - Biju Kumar | biju.kumar@yahoo.com | +91-9986590433
-   - Biju Jayaraman | biju.jayaraman@outlook.com | +91-7658331849
-   - Rhea Shetty | rhea.shetty@hotmail.com | +91-7393110513
-   - Kismat Kamdar | kismat.kamdar@outlook.com | +91-8521793530
-   - Eshani Mahajan | eshani.mahajan@outlook.com | +91-7358289731
-   - Rhea Thakur | rhea.thakur@hotmail.com | +91-8238109043
-   - Kismat Bhattacharyya | kismat.bhattacharyya@gmail.com | +91-7475001311
-   - Stuvan Badal | stuvan.badal@yahoo.com | +91-8789285388
-   - Veer Shetty | veer.shetty@gmail.com | +91-7076171909
-   - Khushi Magar | khushi.magar@hotmail.com | +91-9307175731
-   - Ishaan Upadhyay | ishaan.upadhyay@yahoo.com | +91-8419756609
-   - Vritika Sangha | vritika.sangha@gmail.com | +91-9276541494
-   - Ahana Shere | ahana..shere@hotmail.com | +91-8312949619
-   - Gatik Sant | gatik.sant@hotmail.com | +91-7409752747
-   - Aayush Dar | aayush.dar@outlook.com | +91-8262841912
-   - Mishti Krishna | mishti.krishna@gmail.com | +91-8755681449
-   - Seher Gara | seher.gara@hotmail.com | +91-9655081584
-   - Amani Dada | amani.dada@gmail.com | +91-8799218175
-   - Nehmat Amble | nehmat.amble@hotmail.com | +91-8826041936
-   - Nayantara Barad | nayantara.barad@gmail.com | +91-8021716703
-   - Shlok Sahni | shlok.sahni@gmail.com | +91-9025660391
-   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
-   - Aarush Shankar | aarush.shankar@outlook.com | +91-7433469665
-   - Shalv Goyal | shalv.goyal@outlook.com | +91-7144373968
-   - Khushi Sankar | khushi.sankar@outlook.com | +91-8734456162
-   - Charvi Biswas | charvi.biswas@yahoo.com | +91-7774869157
-   - Romil Agarwal | romil.agarwal@hotmail.com | +91-8636249944
-   - Vritika Ganguly | vritika.ganguly@hotmail.com | +91-8178116296
-   - Piya Uppal | piya.uppal@outlook.com | +91-7061014413
-   - Ojas Tank | ojas.tank@yahoo.com | +91-9134028502
-🎯 CMP-0008 — Target 'Group' matched 10 clients.
-👥 Matching Clients:
-   - Lakshit Arora | lakshit.arora@yahoo.com | +91-8277878193
-   - Divij Dayal | divij.dayal@hotmail.com | +91-9961631043
-   - Eva Kumer | eva.kumer@yahoo.com | +91-9197954227
-   - Biju Kumar | biju.kumar@yahoo.com | +91-9986590433
-   - Rhea Shetty | rhea.shetty@hotmail.com | +91-7393110513
-   - Armaan Rao | armaan.rao@gmail.com | +91-9452693270
-   - Stuvan Badal | stuvan.badal@yahoo.com | +91-8789285388
-   - Ahana Shere | ahana..shere@hotmail.com | +91-8312949619
-   - Saanvi Raj | saanvi.raj@gmail.com | +91-7051887601
-   - Farhan Tara | farhan.tara@hotmail.com | +91-9445766910
+⏸️ Skipping CMP-0007 — status INACTIVE (no update).
+⏸️ Skipping CMP-0008 — status INACTIVE (no update).
 🎯 CMP-0009 — Target 'Spa' matched 46 clients.
 👥 Matching Clients:
    - Reyansh Bala | reyansh.bala@yahoo.com | +91-8562538784
@@ -237,22 +178,8 @@
    - Vritika Ganguly | vritika.ganguly@hotmail.com | +91-8178116296
    - Ojas Tank | ojas.tank@yahoo.com | +91-9134028502
    - Shanaya Krishna | shanaya.krishna@outlook.com | +91-8450792614
-🎯 CMP-0010 — Target 'Solo' matched 7 clients.
-👥 Matching Clients:
-   - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
-   - Tushar Buch | tushar.buch@gmail.com | +91-8965446398
-   - Arnav Gaba | arnav.gaba@gmail.com | +91-9406664293
-   - Kabir Raval | kabir.raval@gmail.com | +91-7523086384
-   - Arhaan Koshy | arhaan.koshy@outlook.com | +91-8858429676
-   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
-   - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
-🎯 CMP-0011 — Target 'Kid-Friendly' matched 5 clients.
-👥 Matching Clients:
-   - Prisha Mand | prisha.mand@hotmail.com | +91-7529928531
-   - Madhav Hari | madhav.hari@hotmail.com | +91-7877573028
-   - Rhea Thakur | rhea.thakur@hotmail.com | +91-8238109043
-   - Gatik Sant | gatik.sant@hotmail.com | +91-7409752747
-   - Mishti Krishna | mishti.krishna@gmail.com | +91-8755681449
+⏸️ Skipping CMP-0010 — status INACTIVE (no update).
+⏸️ Skipping CMP-0011 — status INACTIVE (no update).
 🎯 CMP-0012 — Target 'wellness' matched 15 clients.
 👥 Matching Clients:
    - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
@@ -270,25 +197,8 @@
    - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
    - Priyansh Mandal | priyansh.mandal@gmail.com | +91-7804325884
    - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
-🎯 CMP-0013 — Target 'anniversary' matched 7 clients.
-👥 Matching Clients:
-   - Saira Varghese | saira.varghese@yahoo.com | +91-9887383353
-   - Gatik Rout | gatik.rout@yahoo.com | +91-8322911750
-   - Gokul Vyas | gokul.vyas@outlook.com | +91-8107856359
-   - Inaaya Karpe | inaaya..karpe@outlook.com | +91-7941762617
-   - Rohan Manda | rohan.manda@outlook.com | +91-7002015363
-   - Eva Suri | eva.suri@outlook.com | +91-8581789003
-   - Samar Desai | samar.desai@outlook.com | +91-7491303187
-🎯 CMP-0014 — Target 'villa' matched 7 clients.
-👥 Matching Clients:
-   - Lakshit Arora | lakshit.arora@yahoo.com | +91-8277878193
-   - Divij Dayal | divij.dayal@hotmail.com | +91-9961631043
-   - Eva Kumer | eva.kumer@yahoo.com | +91-9197954227
-   - Rhea Shetty | rhea.shetty@hotmail.com | +91-7393110513
-   - Armaan Rao | armaan.rao@gmail.com | +91-9452693270
-   - Stuvan Badal | stuvan.badal@yahoo.com | +91-8789285388
-   - Farhan Tara | farhan.tara@hotmail.com | +91-9445766910
-🆔 Assigned Campaign ID: CMP-0015
+⏸️ Skipping CMP-0013 — status INACTIVE (no update).
+⏸️ Skipping CMP-0014 — status INACTIVE (no update).
 🎯 CMP-0015 — Target 'productivity' matched 5 clients.
 👥 Matching Clients:
    - Ela Roy | ela.roy@hotmail.com | +91-9347130107
@@ -296,12 +206,76 @@
    - Misha Sengupta | misha.sengupta@yahoo.com | +91-7808125361
    - Vedika Chokshi | vedika.chokshi@yahoo.com | +91-7524180323
    - Anaya Chanda | anaya.chanda@yahoo.com | +91-7386199716
-🆔 Assigned Campaign ID: CMP-0016
-🎯 CMP-0016 — Target 'connectivity' matched 4 clients.
+⏸️ Skipping CMP-0016 — status INACTIVE (no update).
+🎯 CMP-0017 — Target 'Adventurer' matched 5 clients.
 👥 Matching Clients:
-   - Shanaya Doctor | shanaya.doctor@gmail.com | +91-8874814104
-   - Ela Roy | ela.roy@hotmail.com | +91-9347130107
-   - Zain Chowdhury | zain.chowdhury@yahoo.com | +91-9332672658
-   - Anaya Chanda | anaya.chanda@yahoo.com | +91-7386199716
+   - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
+   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
+   - Lakshit Chopra | lakshit.chopra@outlook.com | +91-9780498535
+   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
+   - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
+🎯 CMP-0018 — Target 'Adventurer' matched 5 clients.
+👥 Matching Clients:
+   - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
+   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
+   - Lakshit Chopra | lakshit.chopra@outlook.com | +91-9780498535
+   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
+   - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
+🎯 CMP-0019 — Target 'wellness' matched 15 clients.
+👥 Matching Clients:
+   - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
+   - Chirag Khosla | chirag.khosla@hotmail.com | +91-9278309288
+   - Romil Chacko | romil.chacko@hotmail.com | +91-8723714594
+   - Lavanya Dar | lavanya.dar@gmail.com | +91-7692613448
+   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
+   - Tushar Buch | tushar.buch@gmail.com | +91-8965446398
+   - Adah Rout | adah.rout@yahoo.com | +91-9245640319
+   - Arnav Gaba | arnav.gaba@gmail.com | +91-9406664293
+   - Biju Jayaraman | biju.jayaraman@outlook.com | +91-7658331849
+   - Zeeshan Chandra | zeeshan.chandra@hotmail.com | +91-7672990766
+   - Kabir Raval | kabir.raval@gmail.com | +91-7523086384
+   - Arhaan Koshy | arhaan.koshy@outlook.com | +91-8858429676
+   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
+   - Priyansh Mandal | priyansh.mandal@gmail.com | +91-7804325884
+   - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
+🆔 Assigned Campaign ID: CMP-0020
+🎯 CMP-0020 — Target 'wellness' matched 15 clients.
+👥 Matching Clients:
+   - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
+   - Chirag Khosla | chirag.khosla@hotmail.com | +91-9278309288
+   - Romil Chacko | romil.chacko@hotmail.com | +91-8723714594
+   - Lavanya Dar | lavanya.dar@gmail.com | +91-7692613448
+   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
+   - Tushar Buch | tushar.buch@gmail.com | +91-8965446398
+   - Adah Rout | adah.rout@yahoo.com | +91-9245640319
+   - Arnav Gaba | arnav.gaba@gmail.com | +91-9406664293
+   - Biju Jayaraman | biju.jayaraman@outlook.com | +91-7658331849
+   - Zeeshan Chandra | zeeshan.chandra@hotmail.com | +91-7672990766
+   - Kabir Raval | kabir.raval@gmail.com | +91-7523086384
+   - Arhaan Koshy | arhaan.koshy@outlook.com | +91-8858429676
+   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
+   - Priyansh Mandal | priyansh.mandal@gmail.com | +91-7804325884
+   - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
+📅 CMP-0020 status set to UPCOMING
+📝 Updating columns individually: Campaign ID, Target Customers Count, Campaign Status
+✅ Column 'Campaign ID' updated (A)
+✅ Column 'Target Customers Count' updated (F)
+✅ Column 'Campaign Status' updated (H)
+✅ Partial update completed for sheet 'Campaigns'.
 
 ✅ All campaign details updated successfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
