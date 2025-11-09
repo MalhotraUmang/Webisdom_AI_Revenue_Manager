@@ -1,12 +1,12 @@
 
-Overall Sanity Check:
-	It should indicate updating all auto-gen columns.
+Only Campaign Message Count column is filled.
+INACTIVE : 3
+ACTIVE : 1/2
+UPCOMING : 1/2
 
-A new chat record: 
-	Only Client Type/Interests/Traits/Category columns cleared.
-
-A new campaign record:
-	Only Campaign ID and Campaign Status columns cleared.
+There is a display in terminal as below:
+✅ Added new message template columns using update_sheet(): Message Template #1, Message Template #2
+And also, 2 new columns were added for message templates.
 
 
 ✅ Initialized Gemini instances.
@@ -93,189 +93,38 @@ A new campaign record:
 ✅ No new client updates — skipping Clients sheet write.
 
 🔹 Processing batch 21 (1 clients)...
-🔍 Analyzing client CLIENT-9999 ...
-✅ CLIENT-9999 profile updated.
-🧩 Inferring category for CLIENT-9999 ...
-🏷️ CLIENT-9999 category: Budget Leisure, Experience Seeker, Value Focused
 🔍 Checking for updates in Clients sheet...
-🟡 Detected updates in column: Client Type
-💾 Changes found — updating Clients sheet...
-📝 Updating columns individually: Client Type, Client Interests, Client Traits, Client Category
-✅ Column 'Client Type' updated (I)
-✅ Column 'Client Interests' updated (J)
-✅ Column 'Client Traits' updated (K)
-✅ Column 'Client Category' updated (L)
-✅ Partial update completed for sheet 'Clients'.
+✅ No new client updates — skipping Clients sheet write.
 
 📢 Processing 20 campaigns...
 ⏸️ Skipping CMP-0001 — status INACTIVE (no update).
-⏸️ Skipping CMP-0002 — status INACTIVE (no update).
-🎯 CMP-0003 — Target 'Family' matched 7 clients.
-👥 Matching Clients:
-   - Prisha Mand | prisha.mand@hotmail.com | +91-7529928531
-   - Madhav Hari | madhav.hari@hotmail.com | +91-7877573028
-   - Biju Kumar | biju.kumar@yahoo.com | +91-9986590433
-   - Rhea Thakur | rhea.thakur@hotmail.com | +91-8238109043
-   - Gatik Sant | gatik.sant@hotmail.com | +91-7409752747
-   - Mishti Krishna | mishti.krishna@gmail.com | +91-8755681449
-   - Charvi Biswas | charvi.biswas@yahoo.com | +91-7774869157
+⏸️ Skipping CMP-0002 — status UPCOMING (no update).
+⏸️ Skipping CMP-0003 — status ACTIVE (no update).
 ⏸️ Skipping CMP-0004 — status INACTIVE (no update).
-⏸️ Skipping CMP-0005 — status INACTIVE (no update).
-🎯 CMP-0006 — Target 'Adventurer' matched 5 clients.
-👥 Matching Clients:
-   - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
-   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
-   - Lakshit Chopra | lakshit.chopra@outlook.com | +91-9780498535
-   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
-   - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
+⏸️ Skipping CMP-0005 — status ACTIVE (no update).
+⏸️ Skipping CMP-0006 — status ACTIVE (no update).
 ⏸️ Skipping CMP-0007 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0008 — status INACTIVE (no update).
-🎯 CMP-0009 — Target 'Spa' matched 46 clients.
-👥 Matching Clients:
-   - Reyansh Bala | reyansh.bala@yahoo.com | +91-8562538784
-   - Darshit Saran | darshit.saran@outlook.com | +91-9215004426
-   - Veer Kohli | veer.kohli@outlook.com | +91-9198093905
-   - Tiya Gade | tiya.gade@hotmail.com | +91-8795536363
-   - Sahil Desai | sahil.desai@hotmail.com | +91-8483894378
-   - Darshit Batta | darshit.batta@gmail.com | +91-8947394721
-   - Gokul Kamdar | gokul.kamdar@gmail.com | +91-8400892213
-   - Nirvaan Garde | nirvaan.garde@yahoo.com | +91-8995207143
-   - Ranbir Biswas | ranbir.biswas@gmail.com | +91-9582389072
-   - Siya Bora | siya.bora@yahoo.com | +91-7461119893
-   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
-   - Romil Ram | romil.ram@yahoo.com | +91-7848058795
-   - Fateh Mani | fateh.mani@gmail.com | +91-7437906683
-   - Miraan Toor | miraan.toor@yahoo.com | +91-7323867816
-   - Neysa Bhagat | neysa.bhagat@gmail.com | +91-7820712499
-   - Anahita Kapadia | anahita.kapadia@hotmail.com | +91-9932286706
-   - Kabir Buch | kabir.buch@hotmail.com | +91-7175839779
-   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
-   - Neysa Sem | neysa.sem@gmail.com | +91-9196626801
-   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
-   - Lakshay Taneja | lakshay.taneja@yahoo.com | +91-8402796353
-   - Eshani Mahajan | eshani.mahajan@outlook.com | +91-7358289731
-   - Shalv Cheema | shalv.cheema@gmail.com | +91-9690270361
-   - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
-   - Kismat Bhattacharyya | kismat.bhattacharyya@gmail.com | +91-7475001311
-   - Veer Shetty | veer.shetty@gmail.com | +91-7076171909
-   - Khushi Magar | khushi.magar@hotmail.com | +91-9307175731
-   - Ishaan Upadhyay | ishaan.upadhyay@yahoo.com | +91-8419756609
-   - Vritika Sangha | vritika.sangha@gmail.com | +91-9276541494
-   - Anahi Chawla | anahi.chawla@yahoo.com | +91-9727448798
-   - Seher Gara | seher.gara@hotmail.com | +91-9655081584
-   - Emir Bhargava | emir.bhargava@yahoo.com | +91-7653333347
-   - Neysa Shere | neysa.shere@hotmail.com | +91-7612037769
-   - Amani Dada | amani.dada@gmail.com | +91-8799218175
-   - Ayesha Halder | ayesha.halder@hotmail.com | +91-9982134968
-   - Nehmat Amble | nehmat.amble@hotmail.com | +91-8826041936
-   - Rasha Chakrabarti | rasha.chakrabarti@gmail.com | +91-9082211707
-   - Nayantara Barad | nayantara.barad@gmail.com | +91-8021716703
-   - Shlok Sahni | shlok.sahni@gmail.com | +91-9025660391
-   - Shalv Goyal | shalv.goyal@outlook.com | +91-7144373968
-   - Rohan Rout | rohan.rout@gmail.com | +91-9161681235
-   - Khushi Sankar | khushi.sankar@outlook.com | +91-8734456162
-   - Romil Agarwal | romil.agarwal@hotmail.com | +91-8636249944
-   - Vritika Ganguly | vritika.ganguly@hotmail.com | +91-8178116296
-   - Ojas Tank | ojas.tank@yahoo.com | +91-9134028502
-   - Shanaya Krishna | shanaya.krishna@outlook.com | +91-8450792614
-⏸️ Skipping CMP-0010 — status INACTIVE (no update).
+⏸️ Skipping CMP-0009 — status UPCOMING (no update).
+⏸️ Skipping CMP-0010 — status ACTIVE (no update).
 ⏸️ Skipping CMP-0011 — status INACTIVE (no update).
-🎯 CMP-0012 — Target 'wellness' matched 15 clients.
-👥 Matching Clients:
-   - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
-   - Chirag Khosla | chirag.khosla@hotmail.com | +91-9278309288
-   - Romil Chacko | romil.chacko@hotmail.com | +91-8723714594
-   - Lavanya Dar | lavanya.dar@gmail.com | +91-7692613448
-   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
-   - Tushar Buch | tushar.buch@gmail.com | +91-8965446398
-   - Adah Rout | adah.rout@yahoo.com | +91-9245640319
-   - Arnav Gaba | arnav.gaba@gmail.com | +91-9406664293
-   - Biju Jayaraman | biju.jayaraman@outlook.com | +91-7658331849
-   - Zeeshan Chandra | zeeshan.chandra@hotmail.com | +91-7672990766
-   - Kabir Raval | kabir.raval@gmail.com | +91-7523086384
-   - Arhaan Koshy | arhaan.koshy@outlook.com | +91-8858429676
-   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
-   - Priyansh Mandal | priyansh.mandal@gmail.com | +91-7804325884
-   - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
+⏸️ Skipping CMP-0012 — status ACTIVE (no update).
 ⏸️ Skipping CMP-0013 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0014 — status INACTIVE (no update).
-🎯 CMP-0015 — Target 'productivity' matched 5 clients.
-👥 Matching Clients:
-   - Ela Roy | ela.roy@hotmail.com | +91-9347130107
-   - Adira Ranganathan | adira.ranganathan@hotmail.com | +91-9460003983
-   - Misha Sengupta | misha.sengupta@yahoo.com | +91-7808125361
-   - Vedika Chokshi | vedika.chokshi@yahoo.com | +91-7524180323
-   - Anaya Chanda | anaya.chanda@yahoo.com | +91-7386199716
+⏸️ Skipping CMP-0015 — status ACTIVE (no update).
 ⏸️ Skipping CMP-0016 — status INACTIVE (no update).
-🎯 CMP-0017 — Target 'Adventurer' matched 5 clients.
-👥 Matching Clients:
-   - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
-   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
-   - Lakshit Chopra | lakshit.chopra@outlook.com | +91-9780498535
-   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
-   - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
-🎯 CMP-0018 — Target 'Adventurer' matched 5 clients.
-👥 Matching Clients:
-   - Ivana Sabharwal | ivana.sabharwal@hotmail.com | +91-7565352382
-   - Hiran Cherian | hiran.cherian@yahoo.com | +91-7787596632
-   - Lakshit Chopra | lakshit.chopra@outlook.com | +91-9780498535
-   - Vedika Vaidya | vedika.vaidya@gmail.com | +91-8346855349
-   - Aarav Soni | aarav.soni@gmail.com | +91-7078383586
-🎯 CMP-0019 — Target 'wellness' matched 15 clients.
-👥 Matching Clients:
-   - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
-   - Chirag Khosla | chirag.khosla@hotmail.com | +91-9278309288
-   - Romil Chacko | romil.chacko@hotmail.com | +91-8723714594
-   - Lavanya Dar | lavanya.dar@gmail.com | +91-7692613448
-   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
-   - Tushar Buch | tushar.buch@gmail.com | +91-8965446398
-   - Adah Rout | adah.rout@yahoo.com | +91-9245640319
-   - Arnav Gaba | arnav.gaba@gmail.com | +91-9406664293
-   - Biju Jayaraman | biju.jayaraman@outlook.com | +91-7658331849
-   - Zeeshan Chandra | zeeshan.chandra@hotmail.com | +91-7672990766
-   - Kabir Raval | kabir.raval@gmail.com | +91-7523086384
-   - Arhaan Koshy | arhaan.koshy@outlook.com | +91-8858429676
-   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
-   - Priyansh Mandal | priyansh.mandal@gmail.com | +91-7804325884
-   - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
-🆔 Assigned Campaign ID: CMP-0020
-🎯 CMP-0020 — Target 'wellness' matched 15 clients.
-👥 Matching Clients:
-   - Tarini Iyer | tarini.iyer@yahoo.com | +91-8715166097
-   - Chirag Khosla | chirag.khosla@hotmail.com | +91-9278309288
-   - Romil Chacko | romil.chacko@hotmail.com | +91-8723714594
-   - Lavanya Dar | lavanya.dar@gmail.com | +91-7692613448
-   - Neelofar Anne | neelofar.anne@hotmail.com | +91-7876356292
-   - Tushar Buch | tushar.buch@gmail.com | +91-8965446398
-   - Adah Rout | adah.rout@yahoo.com | +91-9245640319
-   - Arnav Gaba | arnav.gaba@gmail.com | +91-9406664293
-   - Biju Jayaraman | biju.jayaraman@outlook.com | +91-7658331849
-   - Zeeshan Chandra | zeeshan.chandra@hotmail.com | +91-7672990766
-   - Kabir Raval | kabir.raval@gmail.com | +91-7523086384
-   - Arhaan Koshy | arhaan.koshy@outlook.com | +91-8858429676
-   - Chirag Balan | chirag.balan@outlook.com | +91-9391206971
-   - Priyansh Mandal | priyansh.mandal@gmail.com | +91-7804325884
-   - Reyansh Bhargava | reyansh.bhargava@gmail.com | +91-7836854378
-📅 CMP-0020 status set to UPCOMING
-📝 Updating columns individually: Campaign ID, Target Customers Count, Campaign Status
-✅ Column 'Campaign ID' updated (A)
-✅ Column 'Target Customers Count' updated (F)
-✅ Column 'Campaign Status' updated (H)
+⏸️ Skipping CMP-0017 — status ACTIVE (no update).
+⏸️ Skipping CMP-0018 — status ACTIVE (no update).
+⏸️ Skipping CMP-0019 — status ACTIVE (no update).
+⏸️ Skipping CMP-0020 — status UPCOMING (no update).
+
+✅ No new campaign updates — skipping Campaigns sheet write.
+
+🧩 Checking Campaign Message Count for dynamic column expansion for ACTIVE/UPCOMING campaigns...
+🆕 Adding new columns to Campaigns sheet: Message Template #1, Message Template #2
+✅ Sheet header updated with new columns (Message Template #1, Message Template #2).
+📝 Updating columns individually: Message Template #1, Message Template #2
+✅ Column 'Message Template #1' updated (I)
+✅ Column 'Message Template #2' updated (J)
 ✅ Partial update completed for sheet 'Campaigns'.
-
-✅ All campaign details updated successfully.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+✅ Added new message template columns using update_sheet(): Message Template #1, Message Template #2
