@@ -14,6 +14,8 @@ from config import (
     BATCH_SIZE,
 )
 import google.generativeai as genai
+from datetime import datetime
+from dateutil import parser
 
 # -------------------------------------------------------------------
 # 🔧 SETUP
@@ -51,20 +53,49 @@ def read_sheet(service, sheet_name):
     return pd.DataFrame(clean_rows, columns=headers)
 
 
-def update_sheet(service, sheet_name, df):
-    """Write a DataFrame back to Google Sheets."""
-    values = [df.columns.tolist()] + df.values.tolist()
-    service.values().clear(
-        spreadsheetId=SPREADSHEET_ID,
-        range=f"{sheet_name}!A:Z"
-    ).execute()
-    service.values().update(
-        spreadsheetId=SPREADSHEET_ID,
-        range=f"{sheet_name}!A1",
-        valueInputOption="RAW",
-        body={"values": values},
-    ).execute()
+def update_sheet(service, sheet_name, df, columns_to_update=None):
+    """Write a DataFrame back to Google Sheets.
+    Update specific columns in a Google Sheet in a single batch update.
+    Safely update only specific columns (even non-contiguous ones)
+    without clearing or overwriting intermediate columns.
+    Preserves dropdowns, formatting, and reduces write API calls.
+    - If columns_to_update is None, updates all columns.
+    - Does NOT clear the sheet, so dropdowns and formatting remain intact.
+    """
 
+    if columns_to_update is None:
+        columns_to_update = df.columns.tolist()
+    print(f"📝 Updating columns individually: {', '.join(columns_to_update)}")
+
+    # Helper to convert column index (1-based) to A, B, ..., AA, AB, etc.
+    def col_letter(n):
+        result = ''
+        while n > 0:
+            n, remainder = divmod(n - 1, 26)
+            result = chr(65 + remainder) + result
+        return result
+
+    for col in columns_to_update:
+        if col not in df.columns:
+            print(f"⚠️ Column '{col}' not found in DataFrame — skipping.")
+            continue
+
+        col_idx = df.columns.get_loc(col) + 1
+        col_letter_str = col_letter(col_idx)
+
+        # Prepare column values (excluding header)
+        values = [[v] for v in df[col].tolist()]
+
+        # Update this column only
+        service.values().update(
+            spreadsheetId=SPREADSHEET_ID,
+            range=f"{sheet_name}!{col_letter_str}2",  # Start from row 2
+            valueInputOption="RAW",
+            body={"values": values},
+        ).execute()
+        print(f"✅ Column '{col}' updated ({col_letter_str})")
+
+    print(f"✅ Partial update completed for sheet '{sheet_name}'.")
 
 # -------------------------------------------------------------------
 # 🧠 LLM CALLS
@@ -126,25 +157,30 @@ Respond with **only** JSON (no markdown), e.g.:
 
 
 def infer_client_category(model, client_type, interests, traits):
-    """Use a second Gemini instance to infer Client Category."""
+    """Use a second Gemini instance to infer Client Category based on
+    type, interests, and traits. Retries once with a simpler prompt if needed.
+    """
+    if not any([client_type, interests, traits]):
+        return ""
+
     prompt = f"""
-You are a hotel marketing analyst.
-Based on the following client profile, determine a short descriptive Client Category label or a few keywords.
+    You are a hotel marketing analyst.
+    Based on the following client profile, determine a short descriptive Client Category label or a few keywords.
 
-Client Type: {client_type}
-Client Interests: {interests}
-Client Traits: {traits}
+    Client Type: {client_type}
+    Client Interests: {interests}
+    Client Traits: {traits}
 
-Respond ONLY with plain text listing 1–3 descriptive categories or keywords (comma-separated), e.g.:
-Leisure, Family, Spa
-"""
+    Respond ONLY with plain text listing 1–3 descriptive categories or keywords (comma-separated), e.g.:
+    Leisure, Family, Spa
+    """
     response = call_gemini_with_retry(model, prompt)
     if not response:
         return ""
     # Clean and simplify
     clean = response.strip()
     if clean.startswith("```"):
-        clean = clean.strip("`").replace("json", "", 1).strip()
+        clean = clean.strip("`").replace("json", "", 1).strip().title()
     return clean
 
 
@@ -178,6 +214,12 @@ def find_matching_clients(df_clients, target_category):
 # 🚀 MAIN PROCESS
 # -------------------------------------------------------------------
 def process_clients_and_campaigns():
+    """
+    Processes client chat data and campaign details using Gemini LLM.
+    Adds:
+    1. Smart change detection (writes only if new/changed data)
+    2. Skips reprocessing already analyzed clients
+    """
     sheets = init_google_sheets()
 
     # LLM instances
@@ -230,48 +272,154 @@ def process_clients_and_campaigns():
                 print(f"🏷️ {client_id} category: {category}")
                 time.sleep(REQUEST_DELAY)
 
-        update_sheet(sheets, CLIENTS_SHEET, df_clients)
-        print("💾 Batch saved to Clients sheet.")
+        # After you process all client batches
+        print("🔍 Checking for updates in Clients sheet...")
+
+        # Read the current Clients sheet (before update)
+        existing_clients = read_sheet(sheets, CLIENTS_SHEET)
+
+        # Select columns that backend manages
+        backend_columns = ["Client Type", "Client Interests", "Client Traits", "Client Category"]
+
+        # Compare only if both DataFrames have matching shape and headers
+        has_changes = False
+        if not existing_clients.empty and all(col in existing_clients.columns for col in backend_columns):
+            for col in backend_columns:
+                old_values = existing_clients[col].astype(str).fillna("").tolist()
+                new_values = df_clients[col].astype(str).fillna("").tolist()
+                if old_values != new_values:
+                    has_changes = True
+                    print(f"🟡 Detected updates in column: {col}")
+                    break       
+        
+        if has_changes:
+            print("💾 Changes found — updating Clients sheet...")
+        else:
+            print("✅ No new client updates — skipping Clients sheet write.")
+            backend_columns = []
+
+        # ✅ Update only if backend_columns is not empty
+        if backend_columns:        
+            update_sheet(sheets, CLIENTS_SHEET, df_clients,
+                         columns_to_update=backend_columns)
 
     # === STEP 3: Process Campaigns sheet ===
     df_campaigns = read_sheet(sheets, CAMPAIGNS_SHEET)
-    if "Campaign ID" not in df_campaigns.columns:
-        df_campaigns["Campaign ID"] = ""
-    if "Campaign Message Count" not in df_campaigns.columns:
-        df_campaigns["Campaign Message Count"] = ""
+
+    # Ensure required columns exist
+    for col in ["Campaign ID", "Target Customers Count", "Campaign Status"]:
+        if col not in df_campaigns.columns:
+            df_campaigns[col] = ""
 
     print(f"\n📢 Processing {len(df_campaigns)} campaigns...")
 
     existing_ids = df_campaigns["Campaign ID"].dropna().tolist()
+    now = datetime.now()
+
+    ## Umang ##
+    # Campaign ID can be already present.
+    # Target Customers Count can change based on any additions/changes in Chat records
+    # Campaign Status can change based on Start/End Date-Time
+    # initialize columns to be written as an empty list
+    columnsToWrite = []
+    # Reset individual update flags
+    campaignIdUpdated=False
+    targetCustomersCountUpdated=False
+    campaignStatusUpdated=False
+    # Trigger relevant columns to be written, once any of these is modified.
 
     for idx, row in df_campaigns.iterrows():
-        target_category = str(row.get("Target Client Category", "")).strip()
         campaign_id = str(row.get("Campaign ID", "")).strip()
+        campaign_text = str(row.get("Campaign Text", "")).strip()
+        target_category = str(row.get("Target Client Category", "")).strip()
+        start_dt_str = str(row.get("Start Date-Time", "")).strip()
+        end_dt_str = str(row.get("End Date-Time", "")).strip()
+        current_status = str(row.get("Campaign Status", "")).strip().upper()
 
+        # ✅ Keep this early skip — still fits perfectly
         if not target_category:
             print(f"⚠️ Skipping row {idx+1} — no Target Client Category.")
             continue
 
+        # Skip incomplete campaign rows
+        if not all([campaign_text, target_category, start_dt_str, end_dt_str]):
+            continue
+        
+        # Parse date-times flexibly
+        try:
+            # Only supports ISO formats
+            # ✅ **ISO format (simple)**        | `2025-11-01 09:00`
+            # ✅ **ISO format (with seconds)**  | `2025-11-01 09:00:00`
+            # start_dt = datetime.fromisoformat(start_dt_str.replace(" ", "T"))
+            # end_dt = datetime.fromisoformat(end_dt_str.replace(" ", "T"))
+
+            # Supports all the following formats of date-time
+            # ✅ 2025-11-01 09:00
+            # ✅ 1 Nov 2025 9:00
+            # ✅ Nov 1, 2025 9am
+            # ✅ 1st November 2025 09:00 AM
+            start_dt = parser.parse(start_dt_str)
+            end_dt = parser.parse(end_dt_str)
+        except Exception as e:
+            print(f"⚠️ Could not parse date-time for campaign at row {idx+1}: {e}")
+            continue
+        
+        # === Step 1: Auto-generate Campaign ID if missing ===
         if not campaign_id:
             campaign_id = generate_campaign_id(existing_ids)
             df_campaigns.at[idx, "Campaign ID"] = campaign_id
             existing_ids.append(campaign_id)
             print(f"🆔 Assigned Campaign ID: {campaign_id}")
+            ## "Campaign ID" is updated here ##
+            campaignIdUpdated=True
 
-        matched_clients = find_matching_clients(df_clients, target_category)
-        match_count = len(matched_clients)
-        df_campaigns.at[idx, "Campaign Message Count"] = match_count
+        # === Step 2: Determine Campaign Status based on current time ===
+        if start_dt <= now < end_dt:
+            new_status = "ACTIVE"
+        elif now >= end_dt:
+            new_status = "INACTIVE"
+        elif start_dt > now:
+            new_status = "UPCOMING"
+        else:
+            new_status = ""
 
-        print(f"🎯 {campaign_id} — Target '{target_category}' matched {match_count} clients.")
+        # === Step 3: Only analyze ACTIVE or UPCOMING campaigns ===
+        if new_status in ["ACTIVE", "UPCOMING"]:
+            matched_clients = find_matching_clients(df_clients, target_category)
+            match_count = len(matched_clients)
+            df_campaigns.at[idx, "Target Customers Count"] = match_count
+            ## "Target Customers Count" is updated here ##
+            targetCustomersCountUpdated=True
 
-        if match_count > 0:
-            print("👥 Matching Clients:")
-            for _, client in matched_clients.iterrows():
-                print(f"   - {client.get('Client Name')} | {client.get('Client Email')} | {client.get('Client Phone')}")
+            print(f"🎯 {campaign_id} — Target '{target_category}' matched {match_count} clients.")
+            
+            if match_count > 0:
+                print("👥 Matching Clients:")
+                for _, client in matched_clients.iterrows():
+                    print(f"   - {client.get('Client Name')} | {client.get('Client Email')} | {client.get('Client Phone')}")
+        else:
+            print(f"⏸️ Skipping {campaign_id} — status {new_status or 'UNKNOWN'} (no update).")
+
+        # === Step 4: Update Campaign Status ===
+        if new_status != current_status:
+            df_campaigns.at[idx, "Campaign Status"] = new_status
+            print(f"📅 {campaign_id} status set to {new_status}")
+            ## "Campaign Status" is updated here ##
+            campaignStatusUpdated=True
 
         time.sleep(REQUEST_DELAY)
 
-    update_sheet(sheets, CAMPAIGNS_SHEET, df_campaigns)
+    if(campaignIdUpdated):
+        columnsToWrite.append("Campaign ID")
+    if(targetCustomersCountUpdated):
+        columnsToWrite.append("Target Customers Count")
+    if(campaignStatusUpdated):
+        columnsToWrite.append("Campaign Status")
+
+    # Save updates back to sheet
+    ### This display must consider if there was any exception if filling any campaign details ###
+    update_sheet(sheets, CAMPAIGNS_SHEET, df_campaigns,
+                 columns_to_update=columnsToWrite)
     print("\n✅ All campaign details updated successfully.")
 
 
