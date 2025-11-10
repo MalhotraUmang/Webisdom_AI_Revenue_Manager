@@ -17,7 +17,7 @@
 # 'from_email', 'to_emails', 'subject', and 'emailText' fields should be trigger_email() function arguments
 ##############################################################################################################
 # import os
-from datetime import datetime
+from datetime import datetime, time as dtime
 from twilio.rest import Client
 # from sendgrid import SendGridAPIClient
 # from sendgrid.helpers.mail import Mail
@@ -35,10 +35,22 @@ MSG_FROM="+18782511984",
 def trigger_sms(msg_body, msg_from, msg_to, msg_time):
     client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
-    # Login to match msg_time with current time
-    # msg_time = msg_time # dummy code for now
-    now = datetime.now()
-    if (now > msg_time):
+    # match msg_time with current time
+    now = datetime.now().time()
+
+    # Safely handle msg_time (can be str, time, or None)
+    parsed_time = None
+    if isinstance(msg_time, dtime):
+        parsed_time = msg_time
+    elif isinstance(msg_time, str) and msg_time.strip():
+        for fmt in ("%H:%M", "%I:%M %p", "%H.%M", "%I.%M %p"):
+            try:
+                parsed_time = datetime.strptime(msg_time.strip(), fmt).time()
+                break
+            except ValueError:
+                continue
+
+    if parsed_time and now >= parsed_time:
         message = client.messages.create(
             body=msg_body,
             # from_=msg_from,
@@ -47,8 +59,11 @@ def trigger_sms(msg_body, msg_from, msg_to, msg_time):
             to=msg_to,
         )
         print("✅"f"📤 [SMS SENT] From: {msg_from} | To: {msg_to} | Msg: {msg_body[:50]}...")
+    elif parsed_time:
+        print(f"⏳ Not time yet — current: {now.strftime('%H:%M:%S')} < scheduled: {parsed_time.strftime('%H:%M')}")
     else:
-        print(" !!! TIMING DIDNT MATCH !!!")
+        print(f"⚠️ Invalid msg_time ({msg_time}) — skipping send.")
+        # print(" !!! TIMING DIDNT MATCH !!!")
 
     # Display the SMS message text in terminal.
     # print(message.body)
