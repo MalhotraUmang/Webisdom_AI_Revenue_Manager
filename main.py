@@ -374,7 +374,30 @@ def invoke_message_service(sheets, df_campaigns):
             timing_col = f"Message Send Timing #{i}"
 
             msg_body = str(row.get(template_col, "")).strip()
-            msg_timing = str(row.get(timing_col, "N/A")).strip()
+            # msg_timing = str(row.get(timing_col, "N/A")).strip()
+
+            # Safely read and parse timing column (time-only)
+            timing_value = row.get(timing_col, "")
+            msg_timing = None
+
+            if pd.notna(timing_value) and str(timing_value).strip():
+                time_str = str(timing_value).strip()
+                try:
+                    # Try several common time formats
+                    for fmt in ("%H:%M", "%I:%M %p", "%H.%M", "%I.%M %p"):
+                        try:
+                            msg_timing = datetime.strptime(time_str, fmt).time()
+                            break
+                        except ValueError:
+                            continue
+
+                    if not msg_timing:
+                        # Unrecognized format — keep as string
+                        msg_timing = time_str
+                except Exception:
+                    msg_timing = time_str
+            else:
+                msg_timing = None  # No timing provided
 
             if not msg_body:
                 print(f"⚠️ Missing template text in {template_col} for {campaign_id} — skipping.")
@@ -394,8 +417,8 @@ def invoke_message_service(sheets, df_campaigns):
                 except Exception as e:
                     print(f"   ❌ Failed to send message {i}/{msg_count} — {e}")
 
-    print("\n✅ Message service invocation process completed.\n")
-    print("#"*50)
+    print("\n✅ Message service invocation process completed.")
+    print("#"*100,'\n')
 
 
 # -------------------------------------------------------------------
@@ -423,7 +446,7 @@ def process_clients_and_campaigns():
 
     total_clients = len(df_clients)
     print(f"🧾 Found {total_clients} clients in '{CLIENTS_SHEET}'.")
-    print("#"*50)
+    print("#"*100)
 
     # === STEP 2: Fill missing client profiles ===
     for start in range(0, total_clients, BATCH_SIZE):
@@ -497,7 +520,7 @@ def process_clients_and_campaigns():
             clientsInfoUpdated = True
             update_sheet(sheets, CLIENTS_SHEET, df_clients,
                          columns_to_update=backend_columns)
-    print("#"*50)
+    print("#"*100)
 
     # === STEP 3: Process Campaigns sheet ===
     df_campaigns = read_sheet(sheets, CAMPAIGNS_SHEET)
@@ -626,7 +649,7 @@ def process_clients_and_campaigns():
         print("\n✅ No new campaign updates — skipping Campaigns sheet write.")
         # print("#"*50)
     
-    print("#"*50)
+    print("#"*100)
 
     # Add new columns for message templates and message send timing
     add_message_templates(sheets, df_campaigns)
