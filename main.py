@@ -209,96 +209,96 @@ def find_matching_clients(df_clients, target_category):
 
     return pd.DataFrame(matches)
 
-# Add Message Template columns based on Campaign Message Count
+# Add Message Template & Message Send Timing columns based on Campaign Message Count
 def add_message_templates(sheets, df_campaigns):
     """
-    Expands the Campaigns sheet dynamically by adding new message template columns
-    based on 'Campaign Message Count' values.
+    Dynamically expands the Campaigns sheet by adding paired columns for each
+    message in ACTIVE/UPCOMING campaigns, such as:
+        Message Template #1, Message Send Timing #1, Message Template #2, Message Send Timing #2, ...
+    Adds only the pairs up to the maximum 'Campaign Message Count' among ACTIVE/UPCOMING campaigns.
     
-    - Adds columns [Message Template #1], [Message Template #2], ...
-    - Does not overwrite existing columns or data.
-    - Extends Google Sheet headers safely before writing data.
-    - Uses existing update_sheet() for safe updates (preserving dropdowns and formatting).
-    - Displays added column info in the terminal.
+    Keeps all existing headers and formatting intact.
+    Uses existing update_sheet() for safe updates (preserving dropdowns and formatting).
+    Does not overwrite existing columns or data.
+    Displays added column info in the terminal.
     """
     sheet_name = CAMPAIGNS_SHEET
     spreadsheet_id = SPREADSHEET_ID
 
-    if "Campaign Message Count" not in df_campaigns.columns or "Campaign Status" not in df_campaigns.columns:
-        print("⚠️ Required columns ('Campaign Message Count' or 'Campaign Status') not found — skipping column expansion.")
+    # Sanity checks
+    required_cols = {"Campaign Message Count", "Campaign Status"}
+    if not required_cols.issubset(df_campaigns.columns):
+        print("⚠️ Missing required columns — skipping message template expansion.")
         return
-    else:
-        print("\n🧩 Checking Campaign Message Count for dynamic column expansion for ACTIVE/UPCOMING campaigns...")
 
-        # Filter ACTIVE and UPCOMING campaigns only
-        active_df = df_campaigns[df_campaigns["Campaign Status"].astype(str).str.upper().isin(["ACTIVE", "UPCOMING"])]
+    print("\n🧩 Checking Campaign Message Count for dynamic Message Template/Send Timing columns expansion for ACTIVE/UPCOMING campaigns...")
 
-        if active_df.empty:
-            print("✅ No ACTIVE or UPCOMING campaigns — skipping message template column expansion.")
-            return
+    # Filter ACTIVE and UPCOMING campaigns
+    active_df = df_campaigns[df_campaigns["Campaign Status"].astype(str).str.upper().isin(["ACTIVE", "UPCOMING"])]
 
-        # Determine the maximum count value in Campaign Message Count column
-        max_count = 0
-        for val in active_df["Campaign Message Count"].fillna(0).tolist():
-            try:
-                count = int(val)
-                if count > max_count:
-                    max_count = count
-            except ValueError:
-                continue
+    if active_df.empty:
+        print("✅ No ACTIVE or UPCOMING campaigns — skipping Message Template/Send Timing columns expansion.")
+        return
 
-        if max_count <= 0:
-            print("✅ No active/upcoming campaign has message count > 0 — no new columns added.")
-            return
+    # Determine the maximum Campaign Message Count among ACTIVE/UPCOMING campaigns
+    max_count = 0
+    for val in active_df["Campaign Message Count"].fillna(0).tolist():
+        try:
+            count = int(val)
+            if count > max_count:
+                max_count = count
+        except ValueError:
+            continue
 
-    # Determine current existing message template columns (if any)
+    if max_count <= 0:
+        print("✅ No active/upcoming campaign has message count > 0 — no new columns added.")
+        return
+
+    # Identify current message template/timing columns
     existing_headers = df_campaigns.columns.tolist()
-    current_templates = [col for col in existing_headers if col.startswith("Message Template #")]
+    current_pairs  = [h for h in existing_headers if h.startswith("Message Template #") or h.startswith("Message Send Timing #")]
+    
+    # Calculate number of template/timing column pairs
+    current_pair_count = len(current_pairs) // 2  # two columns per message
 
-    # Calculate how many template columns already exist
-    current_count = len(current_templates)
+    # Add missing template/timing column pairs
+    if max_count > current_pair_count:
+        new_cols = []
+        for i in range(current_pair_count + 1, max_count + 1):
+            new_cols.append(f"Message Template #{i}")
+            new_cols.append(f"Message Send Timing #{i}")
+        print(f"🆕 Adding new column pairs to Campaigns sheet: {', '.join(new_cols)}")
 
-    # Add only the missing columns if needed
-    if max_count > current_count:
-        new_cols = [f"Message Template #{i}" for i in range(current_count + 1, max_count + 1)]
-        print(f"🆕 Adding new columns to Campaigns sheet: {', '.join(new_cols)}")
-
-        # Insert empty columns into the DataFrame
+        # Extend the DataFrame with blank columns
         for col in new_cols:
             df_campaigns[col] = ""
 
-        # Extend the header row in Google Sheets directly
-        all_headers = df_campaigns.columns.tolist()
-        header_values = [all_headers]
-
-        # Write back only the header row (A1:Z1, etc.)
+        # Update the header row safely (entire first row) in Google Sheets
+        header_values = [df_campaigns.columns.tolist()]
         sheets.values().update(
             spreadsheetId=spreadsheet_id,
-            range=f"{sheet_name}!A1",
+            range=f"{sheet_name}!1:1",  # entire header row
             valueInputOption="RAW",
             body={"values": header_values},
         ).execute()
 
         print(f"✅ Sheet header updated with new columns ({', '.join(new_cols)}).")
 
-        # ✅ Invoke update_sheet() to safely update these new columns
+        # Invoke update_sheet() to safely update these new columns
         update_sheet(
             sheets,
             sheet_name,
             df_campaigns,
             columns_to_update=new_cols
         )
-        print(f"✅ Added new message template columns using update_sheet(): {', '.join(new_cols)}")
+        print(f"✅ Added new message template/timing columns using update_sheet(): {', '.join(new_cols)}")
 
     else:
-        print("✅ All required message template columns already exist — no changes made.")
+        print("✅ All required message template/timing columns already exist — no changes made.")
 
-# Add Message send timings columns based on Campaign Message Count
-# def add_message_timings(sheets, df_campaigns):
-# Message send timings could be part of the message templates
-# Once the message trigger logic looks at templates, it can extract the timings
-
-
+# Invoke Message Services based on Message Templates/Timings
+# def invoke_message_service(sheets, df_campaigns):
+#     pass
 
 # -------------------------------------------------------------------
 # 🚀 MAIN PROCESS
@@ -521,10 +521,11 @@ def process_clients_and_campaigns():
     else:
         print("\n✅ No new campaign updates — skipping Campaigns sheet write.")
     
-    # Add new columns for message templates
+    # Add new columns for message templates and message send timing
     add_message_templates(sheets, df_campaigns)
-    # Add new columns for message send timings
-    # add_message_timings(sheets, df_campaigns)
+
+    # Invoke Message Services based on Message Templates/Timings
+    # invoke_message_service(sheets, df_campaigns)
     
 # -------------------------------------------------------------------
 # ▶️ RUN
