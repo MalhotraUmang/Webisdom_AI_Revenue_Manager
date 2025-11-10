@@ -16,6 +16,9 @@ from config import (
 import google.generativeai as genai
 from datetime import datetime
 from dateutil import parser
+from msg_service import trigger_sms
+# from msg_service import trigger_whatsapp_msg
+# from msg_service import trigger_email
 
 # -------------------------------------------------------------------
 # 🔧 SETUP
@@ -297,8 +300,103 @@ def add_message_templates(sheets, df_campaigns):
         print("✅ All required message template/timing columns already exist — no changes made.")
 
 # Invoke Message Services based on Message Templates/Timings
-# def invoke_message_service(sheets, df_campaigns):
-#     pass
+def invoke_message_service(sheets, df_campaigns):
+    """
+    Simulates invoking an external SMS (or message) sending service for all ACTIVE/UPCOMING campaigns
+    that have a Campaign Message Count > 0.
+
+    Reads message templates and timings dynamically from corresponding columns:
+      e.g., 'Message Template #1', 'Message Send Timing #1', etc.
+    Sends each message using trigger_sms(msg_body, msg_from, msg_to).    
+    
+    Args:
+        sheets: Google Sheets API service object
+        df_campaigns: DataFrame of the Campaigns sheet
+    """
+
+    print("\n📣 Checking campaigns for message service invocation...")
+
+    required_cols = ["Campaign Status", "Campaign Message Count", "Campaign ID", "Target Client Category"]
+    for col in required_cols:
+        if col not in df_campaigns.columns:
+            print(f"⚠️ Missing column '{col}' — skipping message service trigger.")
+            return
+
+    # Read Clients sheet once
+    try:
+        df_clients = read_sheet(sheets, CLIENTS_SHEET)
+    except Exception as e:
+        print(f"❌ Could not read Clients sheet: {e}")
+        return
+
+    if df_clients.empty or "Client Category" not in df_clients.columns or "Client Phone" not in df_clients.columns:
+        print("⚠️ Missing 'Client Category' or 'Client Phone' column in Clients sheet.")
+        return
+
+    # Filter ACTIVE or UPCOMING campaigns with message count > 0
+    valid_campaigns = df_campaigns[
+        (df_campaigns["Campaign Status"].astype(str).str.upper().isin(["ACTIVE", "UPCOMING"])) &
+        (pd.to_numeric(df_campaigns["Campaign Message Count"], errors="coerce") > 0)
+    ]
+
+    if valid_campaigns.empty:
+        print("✅ No ACTIVE/UPCOMING campaigns with message count > 0 found.")
+        return
+
+    print(f"📢 Found {len(valid_campaigns)} eligible campaign(s) for message triggering.\n")
+
+    # Loop through campaigns and simulate sending
+    for _, row in valid_campaigns.iterrows():
+        campaign_id = str(row.get("Campaign ID", "")).strip()
+        msg_count = int(float(row.get("Campaign Message Count", 0)))
+        target_category = str(row.get("Target Client Category", "")).strip().lower()
+
+        if not target_category:
+            print(f"⚠️ Campaign {campaign_id} missing Target Client Category — skipping.")
+            continue
+
+        # --- Find matching clients ---
+        matched_clients = df_clients[
+            df_clients["Client Category"].astype(str).str.lower().apply(lambda cat: any(word in cat for word in target_category.split()))
+        ]
+
+        if matched_clients.empty:
+            print(f"⚠️ No clients matched for campaign {campaign_id} (category: {target_category}).")
+            continue
+
+        phones = matched_clients["Client Phone"].dropna().unique().tolist()
+        print(f"📞 Found {len(phones)} client(s) for campaign {campaign_id}: {', '.join(phones[:3])}{'...' if len(phones)>3 else ''}")
+        # print("\n")
+
+        # Send messages based on templates
+        for i in range(1, msg_count + 1):
+            template_col = f"Message Template #{i}"
+            timing_col = f"Message Send Timing #{i}"
+
+            msg_body = str(row.get(template_col, "")).strip()
+            msg_timing = str(row.get(timing_col, "N/A")).strip()
+
+            if not msg_body:
+                print(f"⚠️ Missing template text in {template_col} for {campaign_id} — skipping.")
+                continue
+
+            msg_from = "Sender"  # Sender dummy Placeholder
+            
+            for phone in phones:
+                msg_to = phone.strip()
+                # print("\n")
+                print(f"   ⏰ [{msg_timing}] Sending from {msg_from} → {msg_to}")
+                print(f"   📨 Template {i}: {msg_body[:60]}...")
+            
+                try:
+                    trigger_sms(msg_body, msg_from, msg_to, msg_timing)
+                    print(f"   ✅ Message {i}/{msg_count} sent successfully for {campaign_id} at {msg_timing}")
+                except Exception as e:
+                    print(f"   ❌ Failed to send message {i}/{msg_count} — {e}")
+
+    print("\n✅ Message service invocation process completed.\n")
+    print("#"*50)
+
 
 # -------------------------------------------------------------------
 # 🚀 MAIN PROCESS
@@ -325,6 +423,7 @@ def process_clients_and_campaigns():
 
     total_clients = len(df_clients)
     print(f"🧾 Found {total_clients} clients in '{CLIENTS_SHEET}'.")
+    print("#"*50)
 
     # === STEP 2: Fill missing client profiles ===
     for start in range(0, total_clients, BATCH_SIZE):
@@ -384,8 +483,10 @@ def process_clients_and_campaigns():
         
         if has_changes:
             print("💾 Changes found — updating Clients sheet...")
+            # print("#"*50)
         else:
             print("✅ No new client updates — skipping Clients sheet write.")
+            # print("#"*50)
             backend_columns = []
             # Reset clientsInfoUpdated flag
             clientsInfoUpdated = False
@@ -396,6 +497,7 @@ def process_clients_and_campaigns():
             clientsInfoUpdated = True
             update_sheet(sheets, CLIENTS_SHEET, df_clients,
                          columns_to_update=backend_columns)
+    print("#"*50)
 
     # === STEP 3: Process Campaigns sheet ===
     df_campaigns = read_sheet(sheets, CAMPAIGNS_SHEET)
@@ -477,7 +579,8 @@ def process_clients_and_campaigns():
             new_status = ""
 
         # === Step 3: Analyze only when a client is added and campaign is ACTIVE or UPCOMING ===
-        if ((clientsInfoUpdated) & (new_status in ["ACTIVE", "UPCOMING"])):
+        # if ((clientsInfoUpdated) & (new_status in ["ACTIVE", "UPCOMING"])):
+        if (new_status in ["ACTIVE", "UPCOMING"]):
             matched_clients = find_matching_clients(df_clients, target_category)
             match_count = len(matched_clients)
             df_campaigns.at[idx, "Target Customers Count"] = match_count
@@ -518,14 +621,18 @@ def process_clients_and_campaigns():
         update_sheet(sheets, CAMPAIGNS_SHEET, df_campaigns,
                     columns_to_update=columnsToWrite)
         print("\n✅ All campaign details updated successfully.")
+        # print("#"*50)
     else:
         print("\n✅ No new campaign updates — skipping Campaigns sheet write.")
+        # print("#"*50)
     
+    print("#"*50)
+
     # Add new columns for message templates and message send timing
     add_message_templates(sheets, df_campaigns)
 
     # Invoke Message Services based on Message Templates/Timings
-    # invoke_message_service(sheets, df_campaigns)
+    invoke_message_service(sheets, df_campaigns)
     
 # -------------------------------------------------------------------
 # ▶️ RUN
