@@ -1,29 +1,10 @@
 
-Clients sheet:
-- All clients name, phone and email changed with Umang's details.
-- Last 'Client Category' changed to 'unique'.
-
-Campaigns sheet:
-- Last 2 campaigns: 'Target Client Category' changed to 'unique'.
-- Last but 2 campaigns: Start/End Date/Time adapted to make all these campaigns INACTIVE.
-- Last 2 camapigns: Start/End Date/Time adapted to make 1 ACTIVE and 1 UPCOMING.
-- Last 2 camapigns: 'Camapign Message Count' kept at 3 each.
-- Last 2 campaigns: Target Customers Count & Campaign Status are cleared.
-- For all camapigns, Message Templates and Timings columns updated.
-
-Note: Also, little correction in looping in invoke_message_service() function
-
-
-Outcome:
-- 'Target Customer Count' for last 2 camapigns: 1 each
-- 'Camapign status' for last 2 campaigns: ACTIVE and UPCOMING
-- All 3 Message Template 1,2,3 along with respective timing value are sent out to Umang's phone.
-- All 3 Message Template 1,2,3 along with respective timing value are sent out to backend terminal.
-
+Timing also read from timing columns before calling trigger_sms() in main.py.
+And matching logic added in trigger_sms() in msg_service.py
 
 ✅ Initialized Gemini instances.
 🧾 Found 101 clients in 'Clients'.
-##################################################
+####################################################################################################
 
 🔹 Processing batch 1 (5 clients)...
 🔍 Checking for updates in Clients sheet...
@@ -108,7 +89,7 @@ Outcome:
 🔹 Processing batch 21 (1 clients)...
 🔍 Checking for updates in Clients sheet...
 ✅ No new client updates — skipping Clients sheet write.
-##################################################
+####################################################################################################
 
 📢 Processing 20 campaigns...
 ⏸️ Skipping CMP-0001 — status INACTIVE (no update).
@@ -129,57 +110,38 @@ Outcome:
 ⏸️ Skipping CMP-0016 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0017 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0018 — status INACTIVE (no update).
-🎯 CMP-0019 — Target 'unique' matched 1 clients.
-👥 Matching Clients:
-   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-📅 CMP-0019 status set to ACTIVE
+⏸️ Skipping CMP-0019 — status INACTIVE (no update).
+📅 CMP-0019 status set to INACTIVE
 🎯 CMP-0020 — Target 'unique' matched 1 clients.
 👥 Matching Clients:
    - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-📅 CMP-0020 status set to UPCOMING
 📝 Updating columns individually: Target Customers Count, Campaign Status
 ✅ Column 'Target Customers Count' updated (F)
 ✅ Column 'Campaign Status' updated (H)
 ✅ Partial update completed for sheet 'Campaigns'.
 
 ✅ All campaign details updated successfully.
-##################################################
+####################################################################################################
 
 🧩 Checking Campaign Message Count for dynamic Message Template/Send Timing columns expansion for ACTIVE/UPCOMING campaigns...
 ✅ All required message template/timing columns already exist — no changes made.
 
 📣 Checking campaigns for message service invocation...
-📢 Found 2 eligible campaign(s) for message triggering.
-
-
-
-📞 Found 1 client(s) for campaign CMP-0019: +91-9986758671
-   ⏰ [9:00 AM] Sending from Sender → +91-9986758671
-   📨 Template 1: CMP-0019_Message_Template_1...
-✅📤 [SMS SENT] From: Sender | To: +91-9986758671 | Msg: CMP-0019_Message_Template_1...
-   ✅ Message 1/3 sent successfully for CMP-0019 at 9:00 AM
-   ⏰ [4:00 PM] Sending from Sender → +91-9986758671
-   📨 Template 2: CMP-0019_Message_Template_2...
-✅📤 [SMS SENT] From: Sender | To: +91-9986758671 | Msg: CMP-0019_Message_Template_2...
-   ✅ Message 2/3 sent successfully for CMP-0019 at 4:00 PM
-   ⏰ [9:00 PM] Sending from Sender → +91-9986758671
-   📨 Template 3: CMP-0019_Message_Template_3...
-✅📤 [SMS SENT] From: Sender | To: +91-9986758671 | Msg: CMP-0019_Message_Template_3...
-   ✅ Message 3/3 sent successfully for CMP-0019 at 9:00 PM
-
+📢 Found 1 eligible campaign(s) for message triggering.
 
 📞 Found 1 client(s) for campaign CMP-0020: +91-9986758671
-   ⏰ [9:00 AM] Sending from Sender → +91-9986758671
+   ⏰ [09:00:00] Sending from Sender → +91-9986758671
    📨 Template 1: CMP-0020_Message_Template_1...
 ✅📤 [SMS SENT] From: Sender | To: +91-9986758671 | Msg: CMP-0020_Message_Template_1...
-   ✅ Message 1/3 sent successfully for CMP-0020 at 9:00 AM
-   ⏰ [4:00 PM] Sending from Sender → +91-9986758671
+   ✅ Message 1/3 sent successfully for CMP-0020 at 09:00:00
+   ⏰ [16:00:00] Sending from Sender → +91-9986758671
    📨 Template 2: CMP-0020_Message_Template_2...
 ✅📤 [SMS SENT] From: Sender | To: +91-9986758671 | Msg: CMP-0020_Message_Template_2...
-   ✅ Message 2/3 sent successfully for CMP-0020 at 4:00 PM
-   ⏰ [9:00 PM] Sending from Sender → +91-9986758671
+   ✅ Message 2/3 sent successfully for CMP-0020 at 16:00:00
+   ⏰ [21:00:00] Sending from Sender → +91-9986758671
    📨 Template 3: CMP-0020_Message_Template_3...
 ✅📤 [SMS SENT] From: Sender | To: +91-9986758671 | Msg: CMP-0020_Message_Template_3...
-   ✅ Message 3/3 sent successfully for CMP-0020 at 9:00 PM
+   ✅ Message 3/3 sent successfully for CMP-0020 at 21:00:00
 
 ✅ Message service invocation process completed.
+
