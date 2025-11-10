@@ -1,13 +1,10 @@
 
-Only Campaign Message Count column is filled.
-INACTIVE : 3
-ACTIVE : 1/2
-UPCOMING : 1/2
+gSheet: Previously generated headers Message Template #1	Message Template #2 were all cleared.
 
-There is a display in terminal as below:
-✅ Added new message template columns using update_sheet(): Message Template #1, Message Template #2
-And also, 2 new columns were added for message templates.
-
+Correct column pairs were generated:
+Message Template #1	Message Send Timing #1 
+Message Template #2 Message Send Timing #2
+Message Template #3 Message Send Timing #3
 
 ✅ Initialized Gemini instances.
 🧾 Found 101 clients in 'Clients'.
@@ -120,11 +117,15 @@ And also, 2 new columns were added for message templates.
 
 ✅ No new campaign updates — skipping Campaigns sheet write.
 
-🧩 Checking Campaign Message Count for dynamic column expansion for ACTIVE/UPCOMING campaigns...
-🆕 Adding new columns to Campaigns sheet: Message Template #1, Message Template #2
-✅ Sheet header updated with new columns (Message Template #1, Message Template #2).
-📝 Updating columns individually: Message Template #1, Message Template #2
+🧩 Checking Campaign Message Count for dynamic Message Template/Send Timing columns expansion for ACTIVE/UPCOMING campaigns...
+🆕 Adding new column pairs to Campaigns sheet: Message Template #1, Message Send Timing #1, Message Template #2, Message Send Timing #2, Message Template #3, Message Send Timing #3
+✅ Sheet header updated with new columns (Message Template #1, Message Send Timing #1, Message Template #2, Message Send Timing #2, Message Template #3, Message Send Timing #3).
+📝 Updating columns individually: Message Template #1, Message Send Timing #1, Message Template #2, Message Send Timing #2, Message Template #3, Message Send Timing #3
 ✅ Column 'Message Template #1' updated (I)
-✅ Column 'Message Template #2' updated (J)
+✅ Column 'Message Send Timing #1' updated (J)
+✅ Column 'Message Template #2' updated (K)
+✅ Column 'Message Send Timing #2' updated (L)
+✅ Column 'Message Template #3' updated (M)
+✅ Column 'Message Send Timing #3' updated (N)
 ✅ Partial update completed for sheet 'Campaigns'.
-✅ Added new message template columns using update_sheet(): Message Template #1, Message Template #2
+✅ Added new message template/timing columns using update_sheet(): Message Template #1, Message Send Timing #1, Message Template #2, Message Send Timing #2, Message Template #3, Message Send Timing #3
