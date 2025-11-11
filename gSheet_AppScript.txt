@@ -1,0 +1,359 @@
+/**
+ * Google Apps Script (GS) for running time-based email campaigns.
+ *
+ * This script reads data only from the "Campaigns" sheet, compares the current time
+ * to the scheduled send times for ACTIVE or UPCOMING campaigns, and triggers
+ * an email function to a fixed recipient if a time match is found, respecting
+ * the Campaign Message Count (1, 2, or 3).
+ *
+ * CRITICAL FIX: Uses the Properties Service to track sent status (CampaignID + Template # + Date)
+ * to prevent duplicate emails without modifying the source sheet.
+ */
+
+// --- GLOBAL CONFIGURATION ---
+
+// The fixed recipient email address, as provided in the instructions
+const FIXED_RECIPIENT = 'Umang.Malhotra@webisdom.com';
+const CAMPAIGN_SENDER = 'Campaign Sender';
+// Properties service instance for tracking sent status
+const SCRIPT_PROPERTIES = PropertiesService.getScriptProperties();
+
+// --- PROPERTIES SERVICE FOR SENT TRACKING (NO SHEET MODIFICATION) ---
+
+/**
+ * Generates a unique key for tracking the sent status of a specific message today.
+ * Key format: CAMPAIGN_ID-MESSAGE_NUMBER-YYYY-MM-DD
+ * @param {string} campaignId The ID of the campaign.
+ * @param {number} messageNumber The template number (1, 2, or 3).
+ * @returns {string} The unique key.
+ */
+function getSentKey(campaignId, messageNumber) {
+    const today = new Date();
+    // Use the spreadsheet's timezone to ensure the "day" is consistent with the scheduled time
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const formattedDate = Utilities.formatDate(today, ss.getSpreadsheetTimeZone(), 'yyyy-MM-dd');
+    return `${campaignId}-${messageNumber}-${formattedDate}`;
+}
+
+/**
+ * Checks if a specific campaign message has already been sent today.
+ * @param {string} campaignId The ID of the campaign.
+ * @param {number} messageNumber The template number.
+ * @returns {boolean} True if the key exists in properties, meaning it was sent today.
+ */
+function wasSentToday(campaignId, messageNumber) {
+    const key = getSentKey(campaignId, messageNumber);
+    return SCRIPT_PROPERTIES.getProperty(key) === 'SENT';
+}
+
+/**
+ * Sets a flag in the Properties Service indicating the campaign message was sent today.
+ * The property value is simply 'SENT', and it persists indefinitely, but the key is date-specific.
+ * @param {string} campaignId The ID of the campaign.
+ * @param {number} messageNumber The template number.
+ */
+function setSentLog(campaignId, messageNumber) {
+    const key = getSentKey(campaignId, messageNumber);
+    SCRIPT_PROPERTIES.setProperty(key, 'SENT');
+    Logger.log('Set sent log for key: %s', key);
+}
+
+// --- DATA FETCHING UTILITY ---
+
+/**
+ * Reads data from a specified sheet in the active spreadsheet and converts it
+ * into an array of JavaScript objects, where keys are derived from the header row.
+ *
+ * @param {string} sheetName The name of the sheet to read (e.g., 'Campaigns').
+ * @returns {Array<Object>} An array of objects representing the sheet data.
+ */
+function getDataFromSheet(sheetName) {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName(sheetName);
+    if (!sheet) {
+        Logger.log('Error: Sheet "%s" not found in the spreadsheet.', sheetName);
+        return [];
+    }
+
+    const range = sheet.getDataRange();
+    const values = range.getValues();
+
+    if (values.length < 2) {
+        Logger.log('Sheet "%s" contains no data rows besides the header.', sheetName);
+        return [];
+    }
+
+    const headers = values[0];
+    const data = values.slice(1);
+    const result = [];
+
+    // Helper to sanitize header: removes spaces/special chars to create valid keys
+    const sanitizeHeader = (header) => header.trim().replace(/[^a-zA-Z0-9]/g, '');
+
+    // Map sanitized headers to their original index
+    const keyMap = headers.map(header => sanitizeHeader(header));
+
+    for (let i = 0; i < data.length; i++) {
+        const row = data[i];
+        const rowObject = { __rowIndex: i + 1 }; // Store original 1-based index for potential future updates
+
+        for (let j = 0; j < row.length; j++) {
+            const headerKey = keyMap[j];
+            if (headerKey) {
+                rowObject[headerKey] = row[j];
+            }
+        }
+        result.push(rowObject);
+    }
+    return result;
+}
+
+/**
+ * Helper to normalize time values read from the sheet.
+ * Converts Date objects (common for time formats like "1:50:00 PM")
+ * or time strings into a standard "HH:MM" string for consistent comparison.
+ * @param {any} timeValue The value read from the sheet cell.
+ * @returns {string} The normalized time string (e.g., "13:50").
+ */
+function normalizeTime(timeValue) {
+    if (timeValue instanceof Date) {
+        // Extract hour and minute from the Date object provided by getValues()
+        const hour = timeValue.getHours();
+        const minute = timeValue.getMinutes();
+        // Return in 24-hour HH:MM format (e.g., "13:50")
+        return `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+    }
+    // If it's already a string (e.g., "09:00:00"), sanitize it slightly for comparison
+    if (typeof timeValue === 'string') {
+        return timeValue.split(':').slice(0, 2).join(':');
+    }
+    return '';
+}
+
+/**
+ * Fetches and maps campaign data into a clean structure.
+ */
+function getCampaignsData() {
+    const rawData = getDataFromSheet('Campaigns');
+    return rawData.map(row => ({
+        id: row.CampaignID,
+        status: row.CampaignStatus,
+        category: row.TargetClientCategory,
+        // Convert count to a number
+        count: parseInt(row.CampaignMessageCount, 10) || 0,
+        temp1: row.MessageTemplate1,
+        time1: normalizeTime(row.MessageSendTiming1),
+        temp2: row.MessageTemplate2,
+        time2: normalizeTime(row.MessageSendTiming2),
+        temp3: row.MessageTemplate3,
+        time3: normalizeTime(row.MessageSendTiming3),
+        // Includes the original row index for potential future updates
+        rowIndex: row.__rowIndex
+    }))
+    .filter(campaign => campaign.id && campaign.status);
+}
+
+
+// --- CORE FUNCTIONS ---
+
+/**
+ * Implements actual email sending using Google Apps Script's built-in MailApp service.
+ *
+ * @param {string} mail_from The sender's name/address (used as the 'name' option).
+ * @param {string} mail_to The recipient's email address.
+ * @param {string} mail_sub The subject of the email.
+ * @param {string} mail_text The body of the email (Template and Time info).
+ * @returns {boolean} True if the email was successfully triggered, false otherwise.
+ */
+function trigger_email(mail_from, mail_to, mail_sub, mail_text) {
+    try {
+        MailApp.sendEmail({
+            to: mail_to,
+            subject: mail_sub,
+            body: mail_text,
+            name: mail_from // Set the sender's name
+        });
+        Logger.log('SUCCESS: Email sent to %s for subject: %s', mail_to, mail_sub);
+        return true;
+    } catch (e) {
+        // Check specifically for the quota error string to handle it gracefully
+        if (e.toString().includes('Service invoked too many times for one day: email')) {
+            Logger.log('QUOTA ERROR: Daily email limit hit. Stopping further email attempts today.');
+            throw new Error('QUOTA_EXCEEDED'); // Throw a custom error flag
+        }
+        Logger.log('ERROR: Failed to send email to %s. Subject: %s. Error: %s', mail_to, mail_sub, e.toString());
+        return false;
+    }
+}
+
+/**
+ * Helper function to check if the current time is ready for sending:
+ * Current time (HH:MM) is greater than or equal to scheduled time (HH:MM).
+ *
+ * @param {string} scheduledTimeString Time in HH:MM format (e.g., "13:50").
+ * @param {Date} now The current Date object (using Spreadsheet timezone).
+ * @returns {boolean} True if the current time is >= the scheduled time.
+ */
+function isTimeReadyForSend(scheduledTimeString, now) {
+    if (!scheduledTimeString || typeof scheduledTimeString !== 'string') {
+        return false;
+    }
+
+    const parts = scheduledTimeString.split(':');
+    if (parts.length < 2) {
+        return false;
+    }
+
+    // Scheduled time components (HH:MM)
+    const scheduledHour = parseInt(parts[0], 10);
+    const scheduledMinute = parseInt(parts[1], 10);
+
+    // Current time components (HH:MM)
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+
+    // Convert both to a single minute value for easy comparison since they share the same date
+    const scheduledMinutesToday = (scheduledHour * 60) + scheduledMinute;
+    const currentMinutesToday = (currentHour * 60) + currentMinute;
+
+    return currentMinutesToday >= scheduledMinutesToday;
+}
+
+
+/**
+ * The main function to run the campaign check.
+ * This should be set up as a time-driven trigger in Google Apps Script, OR
+ * can be called by doGet() when deployed as a Web App.
+ *
+ * Logic uses PropertiesService to track sent status for the day, preventing duplicates.
+ *
+ * @returns {string} A status message indicating the completion of the check.
+ */
+function main_campaign_runner() {
+    // --- 1. Get Current Time in Spreadsheet Timezone ---
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const now = new Date();
+    // Use Utilities.formatDate to adjust 'now' to the correct timezone for display/logging
+    const nowInTZ = Utilities.formatDate(now, ss.getSpreadsheetTimeZone(), 'HH:mm:ss');
+    Logger.log('Script execution time (Spreadsheet TZ): %s', nowInTZ);
+
+    // --- 2. Process Campaigns ---
+    const campaigns = getCampaignsData();
+    let emailsTriggered = 0;
+    let quotaHit = false;
+
+    Logger.log('Found %d total campaigns.', campaigns.length);
+
+    // Use a try/catch block around the entire processing loop to catch the QUOTA_EXCEEDED flag
+    try {
+        campaigns.forEach(campaign => {
+            // Check for required status
+            if (campaign.status !== 'ACTIVE' && campaign.status !== 'UPCOMING') {
+                return;
+            }
+
+            // If the quota was hit in a previous campaign, stop processing immediately
+            if (quotaHit) return;
+
+            // Define the templates and timings to check based *strictly* on Campaign Message Count
+            const messages = [];
+
+            // Rule: If count is 1 or more, check template 1
+            if (campaign.count >= 1 && campaign.time1 && campaign.temp1) {
+                 messages.push({ template: campaign.temp1, timing: campaign.time1, number: 1 });
+            }
+
+            // Rule: If count is 2 or more, check template 2
+            if (campaign.count >= 2 && campaign.time2 && campaign.temp2) {
+                 messages.push({ template: campaign.temp2, timing: campaign.time2, number: 2 });
+            }
+
+            // Rule: If count is 3 or more, check template 3
+            if (campaign.count >= 3 && campaign.time3 && campaign.temp3) {
+                 messages.push({ template: campaign.temp3, timing: campaign.time3, number: 3 });
+            }
+
+            messages.forEach(message => {
+                if (quotaHit) return; // Immediate stop check
+
+                const { template, timing, number } = message;
+
+                // CRITICAL STEP 1: Check if the time is ready (current time >= scheduled time)
+                if (isTimeReadyForSend(timing, now)) {
+
+                    // CRITICAL STEP 2: Check if this specific message has already been sent TODAY using Properties Service
+                    if (wasSentToday(campaign.id, number)) {
+                        Logger.log('SKIP: Campaign %s, Template #%s at %s already sent today.', campaign.id, number, timing);
+                        return;
+                    }
+
+                    // Time is ready AND not sent today, trigger email
+                    Logger.log('ATTEMPT: Campaign %s, Template #%s at %s', campaign.id, number, timing);
+
+                    const mail_sub = `[${campaign.id}] Campaign Message #${number} - Scheduled at ${timing}`;
+                    const mail_text = `Template: ${template}\nTime: ${timing}`;
+
+                    // --- Call Email Function to the fixed recipient ---
+                    const sentSuccess = trigger_email(
+                        CAMPAIGN_SENDER,
+                        FIXED_RECIPIENT,
+                        mail_sub,
+                        mail_text
+                    );
+
+                    if (sentSuccess) {
+                        // CRITICAL STEP 3: Log the sent status in Properties Service
+                        setSentLog(campaign.id, number);
+                        emailsTriggered++;
+                    }
+                }
+            });
+        });
+    } catch (e) {
+        if (e.message === 'QUOTA_EXCEEDED') {
+            quotaHit = true;
+            Logger.log('FINAL STATUS: Execution stopped due to daily email quota being reached.');
+            return `Campaign Check executed successfully until quota hit. Emails triggered: ${emailsTriggered}. **ACTION REQUIRED: Daily email limit reached.**`;
+        }
+        // If it's another error, re-throw it to stop the script
+        throw e;
+    }
+
+    Logger.log('Campaign check complete.');
+    return `Campaign Check executed successfully at ${nowInTZ}. Emails triggered: ${emailsTriggered}.`;
+}
+
+/**
+ * Web App entry point for GET requests.
+ * This executes the campaign check logic and returns a simple confirmation page.
+ *
+ * @param {GoogleAppsScript.Events.DoGet} e Event object from the Web App request.
+ * @returns {GoogleAppsScript.Content.HtmlOutput} Simple HTML confirmation page.
+ */
+function doGet(e) {
+    Logger.log('Web App accessed. Starting campaign runner...');
+
+    // Execute the core logic
+    const statusMessage = main_campaign_runner();
+
+    // Create and return the HTML response
+    const html = HtmlService.createHtmlOutput(
+        '<!DOCTYPE html><html><head>' +
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+        '<style>' +
+        'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; text-align: center; padding: 40px; background-color: #f7f7f7; color: #333; }' +
+        'h1 { color: #10B981; margin-bottom: 20px; }' +
+        'p { font-size: 1.1em; line-height: 1.6; }' +
+        'a { color: #10B981; text-decoration: none; font-weight: 600; }' +
+        '</style>' +
+        '</head><body>' +
+        '<h1>Campaign Scheduler Status</h1>' +
+        `<p style="font-weight: bold; padding: 10px; background-color: #E6F8F2; border-radius: 8px;">${statusMessage}</p>` +
+        '<p>The campaign scheduling check has been performed for the current time.</p>' +
+        '<p>For detailed execution results and logging, please check the ' +
+        '<a href="https://script.google.com/home/projects" target="_blank">Google Apps Script Logs</a>.</p>' +
+        '</body></html>'
+    ).setSandboxMode(HtmlService.SandboxMode.IFRAME);
+
+    return html;
+}
