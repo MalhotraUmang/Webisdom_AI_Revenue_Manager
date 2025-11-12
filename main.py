@@ -17,7 +17,7 @@ import google.generativeai as genai
 from datetime import datetime
 from dateutil import parser
 from msg_service import trigger_sms
-# from msg_service import trigger_whatsapp_msg
+from msg_service import trigger_whatsapp_msg
 # from msg_service import trigger_email
 
 # -------------------------------------------------------------------
@@ -413,6 +413,13 @@ def invoke_message_service(sheets, df_campaigns):
             
                 try:
                     trigger_sms(msg_body, msg_from, msg_to, msg_timing)
+                    print(f"   ✅ Message {i}/{msg_count} sent successfully for {campaign_id} at {msg_timing}")
+                except Exception as e:
+                    print(f"   ❌ Failed to send message {i}/{msg_count} — {e}")
+                
+                try:
+                    msg_to="whatsapp:"+msg_to # adapt msg_to for whatsapp sending
+                    trigger_whatsapp_msg(msg_body, msg_from, msg_to, msg_timing)
                     print(f"   ✅ Message {i}/{msg_count} sent successfully for {campaign_id} at {msg_timing}")
                 except Exception as e:
                     print(f"   ❌ Failed to send message {i}/{msg_count} — {e}")
