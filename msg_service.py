@@ -19,18 +19,19 @@
 # import os
 from datetime import datetime, time as dtime
 from twilio.rest import Client
-# from sendgrid import SendGridAPIClient
-# from sendgrid.helpers.mail import Mail
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 from config import (
     TWILIO_ACCOUNT_SID,
     TWILIO_AUTH_TOKEN,
-    # SENDGRID_API_KEY,
+    SENDGRID_API_KEY,
 )
 
 # MSG_BODY="!!! test sms from twilio !!!"
 SMS_MSG_FROM="+18782511984",
 WHATSAPP_MSG_FROM="whatsapp:+14155238886"
+EMAIL_MSG_FROM = "Umang.Malhotra@webisdom.com"
 
 def match_send_time(msg_time):
     
@@ -92,5 +93,37 @@ def trigger_whatsapp_msg(msg_body, msg_from, msg_to, msg_time):
     else:
         print(f"⚠️ Invalid msg_time ({msg_time}) — skipping send.")
 
-# def trigger_email(mail_from, mail_to, mail_sub, mail_text):
-#     pass
+def trigger_email(msg_body, msg_from, msg_to, mail_sub, msg_time):
+    
+    # match msg_time with current time
+    now = datetime.now().time()
+
+    parsed_time = match_send_time(msg_time)
+
+    if parsed_time and now >= parsed_time:
+        message = Mail(
+            from_email=EMAIL_MSG_FROM,
+            to_emails=msg_to,
+            subject=mail_sub,
+            html_content=msg_body)
+        try:
+            # sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+            sg = SendGridAPIClient(SENDGRID_API_KEY) #()"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")
+
+            # sg.set_sendgrid_data_residency("eu")
+            # uncomment the above line if you are sending mail using a regional EU subuser
+
+            sg.send(message)
+            # response = sg.send(message)
+            # print(response.status_code)
+            # print(response.body)
+            # print(response.headers)
+        except Exception as e:
+            print(e.message)
+            # print(str(e))
+
+        print("✅"f"📤 [Email SENT] From: {msg_from} | To: {msg_to} | Msg: {msg_body[:50]}...")
+    elif parsed_time:
+        print(f"⏳ Not time yet — current: {now.strftime('%H:%M:%S')} < scheduled: {parsed_time.strftime('%H:%M')}")
+    else:
+        print(f"⚠️ Invalid msg_time ({msg_time}) — skipping send.")

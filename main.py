@@ -18,7 +18,7 @@ from datetime import datetime
 from dateutil import parser
 from msg_service import trigger_sms
 from msg_service import trigger_whatsapp_msg
-# from msg_service import trigger_email
+from msg_service import trigger_email
 
 # -------------------------------------------------------------------
 # 🔧 SETUP
@@ -364,8 +364,11 @@ def invoke_message_service(sheets, df_campaigns):
             print(f"⚠️ No clients matched for campaign {campaign_id} (category: {target_category}).")
             continue
 
-        phones = matched_clients["Client Phone"].dropna().unique().tolist()
-        print(f"📞 Found {len(phones)} client(s) for campaign {campaign_id}: {', '.join(phones[:3])}{'...' if len(phones)>3 else ''}")
+        phones = matched_clients["Client Phone"].dropna().unique().tolist() if "Client Phone" in matched_clients.columns else []
+        print(f"📞 Found {len(phones)} phone(s) for campaign {campaign_id}: "f"{', '.join(phones[:3])}{'...' if len(phones) > 3 else ''}")
+
+        emails = matched_clients["Client Email"].dropna().unique().tolist() if "Client Email" in matched_clients.columns else []
+        print(f"📧 Found {len(emails)} email(s) for campaign {campaign_id}: "f"{', '.join(emails[:3])}{'...' if len(emails) > 3 else ''}")
         # print("\n")
 
         # Send messages based on templates
@@ -406,6 +409,9 @@ def invoke_message_service(sheets, df_campaigns):
             msg_from = "Sender"  # Sender dummy Placeholder
             
             for phone in phones:
+                
+                # ----- SMS -----
+                
                 msg_to = phone.strip()
                 # print("\n")
                 print(f"   ⏰ [{msg_timing}] Sending from {msg_from} → {msg_to}")
@@ -417,12 +423,34 @@ def invoke_message_service(sheets, df_campaigns):
                 except Exception as e:
                     print(f"   ❌ Failed to send message {i}/{msg_count} — {e}")
                 
+                # ----- WhatsApp -----
+
+                msg_to="whatsapp:"+msg_to # adapt msg_to for whatsapp sending
+
+                print(f"   ⏰ [{msg_timing}] Sending from {msg_from} → {msg_to}")
+                print(f"   📨 Template {i}: {msg_body[:60]}...")
+
                 try:
-                    msg_to="whatsapp:"+msg_to # adapt msg_to for whatsapp sending
                     trigger_whatsapp_msg(msg_body, msg_from, msg_to, msg_timing)
                     print(f"   ✅ Message {i}/{msg_count} sent successfully for {campaign_id} at {msg_timing}")
                 except Exception as e:
                     print(f"   ❌ Failed to send message {i}/{msg_count} — {e}")
+
+            for email in emails:
+            
+                # ----- Email -----
+                
+                msg_to = email.strip()
+                mail_sub = "Dummy Subject"
+                
+                print(f"   ⏰ [{msg_timing}] Sending from {msg_from} → {msg_to}")
+                print(f"   📨 Template {i}: Subject: {mail_sub} | {msg_body[:60]}...")
+                
+                try:
+                    trigger_email(msg_body, msg_from, msg_to, mail_sub, msg_timing)
+                    print(f"   ✅ Email {i}/{msg_count} sent successfully for {campaign_id} at {msg_timing}")
+                except Exception as e:
+                    print(f"   ❌ Failed to send email {i}/{msg_count} — {e}")
 
     print("\n✅ Message service invocation process completed.")
     print("#"*100,'\n')
