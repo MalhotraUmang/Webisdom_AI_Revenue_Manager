@@ -30,18 +30,15 @@ from config import (
 
 # MSG_BODY="!!! test sms from twilio !!!"
 MSG_FROM="+18782511984",
-# MSG_TO="+919986758671",
 
-def trigger_sms(msg_body, msg_from, msg_to, msg_time):
-    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-
-    # match msg_time with current time
-    now = datetime.now().time()
-
+def match_send_time(msg_time):
+    
     # Safely handle msg_time (can be str, time, or None)
     parsed_time = None
+
     if isinstance(msg_time, dtime):
         parsed_time = msg_time
+    
     elif isinstance(msg_time, str) and msg_time.strip():
         for fmt in ("%H:%M", "%I:%M %p", "%H.%M", "%I.%M %p"):
             try:
@@ -49,12 +46,21 @@ def trigger_sms(msg_body, msg_from, msg_to, msg_time):
                 break
             except ValueError:
                 continue
+    
+    return parsed_time
+
+def trigger_sms(msg_body, msg_from, msg_to, msg_time):
+    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
+    # match msg_time with current time
+    now = datetime.now().time()
+
+    parsed_time = match_send_time(msg_time)
 
     if parsed_time and now >= parsed_time:
         message = client.messages.create(
             body=msg_body,
             # from_=msg_from,
-            # to=msg_to,
             from_=MSG_FROM,
             to=msg_to,
         )
@@ -63,19 +69,6 @@ def trigger_sms(msg_body, msg_from, msg_to, msg_time):
         print(f"⏳ Not time yet — current: {now.strftime('%H:%M:%S')} < scheduled: {parsed_time.strftime('%H:%M')}")
     else:
         print(f"⚠️ Invalid msg_time ({msg_time}) — skipping send.")
-        # print(" !!! TIMING DIDNT MATCH !!!")
-
-    # Display the SMS message text in terminal.
-    # print(message.body)
-    # print("✅"f"📤 [SMS SENT] From: {msg_from} | To: {msg_to} | Msg: {msg_body[:50]}...")
-
-
-
-
-
-
-
-
 
 # def trigger_whatsapp_msg(msg_body, msg_from, msg_to):
 #     pass
