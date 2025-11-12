@@ -29,7 +29,8 @@ from config import (
 )
 
 # MSG_BODY="!!! test sms from twilio !!!"
-MSG_FROM="+18782511984",
+SMS_MSG_FROM="+18782511984",
+WHATSAPP_MSG_FROM="whatsapp:+14155238886"
 
 def match_send_time(msg_time):
     
@@ -61,7 +62,7 @@ def trigger_sms(msg_body, msg_from, msg_to, msg_time):
         message = client.messages.create(
             body=msg_body,
             # from_=msg_from,
-            from_=MSG_FROM,
+            from_=SMS_MSG_FROM,
             to=msg_to,
         )
         print("✅"f"📤 [SMS SENT] From: {msg_from} | To: {msg_to} | Msg: {msg_body[:50]}...")
@@ -70,8 +71,26 @@ def trigger_sms(msg_body, msg_from, msg_to, msg_time):
     else:
         print(f"⚠️ Invalid msg_time ({msg_time}) — skipping send.")
 
-# def trigger_whatsapp_msg(msg_body, msg_from, msg_to):
-#     pass
+def trigger_whatsapp_msg(msg_body, msg_from, msg_to, msg_time):
+    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
+    # match msg_time with current time
+    now = datetime.now().time()
+
+    parsed_time = match_send_time(msg_time)
+
+    if parsed_time and now >= parsed_time:
+        message = client.messages.create(
+            body=msg_body,
+            # from_=msg_from,
+            from_=WHATSAPP_MSG_FROM,
+            to=msg_to,
+        )
+        print("✅"f"📤 [WhatsApp msg SENT] From: {msg_from} | To: {msg_to} | Msg: {msg_body[:50]}...")
+    elif parsed_time:
+        print(f"⏳ Not time yet — current: {now.strftime('%H:%M:%S')} < scheduled: {parsed_time.strftime('%H:%M')}")
+    else:
+        print(f"⚠️ Invalid msg_time ({msg_time}) — skipping send.")
 
 # def trigger_email(mail_from, mail_to, mail_sub, mail_text):
 #     pass
