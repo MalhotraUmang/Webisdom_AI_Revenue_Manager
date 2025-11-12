@@ -12,6 +12,7 @@ from config import (
     GEMINI_MODEL,
     REQUEST_DELAY,
     BATCH_SIZE,
+    MSG_SERVICE_PYTHON,
 )
 import google.generativeai as genai
 from datetime import datetime
@@ -689,8 +690,10 @@ def process_clients_and_campaigns():
     # Add new columns for message templates and message send timing
     add_message_templates(sheets, df_campaigns)
 
-    # Invoke Message Services based on Message Templates/Timings
-    invoke_message_service(sheets, df_campaigns)
+    # Configuration Controlled Message Service in Python backend
+    if (MSG_SERVICE_PYTHON):
+        # Invoke Message Services based on Message Templates/Timings
+        invoke_message_service(sheets, df_campaigns)
     
 # -------------------------------------------------------------------
 # ▶️ RUN
