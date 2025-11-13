@@ -407,7 +407,7 @@ function main_campaign_runner() {
           Logger.log(`SKIP: Campaign ${campaign.id} Msg#${number} not yet time (${normalizedTiming})`);
           return;
         }
-        // It considers all mediums SMS, WhatsApp and Email
+        // It considers all mediums SMS< WhatsApp and Email
         // It considers as SENT even if partial medium were successfull in sending msg.
         if (wasSentToday(campaign.id, number)) {
           Logger.log('SKIP: Campaign %s Msg#%s already sent today.', campaign.id, number);
@@ -553,4 +553,76 @@ function doGet(e) {
     ).setSandboxMode(HtmlService.SandboxMode.IFRAME);
 
     return html;
+}
+
+/**
+ * Web app endpoint for React frontend to add new Campaigns
+ */
+function doPost(e) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Campaigns");
+
+    if (!e || !e.postData || !e.postData.contents) {
+      return ContentService.createTextOutput(
+        JSON.stringify({ status: "error", message: "No POST body received" })
+      ).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const data = JSON.parse(e.postData.contents);
+    const {
+      campaignText,
+      targetClientCategory,
+      startDateTime,
+      endDateTime,
+      campaignMessageCount,
+      messageTemplate1,
+      messageSendTiming1,
+      messageTemplate2,
+      messageSendTiming2,
+      messageTemplate3,
+      messageSendTiming3
+    } = data;
+
+    // Build the row in your sheet’s column order
+    // Columns: [Campaign ID, Campaign Text, Target Client Category, Start Date-Time,
+    // End Date-Time, Target Customers Count, Campaign Message Count,
+    // Campaign Status, Msg #1, Time #1, Msg #2, Time #2, Msg #3, Time #3]
+
+    const row = [
+      "",                     // Campaign ID → blank
+      campaignText,
+      targetClientCategory,
+      startDateTime,
+      endDateTime,
+      "",                     // Target Customers Count → blank
+      campaignMessageCount,
+      "",                     // Campaign Status → blank
+      "", "", "", "", "", ""  // placeholders for up to 3 message/timing pairs
+    ];
+
+    // Fill only as many templates/timings as count specifies
+    if (campaignMessageCount >= 1) {
+      row[8]  = messageTemplate1 || "";
+      row[9]  = messageSendTiming1 || "";
+    }
+    if (campaignMessageCount >= 2) {
+      row[10] = messageTemplate2 || "";
+      row[11] = messageSendTiming2 || "";
+    }
+    if (campaignMessageCount >= 3) {
+      row[12] = messageTemplate3 || "";
+      row[13] = messageSendTiming3 || "";
+    }
+
+    sheet.appendRow(row);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({ status: "success" })
+    ).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ status: "error", message: err.message })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
 }
