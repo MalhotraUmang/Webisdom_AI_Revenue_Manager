@@ -85,10 +85,10 @@ function getDataFromSheet(sheetName) {
     const result = [];
 
     // Helper to sanitize header: removes spaces/special chars to create valid keys
-    const sanitizeHeader = (header) => header.trim().replace(/[^a-zA-Z0-9]/g, '');
+    // const sanitizeHeader = (header) => header.trim().replace(/[^a-zA-Z0-9]/g, '');
 
     // Map sanitized headers to their original index
-    const keyMap = headers.map(header => sanitizeHeader(header));
+    const keyMap = headers.map(header => header); //sanitizeHeader(header));
 
     for (let i = 0; i < data.length; i++) {
         const row = data[i];
@@ -128,26 +128,48 @@ function normalizeTime(timeValue) {
 }
 
 /**
- * Fetches and maps campaign data into a clean structure.
+ * Fetches client data from the "Clients" sheet.
+ * Each row represents one client.
+ *
+ * @returns {Array<Object>} Array of client objects:
+ * [
+ *   { id, name, email, phone, category }
+ * ]
+ */
+function getClientsData() {
+  const rawData = getDataFromSheet('Clients');
+  return rawData.map(row => ({
+    id: row['Client ID'] || '',
+    name: row['Client Name'] || '',
+    email: row['Client Email'] || '',
+    phone: row['Client Phone'] || '',
+    category: row['Client Category'] || ''
+  })).filter(c => c.category); // only keep valid categories
+}
+
+/**
+ * Fetches campaign data from the "Campaigns" sheet.
+ * Each campaign may contain up to three templates and timing pairs.
+ *
+ * @returns {Array<Object>} Array of campaign objects.
  */
 function getCampaignsData() {
-    const rawData = getDataFromSheet('Campaigns');
-    return rawData.map(row => ({
-        id: row.CampaignID,
-        status: row.CampaignStatus,
-        category: row.TargetClientCategory,
-        // Convert count to a number
-        count: parseInt(row.CampaignMessageCount, 10) || 0,
-        temp1: row.MessageTemplate1,
-        time1: normalizeTime(row.MessageSendTiming1),
-        temp2: row.MessageTemplate2,
-        time2: normalizeTime(row.MessageSendTiming2),
-        temp3: row.MessageTemplate3,
-        time3: normalizeTime(row.MessageSendTiming3),
-        // Includes the original row index for potential future updates
-        rowIndex: row.__rowIndex
-    }))
-    .filter(campaign => campaign.id && campaign.status);
+  const rawData = getDataFromSheet('Campaigns');
+  return rawData.map(row => ({
+    id: row['Campaign ID'] || '',
+    text: row['Campaign Text'] || '',
+    category: row['Target Client Category'] || '',
+    start: row['Start Date-Time'] || '',
+    end: row['End Date-Time'] || '',
+    count: Number(row['Campaign Message Count']) || 0,
+    status: row['Campaign Status'] || '',
+    temp1: row['Message Template #1'] || '',
+    time1: row['Message Send Timing #1'] || '',
+    temp2: row['Message Template #2'] || '',
+    time2: row['Message Send Timing #2'] || '',
+    temp3: row['Message Template #3'] || '',
+    time3: row['Message Send Timing #3'] || ''
+  }));
 }
 
 
@@ -191,6 +213,9 @@ function trigger_sms(msg_from, msg_to, msg_text) {
     if (result.sid) {
       Logger.log("SUCCESS: SMS sent to %s (SID: %s)", msg_to, result.sid);
       return true;
+    } else if (result.code === 63038) {
+      Logger.log("QUOTA ERROR: Twilio SMS daily limit hit.");
+      throw new Error('QUOTA_EXCEEDED');
     } else {
       Logger.log("ERROR: Failed to send SMS to %s. Response: %s", msg_to, response.getContentText());
       return false;
@@ -237,6 +262,9 @@ function trigger_whatsapp_msg(msg_from, msg_to, msg_text) {
     if (result.sid) {
       Logger.log("SUCCESS: WhatsApp message sent to %s (SID: %s)", msg_to, result.sid);
       return true;
+    } else if (result.code === 63038) {
+      Logger.log("QUOTA ERROR: Twilio WhatsApp daily limit hit.");
+      throw new Error('QUOTA_EXCEEDED');
     } else {
       Logger.log("ERROR: Failed to send WhatsApp message to %s. Response: %s", msg_to, response.getContentText());
       return false;
@@ -246,7 +274,6 @@ function trigger_whatsapp_msg(msg_from, msg_to, msg_text) {
     return false;
   }
 }
-
 
 /**
  * Implements actual email sending using Google Apps Script's built-in MailApp service.
@@ -314,9 +341,13 @@ function isTimeReadyForSend(scheduledTimeString, now) {
     return currentMinutesToday >= scheduledMinutesToday;
 }
 
-
 /**
  * The main function to run the campaign check.
+ * - Reads campaigns and clients.
+ * - Matches clients by category.
+ * - Sends Email, SMS, WhatsApp messages.
+ * - Manages separate per-day quotas for each channel.
+ * - Does NOT update or modify any Google Sheet data.
  * This should be set up as a time-driven trigger in Google Apps Script, OR
  * can be called by doGet() when deployed as a Web App.
  *
@@ -325,112 +356,158 @@ function isTimeReadyForSend(scheduledTimeString, now) {
  * @returns {string} A status message indicating the completion of the check.
  */
 function main_campaign_runner() {
-    // --- 1. Get Current Time in Spreadsheet Timezone ---
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const now = new Date();
-    // Use Utilities.formatDate to adjust 'now' to the correct timezone for display/logging
-    const nowInTZ = Utilities.formatDate(now, ss.getSpreadsheetTimeZone(), 'HH:mm:ss');
-    Logger.log('Script execution time (Spreadsheet TZ): %s', nowInTZ);
+  // --- 1. Get Current Time in Spreadsheet Timezone ---
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const now = new Date();
+  // Use Utilities.formatDate to adjust 'now' to the correct timezone for display/logging
+  const nowInTZ = Utilities.formatDate(now, ss.getSpreadsheetTimeZone(), 'HH:mm:ss');
+  Logger.log('Script execution time (Spreadsheet TZ): %s', nowInTZ);
 
-    // --- 2. Process Campaigns ---
-    const campaigns = getCampaignsData();
-    let msgsTriggered = 0;
-    let quotaHit = false;
+  // --- 2. Process Campaigns ---
+  const campaigns = getCampaignsData();
+  const clients = getClientsData();
+  let msgsTriggered = 0;
+  let quotaHit = { email: false, sms: false, whatsapp: false };
 
-    Logger.log('Found %d total campaigns.', campaigns.length);
+  Logger.log(`Loaded ${campaigns.length} campaigns and ${clients.length} clients`);
+  // campaigns.forEach(c => Logger.log(`Campaign: ${c.id}, Status=${c.status}, Category=${c.category}, Time1=${c.time1}`));
+  // clients.forEach(cl => Logger.log(`Client: ${cl.name}, Category=${cl.category}, Email=${cl.email}`));
 
-    // Use a try/catch block around the entire processing loop to catch the QUOTA_EXCEEDED flag
-    try {
-        campaigns.forEach(campaign => {
-            // Check for required status
-            if (campaign.status !== 'ACTIVE' && campaign.status !== 'UPCOMING') {
-                return;
-            }
+  // Use a try/catch block around the entire processing loop to catch the QUOTA_EXCEEDED flag
+  try {
+    campaigns.forEach(campaign => {
+      // Check for required status
+      if (campaign.status !== 'ACTIVE' && campaign.status !== 'UPCOMING') {
+        // Logger.log(`SKIP: Campaign ${campaign.id} ignored due to status "${campaign.status}"`);
+        return;
+      }
 
-            // If the quota was hit in a previous campaign, stop processing immediately
-            if (quotaHit) return;
+      // Define the templates and timings to check based *strictly* on Campaign Message Count
+      const messages = [];
 
-            // Define the templates and timings to check based *strictly* on Campaign Message Count
-            const messages = [];
+      // Rule: If count is 1 or more, check template 1
+      if (campaign.count >= 1 && campaign.time1 && campaign.temp1) {
+            messages.push({ template: campaign.temp1, timing: normalizeTime(campaign.time1), number: 1 });
+      }
+      // Rule: If count is 2 or more, check template 2
+      if (campaign.count >= 2 && campaign.time2 && campaign.temp2) {
+            messages.push({ template: campaign.temp2, timing: normalizeTime(campaign.time2), number: 2 });
+      }
+      // Rule: If count is 3 or more, check template 3
+      if (campaign.count >= 3 && campaign.time3 && campaign.temp3) {
+            messages.push({ template: campaign.temp3, timing: normalizeTime(campaign.time3), number: 3 });
+      }
 
-            // Rule: If count is 1 or more, check template 1
-            if (campaign.count >= 1 && campaign.time1 && campaign.temp1) {
-                 messages.push({ template: campaign.temp1, timing: campaign.time1, number: 1 });
-            }
+      messages.forEach(message => {
+        const { template, timing, number } = message;
 
-            // Rule: If count is 2 or more, check template 2
-            if (campaign.count >= 2 && campaign.time2 && campaign.temp2) {
-                 messages.push({ template: campaign.temp2, timing: campaign.time2, number: 2 });
-            }
-
-            // Rule: If count is 3 or more, check template 3
-            if (campaign.count >= 3 && campaign.time3 && campaign.temp3) {
-                 messages.push({ template: campaign.temp3, timing: campaign.time3, number: 3 });
-            }
-
-            messages.forEach(message => {
-                if (quotaHit) return; // Immediate stop check
-
-                const { template, timing, number } = message;
-
-                // CRITICAL STEP 1: Check if the time is ready (current time >= scheduled time)
-                if (isTimeReadyForSend(timing, now)) {
-
-                    // CRITICAL STEP 2: Check if this specific message has already been sent TODAY using Properties Service
-                    if (wasSentToday(campaign.id, number)) {
-                        Logger.log('SKIP: Campaign %s, Template #%s at %s already sent today.', campaign.id, number, timing);
-                        return;
-                    }
-
-                    // Time is ready AND not sent today, trigger sms/email
-                    Logger.log('ATTEMPT: Campaign %s, Template #%s at %s', campaign.id, number, timing);
-
-                    const msg_sub = `[${campaign.id}] Campaign Message #${number} - Scheduled at ${timing}`;
-                    const msg_text = `Template: ${template}\nTime: ${timing}`;
-
-                    // --- Call SMS Function ---
-                    const smsSuccess = trigger_sms(
-                        SMS_MSG_FROM, // Twilio test sender's phone number
-                        SMS_MSG_TO,   // test receiver's phone number
-                        msg_text
-                    );
-
-                    // --- Call WhatsApp Function ---
-                    const whatsappSuccess = trigger_whatsapp_msg(
-                        WHATSAPP_MSG_FROM, // Twilio test whatsapp sender's number
-                        WHATSAPP_MSG_TO,   // test whatsapp receiver's number
-                        msg_sub,
-                        msg_text
-                    );
-
-                    // --- Call Email Function ---
-                    const emailSuccess = trigger_email(
-                        EMAIL_MSG_FROM, // test sender's email address
-                        EMAIL_MSG_TO,   // test receiver's email address
-                        msg_sub,
-                        msg_text
-                    );
-
-                    if ((smsSuccess) & (emailSuccess) & (whatsappSuccess)) {
-                        // CRITICAL STEP 3: Log the sent status in Properties Service
-                        setSentLog(campaign.id, number);
-                        msgsTriggered++;
-                    }
-                }
-            });
-        });
-    } catch (e) {
-        if (e.message === 'QUOTA_EXCEEDED') {
-            quotaHit = true;
-            Logger.log('FINAL STATUS: Execution stopped due to daily email quota being reached.');
-            return `Campaign Check executed successfully until quota hit. Emails triggered: ${msgsTriggered}. **ACTION REQUIRED: Daily email limit reached.**`;
+        // CRITICAL STEP 1: Check if the time is ready (current time >= scheduled time)
+        const normalizedTiming = normalizeTime(timing);
+        if (!isTimeReadyForSend(normalizedTiming, now)) {
+          Logger.log(`SKIP: Campaign ${campaign.id} Msg#${number} not yet time (${normalizedTiming})`);
+          return;
         }
-        // If it's another error, re-throw it to stop the script
-        throw e;
-    }
+        // It considers all mediums SMS, WhatsApp and Email
+        // It considers as SENT even if partial medium were successfull in sending msg.
+        if (wasSentToday(campaign.id, number)) {
+          Logger.log('SKIP: Campaign %s Msg#%s already sent today.', campaign.id, number);
+          return;
+        }
 
-    Logger.log('Campaign check complete.');
-    return `Campaign Check executed successfully at ${nowInTZ}. Emails triggered: ${msgsTriggered}.`;
+        // Time is ready AND not sent today, trigger sms/email
+        Logger.log('SENDING: Campaign %s Msg#%s (%s)', campaign.id, number, timing);
+
+        const msg_sub = `[${campaign.id}] Campaign Message #${number} - Scheduled at ${timing}`;
+        const msg_text = `Template: ${template}\nTime: ${timing}`;
+
+        // --- Match clients by category ---
+        const matchedClients = clients.filter(c =>
+          c.category &&
+          c.category.toString().trim().toLowerCase() ===
+          campaign.category.toString().trim().toLowerCase()
+        );
+
+        if (matchedClients.length === 0) {
+          Logger.log('No clients found for category "%s"', campaign.category);
+          return;
+        }
+
+        Logger.log('Matched %d clients for "%s"', matchedClients.length, campaign.category);
+
+        matchedClients.forEach(client => {
+          if (quotaHit.email && quotaHit.sms && quotaHit.whatsapp) return; // stop all if all limits hit
+
+          const msg_text = `Hi ${client.name || "Customer"},\n${template}`;
+
+          // --- Call Email Function ---
+          if (!quotaHit.email && client.email) {
+            try {
+              const success = trigger_email(
+                EMAIL_MSG_FROM, // test sender's email address
+                client.email,
+                msg_sub,
+                msg_text
+              );
+              if (!success) Logger.log('Email failed for %s', client.email);
+            } catch (e) {
+              if (e.message === 'QUOTA_EXCEEDED') {
+                quotaHit.email = true;
+                Logger.log('Email quota reached.');
+              }
+            }
+          }
+
+          // --- Call SMS Function ---
+          if (!quotaHit.sms && client.phone) {
+            try {
+              const success = trigger_sms(
+                SMS_MSG_FROM, // Twilio test sender's phone number
+                client.phone,
+                msg_text
+                );
+              if (!success) Logger.log('SMS failed for %s', client.phone);
+            } catch (e) {
+              if (e.message === 'QUOTA_EXCEEDED') {
+                quotaHit.sms = true;
+                Logger.log('SMS quota reached.');
+              } else {
+                Logger.log('SMS Error: %s', e.toString());
+              }
+            }
+          }
+
+          // --- Call WhatsApp Function ---
+          if (!quotaHit.whatsapp && client.phone) {
+            try {
+              const formattedPhone = 'whatsapp:' + client.phone.replace(/\s|\+|-/g, '');
+              const success = trigger_whatsapp_msg(
+                WHATSAPP_MSG_FROM, // Twilio test whatsapp sender's phone number
+                formattedPhone,
+                msg_text
+              );
+              if (!success) Logger.log('WhatsApp failed for %s', client.phone);
+            } catch (e) {
+              if (e.message === 'QUOTA_EXCEEDED') {
+                quotaHit.whatsapp = true;
+                Logger.log('WhatsApp quota reached.');
+              } else {
+                Logger.log('WhatsApp Error: %s', e.toString());
+              }
+            }
+          }
+        });
+
+        setSentLog(campaign.id, number);
+        msgsTriggered++;
+      });
+    });
+  } catch (e) {
+    Logger.log('Execution stopped with error: %s', e.toString());
+    throw e;
+  }
+
+  Logger.log('Completed campaigns. Messages triggered: %d', msgsTriggered);
+  return `Completed at ${nowInTZ}. Messages triggered: ${msgsTriggered}`;
 }
 
 /**
