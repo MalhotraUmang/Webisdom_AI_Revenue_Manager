@@ -421,11 +421,21 @@ function main_campaign_runner() {
         const msg_text = `Template: ${template}\nTime: ${timing}`;
 
         // --- Match clients by category ---
-        const matchedClients = clients.filter(c =>
-          c.category &&
-          c.category.toString().trim().toLowerCase() ===
-          campaign.category.toString().trim().toLowerCase()
-        );
+        // Campaign category must be found in one of the comma-separated words in client's category
+        const matchedClients = clients.filter(c => {
+          if (!c.category || !campaign.category) return false;
+
+          // Split client's categories by comma, trim, and lowercase each one
+          const clientCategories = c.category
+            .toString()
+            .split(',')
+            .map(cat => cat.trim().toLowerCase())
+            .filter(Boolean);
+
+          const campaignCategory = campaign.category.toString().trim().toLowerCase();
+
+          return clientCategories.includes(campaignCategory);
+        });
 
         if (matchedClients.length === 0) {
           Logger.log('No clients found for category "%s"', campaign.category);
