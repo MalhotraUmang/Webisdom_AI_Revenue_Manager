@@ -87,7 +87,7 @@
 ✅ No new client updates — skipping Clients sheet write.
 ####################################################################################################
 
-📢 Processing 20 campaigns...
+📢 Processing 21 campaigns...
 ⏸️ Skipping CMP-0001 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0002 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0003 — status INACTIVE (no update).
@@ -107,11 +107,62 @@
 ⏸️ Skipping CMP-0017 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0018 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0019 — status INACTIVE (no update).
-🆔 Assigned Campaign ID: CMP-0020
-🎯 CMP-0020 — Target 'unique' matched 1 clients.
+🎯 CMP-0020 — Target 'unique' matched 2 clients.
 👥 Matching Clients:
+   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
    - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-📅 CMP-0020 status set to UPCOMING
+🆔 Assigned Campaign ID: CMP-0021
+⏸️ Skipping CMP-0013 — status INACTIVE (no update).
+⏸️ Skipping CMP-0014 — status INACTIVE (no update).
+⏸️ Skipping CMP-0015 — status INACTIVE (no update).
+⏸️ Skipping CMP-0016 — status INACTIVE (no update).
+⏸️ Skipping CMP-0017 — status INACTIVE (no update).
+⏸️ Skipping CMP-0018 — status INACTIVE (no update).
+⏸️ Skipping CMP-0019 — status INACTIVE (no update).
+🎯 CMP-0020 — Target 'unique' matched 2 clients.
+👥 Matching Clients:
+   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
+   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+🆔 Assigned Campaign ID: CMP-0021
+⏸️ Skipping CMP-0015 — status INACTIVE (no update).
+⏸️ Skipping CMP-0016 — status INACTIVE (no update).
+⏸️ Skipping CMP-0017 — status INACTIVE (no update).
+⏸️ Skipping CMP-0018 — status INACTIVE (no update).
+⏸️ Skipping CMP-0019 — status INACTIVE (no update).
+🎯 CMP-0020 — Target 'unique' matched 2 clients.
+👥 Matching Clients:
+   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
+   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+🆔 Assigned Campaign ID: CMP-0021
+⏸️ Skipping CMP-0018 — status INACTIVE (no update).
+⏸️ Skipping CMP-0019 — status INACTIVE (no update).
+🎯 CMP-0020 — Target 'unique' matched 2 clients.
+👥 Matching Clients:
+   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
+   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+🆔 Assigned Campaign ID: CMP-0021
+🎯 CMP-0020 — Target 'unique' matched 2 clients.
+👥 Matching Clients:
+   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
+   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+🆔 Assigned Campaign ID: CMP-0021
+   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
+   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+🆔 Assigned Campaign ID: CMP-0021
+🎯 CMP-0021 — Target 'unique' matched 2 clients.
+   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+🆔 Assigned Campaign ID: CMP-0021
+🎯 CMP-0021 — Target 'unique' matched 2 clients.
+👥 Matching Clients:
+🆔 Assigned Campaign ID: CMP-0021
+🎯 CMP-0021 — Target 'unique' matched 2 clients.
+👥 Matching Clients:
+🎯 CMP-0021 — Target 'unique' matched 2 clients.
+👥 Matching Clients:
+👥 Matching Clients:
+   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
+   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+📅 CMP-0021 status set to ACTIVE
 📝 Updating columns individually: Campaign ID, Target Customers Count, Campaign Status
 ✅ Column 'Campaign ID' updated (A)
 ✅ Column 'Target Customers Count' updated (F)
@@ -119,28 +170,4 @@
 ✅ Partial update completed for sheet 'Campaigns'.
 
 ✅ All campaign details updated successfully.
-####################################################################################################
-
-🧩 Checking Campaign Message Count for dynamic Message Template/Send Timing columns expansion for ACTIVE/UPCOMING campaigns...
-✅ All required message template/timing columns already exist — no changes made.
-
-📣 Checking campaigns for message service invocation...
-📢 Found 1 eligible campaign(s) for message triggering.
-
-📞 Found 1 phone(s) for campaign CMP-0020: +91-9986758671
-📧 Found 1 email(s) for campaign CMP-0020: UmangMalhotra1980@gmail.com
-   ⏰ [09:00:00] Sending from Sender → +91-9986758671
-   📨 Template 1: CMP-0020_Message_Template_1...
-✅📤 [SMS SENT] From: Sender | To: +91-9986758671 | Msg: CMP-0020_Message_Template_1...
-   ✅ Message 1/1 sent successfully for CMP-0020 at 09:00:00
-   ⏰ [09:00:00] Sending from Sender → whatsapp:+91-9986758671
-   📨 Template 1: CMP-0020_Message_Template_1...
-✅📤 [WhatsApp msg SENT] From: Sender | To: whatsapp:+91-9986758671 | Msg: CMP-0020_Message_Template_1...
-   ✅ Message 1/1 sent successfully for CMP-0020 at 09:00:00
-   ⏰ [09:00:00] Sending from Sender → UmangMalhotra1980@gmail.com
-   📨 Template 1: Subject: Dummy Subject | CMP-0020_Message_Template_1...
-✅📤 [Email SENT] From: Sender | To: UmangMalhotra1980@gmail.com | Msg: CMP-0020_Message_Template_1...
-   ✅ Email 1/1 sent successfully for CMP-0020 at 09:00:00
-
-✅ Message service invocation process completed.
 ####################################################################################################
