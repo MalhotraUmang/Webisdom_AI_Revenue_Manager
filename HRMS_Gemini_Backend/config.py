@@ -37,5 +37,7 @@ TWILIO_AUTH_TOKEN=os.getenv("TWILIO_AUTH_TOKEN")
 # --- twilio SendGrid Web API key ---
 SENDGRID_API_KEY=os.getenv("SENDGRID_API_KEY")
 
+# ----- Frontend adding Template/Timing columns in gSheet -----
+FRONTEND_TEMPLATE_COLUMNS = True
 
 

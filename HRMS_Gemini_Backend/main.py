@@ -16,6 +16,7 @@ from config import (
     # RETRY_DELAY,
     SERVICE_ACCOUNT_FILE,
     MSG_SERVICE_PYTHON,
+    FRONTEND_TEMPLATE_COLUMNS,
 )
 if(MSG_SERVICE_PYTHON):
     from config import (
@@ -698,8 +699,10 @@ def process_clients_and_campaigns():
     
     print("#"*100)
 
-    # Add new columns for message templates and message send timing
-    add_message_templates(sheets, df_campaigns)
+    
+    if not (FRONTEND_TEMPLATE_COLUMNS):
+        # Add new columns for message templates and message send timing
+        add_message_templates(sheets, df_campaigns)
 
     # Configuration Controlled Message Service in Python backend
     if (MSG_SERVICE_PYTHON):
