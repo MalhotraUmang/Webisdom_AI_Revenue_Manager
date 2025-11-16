@@ -153,23 +153,46 @@ function getClientsData() {
  *
  * @returns {Array<Object>} Array of campaign objects.
  */
+// function getCampaignsData() {
+//   const rawData = getDataFromSheet('Campaigns');
+//   return rawData.map(row => ({
+//     id: row['Campaign ID'] || '',
+//     text: row['Campaign Text'] || '',
+//     category: row['Target Client Category'] || '',
+//     start: row['Start Date-Time'] || '',
+//     end: row['End Date-Time'] || '',
+//     count: Number(row['Campaign Message Count']) || 0,
+//     status: row['Campaign Status'] || '',
+//     temp1: row['Message Template #1'] || '',
+//     time1: row['Message Send Timing #1'] || '',
+//     temp2: row['Message Template #2'] || '',
+//     time2: row['Message Send Timing #2'] || '',
+//     temp3: row['Message Template #3'] || '',
+//     time3: row['Message Send Timing #3'] || ''
+//   }));
+// }
 function getCampaignsData() {
   const rawData = getDataFromSheet('Campaigns');
-  return rawData.map(row => ({
-    id: row['Campaign ID'] || '',
-    text: row['Campaign Text'] || '',
-    category: row['Target Client Category'] || '',
-    start: row['Start Date-Time'] || '',
-    end: row['End Date-Time'] || '',
-    count: Number(row['Campaign Message Count']) || 0,
-    status: row['Campaign Status'] || '',
-    temp1: row['Message Template #1'] || '',
-    time1: row['Message Send Timing #1'] || '',
-    temp2: row['Message Template #2'] || '',
-    time2: row['Message Send Timing #2'] || '',
-    temp3: row['Message Template #3'] || '',
-    time3: row['Message Send Timing #3'] || ''
-  }));
+
+  return rawData.map(row => {
+    const base = {
+      id: row['Campaign ID'] || '',
+      text: row['Campaign Text'] || '',
+      category: row['Target Client Category'] || '',
+      start: row['Start Date-Time'] || '',
+      end: row['End Date-Time'] || '',
+      count: Number(row['Campaign Message Count']) || 0,
+      status: row['Campaign Status'] || ''
+    };
+
+    // Dynamically attach up to 10 templates/timings
+    for (let i = 1; i <= 10; i++) {
+      base[`temp${i}`] = row[`Message Template #${i}`] || '';
+      base[`time${i}`] = row[`Message Send Timing #${i}`] || '';
+    }
+
+    return base;
+  });
 }
 
 
@@ -376,28 +399,50 @@ function main_campaign_runner() {
   // Use a try/catch block around the entire processing loop to catch the QUOTA_EXCEEDED flag
   try {
     campaigns.forEach(campaign => {
-      // Check for required status
+      // Check for required status, Only ACTIVE/UPCOMING
       if (campaign.status !== 'ACTIVE' && campaign.status !== 'UPCOMING') {
         // Logger.log(`SKIP: Campaign ${campaign.id} ignored due to status "${campaign.status}"`);
         return;
       }
 
-      // Define the templates and timings to check based *strictly* on Campaign Message Count
+      // // Define the templates and timings to check based *strictly* on Campaign Message Count
+      // const messages = [];
+
+      // // Rule: If count is 1 or more, check template 1
+      // if (campaign.count >= 1 && campaign.time1 && campaign.temp1) {
+      //       messages.push({ template: campaign.temp1, timing: normalizeTime(campaign.time1), number: 1 });
+      // }
+      // // Rule: If count is 2 or more, check template 2
+      // if (campaign.count >= 2 && campaign.time2 && campaign.temp2) {
+      //       messages.push({ template: campaign.temp2, timing: normalizeTime(campaign.time2), number: 2 });
+      // }
+      // // Rule: If count is 3 or more, check template 3
+      // if (campaign.count >= 3 && campaign.time3 && campaign.temp3) {
+      //       messages.push({ template: campaign.temp3, timing: normalizeTime(campaign.time3), number: 3 });
+      // }
+
+      // ==============================================================================================================
+      // Define the templates and timings to check based *strictly* on Campaign Message Count dynamically (1–10)
+      // ==============================================================================================================
       const messages = [];
 
-      // Rule: If count is 1 or more, check template 1
-      if (campaign.count >= 1 && campaign.time1 && campaign.temp1) {
-            messages.push({ template: campaign.temp1, timing: normalizeTime(campaign.time1), number: 1 });
-      }
-      // Rule: If count is 2 or more, check template 2
-      if (campaign.count >= 2 && campaign.time2 && campaign.temp2) {
-            messages.push({ template: campaign.temp2, timing: normalizeTime(campaign.time2), number: 2 });
-      }
-      // Rule: If count is 3 or more, check template 3
-      if (campaign.count >= 3 && campaign.time3 && campaign.temp3) {
-            messages.push({ template: campaign.temp3, timing: normalizeTime(campaign.time3), number: 3 });
-      }
+      for (let i = 1; i <= 10; i++) {
+        if (campaign.count >= i) {
+          let temp = campaign[`temp${i}`];
+          let time = campaign[`time${i}`];
 
+          if (temp && time) {
+            messages.push({
+              template: temp,
+              timing: normalizeTime(time),
+              number: i
+            });
+          }
+        }
+      }
+      // =======================================================
+
+      // Loop through all messages due for sending
       messages.forEach(message => {
         const { template, timing, number } = message;
 
@@ -407,7 +452,9 @@ function main_campaign_runner() {
           Logger.log(`SKIP: Campaign ${campaign.id} Msg#${number} not yet time (${normalizedTiming})`);
           return;
         }
-        // It considers all mediums SMS< WhatsApp and Email
+        
+        // Already sent today?
+        // It considers all mediums SMS, WhatsApp and Email
         // It considers as SENT even if partial medium were successfull in sending msg.
         if (wasSentToday(campaign.id, number)) {
           Logger.log('SKIP: Campaign %s Msg#%s already sent today.', campaign.id, number);
@@ -555,74 +602,209 @@ function doGet(e) {
     return html;
 }
 
+function ensureCampaignColumns(count) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName("Campaigns");
+  if (!sheet) return;
+
+  // Read and normalize existing headers
+  const headerRange = sheet.getRange(1, 1, 1, sheet.getLastColumn());
+  let headers = headerRange.getValues()[0].map(h => (typeof h === "string" ? h.trim() : h));
+
+  // We'll append columns to the right, tracking the last column index as we add
+  let lastCol = sheet.getLastColumn();
+
+  for (let i = 1; i <= count; i++) {
+    const tempHeader = `Message Template #${i}`;
+    const timeHeader = `Message Send Timing #${i}`;
+
+    if (!headers.includes(tempHeader)) {
+      // Insert one column at the end and set header
+      sheet.insertColumnAfter(lastCol);
+      lastCol++;
+      sheet.getRange(1, lastCol).setValue(tempHeader);
+      headers.push(tempHeader);
+    }
+
+    if (!headers.includes(timeHeader)) {
+      sheet.insertColumnAfter(lastCol);
+      lastCol++;
+      sheet.getRange(1, lastCol).setValue(timeHeader);
+      headers.push(timeHeader);
+    }
+  }
+}
+
+
+
+
 /**
  * Web app endpoint for React frontend to add new Campaigns
  */
+// function doPost(e) {
+//   try {
+//     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Campaigns");
+
+//     if (!e || !e.postData || !e.postData.contents) {
+//       return ContentService.createTextOutput(
+//         JSON.stringify({ status: "error", message: "No POST body received" })
+//       ).setMimeType(ContentService.MimeType.JSON);
+//     }
+
+//     const data = JSON.parse(e.postData.contents);
+//     const {
+//       campaignText,
+//       targetClientCategory,
+//       startDateTime,
+//       endDateTime,
+//       campaignMessageCount,
+//       messageTemplate1,
+//       messageSendTiming1,
+//       messageTemplate2,
+//       messageSendTiming2,
+//       messageTemplate3,
+//       messageSendTiming3
+//     } = data;
+
+//     // Build the row in your sheet’s column order
+//     // Columns: [Campaign ID, Campaign Text, Target Client Category, Start Date-Time,
+//     // End Date-Time, Target Customers Count, Campaign Message Count,
+//     // Campaign Status, Msg #1, Time #1, Msg #2, Time #2, Msg #3, Time #3]
+
+//     const row = [
+//       "",                     // Campaign ID → blank
+//       campaignText,
+//       targetClientCategory,
+//       startDateTime,
+//       endDateTime,
+//       "",                     // Target Customers Count → blank
+//       campaignMessageCount,
+//       "",                     // Campaign Status → blank
+//       "", "", "", "", "", ""  // placeholders for up to 3 message/timing pairs
+//     ];
+
+//     // Fill only as many templates/timings as count specifies
+//     if (campaignMessageCount >= 1) {
+//       row[8]  = messageTemplate1 || "";
+//       row[9]  = messageSendTiming1 || "";
+//     }
+//     if (campaignMessageCount >= 2) {
+//       row[10] = messageTemplate2 || "";
+//       row[11] = messageSendTiming2 || "";
+//     }
+//     if (campaignMessageCount >= 3) {
+//       row[12] = messageTemplate3 || "";
+//       row[13] = messageSendTiming3 || "";
+//     }
+
+//     sheet.appendRow(row);
+
+//     return ContentService.createTextOutput(
+//       JSON.stringify({ status: "success" })
+//     ).setMimeType(ContentService.MimeType.JSON);
+
+//   } catch (err) {
+//     return ContentService.createTextOutput(
+//       JSON.stringify({ status: "error", message: err.message })
+//     ).setMimeType(ContentService.MimeType.JSON);
+//   }
+// }
+
 function doPost(e) {
-  try {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Campaigns");
-
-    if (!e || !e.postData || !e.postData.contents) {
-      return ContentService.createTextOutput(
-        JSON.stringify({ status: "error", message: "No POST body received" })
-      ).setMimeType(ContentService.MimeType.JSON);
-    }
-
-    const data = JSON.parse(e.postData.contents);
-    const {
-      campaignText,
-      targetClientCategory,
-      startDateTime,
-      endDateTime,
-      campaignMessageCount,
-      messageTemplate1,
-      messageSendTiming1,
-      messageTemplate2,
-      messageSendTiming2,
-      messageTemplate3,
-      messageSendTiming3
-    } = data;
-
-    // Build the row in your sheet’s column order
-    // Columns: [Campaign ID, Campaign Text, Target Client Category, Start Date-Time,
-    // End Date-Time, Target Customers Count, Campaign Message Count,
-    // Campaign Status, Msg #1, Time #1, Msg #2, Time #2, Msg #3, Time #3]
-
-    const row = [
-      "",                     // Campaign ID → blank
-      campaignText,
-      targetClientCategory,
-      startDateTime,
-      endDateTime,
-      "",                     // Target Customers Count → blank
-      campaignMessageCount,
-      "",                     // Campaign Status → blank
-      "", "", "", "", "", ""  // placeholders for up to 3 message/timing pairs
-    ];
-
-    // Fill only as many templates/timings as count specifies
-    if (campaignMessageCount >= 1) {
-      row[8]  = messageTemplate1 || "";
-      row[9]  = messageSendTiming1 || "";
-    }
-    if (campaignMessageCount >= 2) {
-      row[10] = messageTemplate2 || "";
-      row[11] = messageSendTiming2 || "";
-    }
-    if (campaignMessageCount >= 3) {
-      row[12] = messageTemplate3 || "";
-      row[13] = messageSendTiming3 || "";
-    }
-
-    sheet.appendRow(row);
-
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName("Campaigns");
+  if (!sheet) {
     return ContentService.createTextOutput(
-      JSON.stringify({ status: "success" })
-    ).setMimeType(ContentService.MimeType.JSON);
-
-  } catch (err) {
-    return ContentService.createTextOutput(
-      JSON.stringify({ status: "error", message: err.message })
+      JSON.stringify({ status: "error", message: "Campaigns sheet not found" })
     ).setMimeType(ContentService.MimeType.JSON);
   }
+
+  if (!e || !e.postData || !e.postData.contents) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ status: "error", message: "No POST data received" })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  const data = JSON.parse(e.postData.contents || '{}');
+
+  // allow count to be mutated safely
+  let count = Number(data.campaignMessageCount) || 0;
+  if (count > 10) count = 10;
+
+  // STEP 1 — Ensure template/timing columns exist
+  ensureCampaignColumns(count);
+
+  // STEP 2 — Read and normalize headers AFTER columns were added
+  let headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  headers = headers.map(h => (typeof h === 'string' ? h.trim() : h));
+
+  // Prepare a blank row
+  const row = new Array(headers.length).fill("");
+
+  // Map of common sheet header -> frontend key (your preferred frontend keys)
+  const fieldMap = {
+    "Campaign Text": "campaignText",
+    "Target Client Category": "targetClientCategory",
+    "Start Date-Time": "startDateTime",
+    "End Date-Time": "endDateTime",
+    "Campaign Message Count": "campaignMessageCount",
+    // optional: if you have "Target Customers Count" or others add here
+    "Target Customers Count": "targetCustomersCount",
+    "Campaign Status": "campaignStatus"
+  };
+
+  // STEP 3 — Fill base fields: prefer frontend key (campaignText etc.)
+  headers.forEach((header, idx) => {
+    // 1) direct frontend key match (if frontend accidentally sent keys equal to header)
+    if (data[header] !== undefined) {
+      row[idx] = data[header];
+      return;
+    }
+    // 2) mapped frontend key (e.g., Campaign Text -> campaignText)
+    const fk = fieldMap[header];
+    if (fk && data[fk] !== undefined) {
+      row[idx] = data[fk];
+    }
+  });
+
+  // STEP 4 — Fill template/timing pairs from frontend naming convention:
+  // frontend sends messageTemplate1, messageSendTiming1, messageTemplate2, ...
+  for (let i = 1; i <= count; i++) {
+    const templateKeyFrontend = `messageTemplate${i}`;
+    const timingKeyFrontend = `messageSendTiming${i}`;
+
+    const templateHeader = `Message Template #${i}`;
+    const timingHeader = `Message Send Timing #${i}`;
+
+    const templateCol = headers.indexOf(templateHeader);
+    const timingCol = headers.indexOf(timingHeader);
+
+    // Use the frontend keys (preferred) — if present, write them
+    if (templateCol !== -1) {
+      if (data[templateKeyFrontend] !== undefined) {
+        row[templateCol] = data[templateKeyFrontend];
+      } else if (data[templateHeader] !== undefined) {
+        // fallback if frontend used header-like keys
+        row[templateCol] = data[templateHeader];
+      }
+    }
+
+    if (timingCol !== -1) {
+      if (data[timingKeyFrontend] !== undefined) {
+        row[timingCol] = data[timingKeyFrontend];
+      } else if (data[timingHeader] !== undefined) {
+        row[timingCol] = data[timingHeader];
+      }
+    }
+  }
+
+  // STEP 5 — Append row
+  sheet.appendRow(row);
+
+  return ContentService.createTextOutput(
+    JSON.stringify({ status: "success", message: "Campaign Saved" })
+  ).setMimeType(ContentService.MimeType.JSON);
 }
+
+
+

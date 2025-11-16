@@ -1,6 +1,6 @@
 Trigger Settings:-
 ----------------
-Event: Time-based
+Event: Time-driven
 Trigger Type: Minutes timer
 Minute Interval: Every 5 minutes
 Function: doGet() 
@@ -12,17 +12,14 @@ Script Behavior:-
 Reads:
 	Campaign Status
 	Campaign Message Count
-	Message Template #1	
-	Message Send Timing #1	
-	Message Template #2	
-	Message Send Timing #2	
-	Message Template #3	
-	Message Send Timing #3
+	Message Template #1/2/../10	
+	Message Send Timing #1/2/../10	
 
 Matches:
 	Current time with Send time for a template
 	If matched (Current Time >= Send Time), calls a function to send Emails.
-		From: 'Campaign Sender'
-		To: Umang.Malhotra@webisdom.com
-		Text: 'Template 1/2/3'
-		Time: 'Send Time 1/2/3'
+		From: Umang.Malhotra@webisdom.com
+		To: UmangMalhotra1980@gmail.com
+		Subject: [CMP-xxxx] Campaign Message #1/2/../10 - Scheduled at hh:mm
+		Text: Frontend Message Template 1/2/../10
+		Time: Message Send Timing #1/2/../10

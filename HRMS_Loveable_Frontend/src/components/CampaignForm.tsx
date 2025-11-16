@@ -13,23 +13,39 @@ import { format } from 'date-fns';
 import { CalendarIcon, Send, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+interface MessageTemplate {
+  template: string;
+  timing: string;
+}
+
 export function CampaignForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    campaignText: '',
+    campaignText: 'Frontend: Campaign Text',
     targetClientCategory: '',
     startDate: undefined as Date | undefined,
     startTime: '09:00',
     endDate: undefined as Date | undefined,
-    endTime: '17:00',
-    campaignMessageCount: 1,
-    messageTemplate1: '',
-    messageTiming1: '09:00',
-    messageTemplate2: '',
-    messageTiming2: '12:00',
-    messageTemplate3: '',
-    messageTiming3: '15:00',
+    endTime: '21:00',
+    campaignMessageCount: 0,
   });
+
+  // Initialize 10 message templates
+  const [messageTemplates, setMessageTemplates] = useState<MessageTemplate[]>(
+    Array.from({ length: 10 }, (_, i) => ({
+      template: `Frontend Message Template ${i+1}`,
+      // timing: `${9+i}:00`, // Default times: 09:00, 10:00, 11:00, etc.
+      timing: `${String(9+i).padStart(2,"0")}:00`, // 09:00, 10:00 ... 18:00
+    }))
+  );
+
+  const updateMessageTemplate = (index: number, field: 'template' | 'timing', value: string) => {
+    setMessageTemplates(prev => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index], [field]: value };
+      return updated;
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,23 +56,20 @@ export function CampaignForm() {
       return;
     }
 
-    if (formData.campaignMessageCount < 1 || formData.campaignMessageCount > 10) {
-      toast.error('Message count must be between 1 and 10');
+    /* if (formData.campaignMessageCount < 1 || formData.campaignMessageCount > 10) { */
+    if (formData.campaignMessageCount < 0 || formData.campaignMessageCount > 10) {
+      toast.error('Message count must be either 0 (Initial Value) or between 1 and 10');
       return;
     }
 
     // Validate message templates based on count
-    if (formData.campaignMessageCount >= 1 && !formData.messageTemplate1) {
-      toast.error('Please provide Message Template #1');
-      return;
-    }
-    if (formData.campaignMessageCount >= 2 && !formData.messageTemplate2) {
-      toast.error('Please provide Message Template #2');
-      return;
-    }
-    if (formData.campaignMessageCount >= 3 && !formData.messageTemplate3) {
-      toast.error('Please provide Message Template #3');
-      return;
+    if  (formData.campaignMessageCount > 0) {
+      for (let i = 0; i < formData.campaignMessageCount; i++) {
+        if (!messageTemplates[i].template.trim()) {
+          toast.error(`Please provide Message Template #${i + 1}`);
+          return;
+        }
+      }
     }
 
     setIsSubmitting(true);
@@ -67,39 +80,41 @@ export function CampaignForm() {
       const endDateTime = `${format(formData.endDate, 'yyyy-MM-dd')} ${formData.endTime}`;
 
       // Prepare payload
-      const payload = {
+      const payload: any = {
         campaignText: formData.campaignText,
         targetClientCategory: formData.targetClientCategory,
         startDateTime,
         endDateTime,
         campaignMessageCount: formData.campaignMessageCount,
-        messageTemplate1: formData.messageTemplate1,
-        messageTiming1: formData.messageTiming1,
-        messageTemplate2: formData.messageTemplate2 || '',
-        messageTiming2: formData.messageTiming2,
-        messageTemplate3: formData.messageTemplate3 || '',
-        messageTiming3: formData.messageTiming3,
       };
+
+      // Add only the required message templates
+      if  (formData.campaignMessageCount > 0) {
+        for (let i = 0; i < formData.campaignMessageCount && i < 10; i++) {
+          payload[`messageTemplate${i+1}`] = messageTemplates[i].template;
+          payload[`messageTiming${i+1}`] = messageTemplates[i].timing;
+        }
+      }
 
       await postCampaign(payload);
       toast.success('Campaign created successfully!');
       
       // Reset form
       setFormData({
-        campaignText: '',
+        campaignText: 'Frontend: Campaign Text',
         targetClientCategory: '',
         startDate: undefined,
         startTime: '09:00',
         endDate: undefined,
-        endTime: '17:00',
-        campaignMessageCount: 1,
-        messageTemplate1: '',
-        messageTiming1: '09:00',
-        messageTemplate2: '',
-        messageTiming2: '12:00',
-        messageTemplate3: '',
-        messageTiming3: '15:00',
+        endTime: '21:00',
+        campaignMessageCount: 0,
       });
+      setMessageTemplates(
+        Array.from({ length: 10 }, (_, i) => ({
+          template: `Frontend Message Template ${i+1}`,
+          timing: `${9+i}:00`, // Default times: 09:00, 10:00, 11:00, etc.
+        }))
+      );
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Failed to create campaign');
     } finally {
@@ -120,7 +135,8 @@ export function CampaignForm() {
             <Label htmlFor="campaignText">Campaign Text *</Label>
             <Textarea
               id="campaignText"
-              placeholder="Enter your campaign description..."
+              /* placeholder="Enter your campaign description..." */
+              /* placeholder="Frontend: Campaign Text ..." */
               value={formData.campaignText}
               onChange={(e) => setFormData({ ...formData, campaignText: e.target.value })}
               rows={4}
@@ -139,9 +155,22 @@ export function CampaignForm() {
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Solo">Solo</SelectItem>
+                <SelectItem value="Romantic">Romantic</SelectItem>
+                <SelectItem value="Foodie">Foodie</SelectItem>
                 <SelectItem value="Family">Family</SelectItem>
                 <SelectItem value="Business">Business</SelectItem>
+                <SelectItem value="Budget">Budget</SelectItem>
+                <SelectItem value="Adventurer">Adventurer</SelectItem>
+                <SelectItem value="Leisure">Leisure</SelectItem>
+                <SelectItem value="Group">Group</SelectItem>
+                <SelectItem value="Spa">Spa</SelectItem>
+                <SelectItem value="Solo">Solo</SelectItem>
+                <SelectItem value="Kid-Friendly">Kid-Friendly</SelectItem>
+                <SelectItem value="anniversary">anniversary</SelectItem>
+                <SelectItem value="villa">villa</SelectItem>
+                <SelectItem value="productivity">productivity</SelectItem>
+                <SelectItem value="connectivity">connectivity</SelectItem>
+                <SelectItem value="unique">unique</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -227,14 +256,16 @@ export function CampaignForm() {
 
           {/* Message Count */}
           <div className="space-y-2">
-            <Label htmlFor="messageCount">Campaign Message Count (1-10) *</Label>
+            <Label htmlFor="messageCount">Campaign Message Count (1-10, Initially 0) *</Label>
             <Input
               id="messageCount"
               type="number"
-              min="1"
+              /* min="1" */
+              min="0"
               max="10"
               value={formData.campaignMessageCount}
-              onChange={(e) => setFormData({ ...formData, campaignMessageCount: parseInt(e.target.value) || 1 })}
+              //onChange={(e) => setFormData({ ...formData, campaignMessageCount: parseInt(e.target.value) || 1 })}
+              onChange={(e) => setFormData({ ...formData, campaignMessageCount: Number(e.target.value)})}
               required
             />
           </div>
@@ -248,101 +279,38 @@ export function CampaignForm() {
           <CardDescription>Configure your campaign messages and timing</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Message 1 */}
-          {formData.campaignMessageCount >= 1 && (
-            <div className="space-y-4 p-4 rounded-lg border bg-muted/30">
-              <h4 className="font-semibold text-sm">Message #1</h4>
+          {Array.from({ length: formData.campaignMessageCount }, (_, index) => (
+            <div key={index} className="space-y-4 p-4 rounded-lg border bg-muted/30">
+              <h4 className="font-semibold text-sm">Message #{index + 1}</h4>
               <div className="space-y-2">
-                <Label htmlFor="template1">Message Template *</Label>
+                <Label htmlFor={`template${index}`}>Message Template *</Label>
                 <Textarea
-                  id="template1"
+                  id={`template${index}`}
                   placeholder="Enter message template..."
-                  value={formData.messageTemplate1}
-                  onChange={(e) => setFormData({ ...formData, messageTemplate1: e.target.value })}
+                  value={messageTemplates[index].template}
+                  onChange={(e) => updateMessageTemplate(index, 'template', e.target.value)}
                   rows={3}
-                  required
+                  /* required */
+                  required={formData.campaignMessageCount > 0}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="timing1">Send Time *</Label>
+                <Label htmlFor={`timing${index}`}>Send Time *</Label>
                 <div className="relative">
                   <Clock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
-                    id="timing1"
+                    id={`timing${index}`}
                     type="time"
-                    value={formData.messageTiming1}
-                    onChange={(e) => setFormData({ ...formData, messageTiming1: e.target.value })}
+                    value={messageTemplates[index].timing}
+                    onChange={(e) => updateMessageTemplate(index, 'timing', e.target.value)}
                     className="pl-10"
-                    required
+                    /* required */
+                    required={formData.campaignMessageCount > 0}
                   />
                 </div>
               </div>
             </div>
-          )}
-
-          {/* Message 2 */}
-          {formData.campaignMessageCount >= 2 && (
-            <div className="space-y-4 p-4 rounded-lg border bg-muted/30">
-              <h4 className="font-semibold text-sm">Message #2</h4>
-              <div className="space-y-2">
-                <Label htmlFor="template2">Message Template *</Label>
-                <Textarea
-                  id="template2"
-                  placeholder="Enter message template..."
-                  value={formData.messageTemplate2}
-                  onChange={(e) => setFormData({ ...formData, messageTemplate2: e.target.value })}
-                  rows={3}
-                  required={formData.campaignMessageCount >= 2}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="timing2">Send Time *</Label>
-                <div className="relative">
-                  <Clock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="timing2"
-                    type="time"
-                    value={formData.messageTiming2}
-                    onChange={(e) => setFormData({ ...formData, messageTiming2: e.target.value })}
-                    className="pl-10"
-                    required={formData.campaignMessageCount >= 2}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Message 3 */}
-          {formData.campaignMessageCount >= 3 && (
-            <div className="space-y-4 p-4 rounded-lg border bg-muted/30">
-              <h4 className="font-semibold text-sm">Message #3</h4>
-              <div className="space-y-2">
-                <Label htmlFor="template3">Message Template *</Label>
-                <Textarea
-                  id="template3"
-                  placeholder="Enter message template..."
-                  value={formData.messageTemplate3}
-                  onChange={(e) => setFormData({ ...formData, messageTemplate3: e.target.value })}
-                  rows={3}
-                  required={formData.campaignMessageCount >= 3}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="timing3">Send Time *</Label>
-                <div className="relative">
-                  <Clock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="timing3"
-                    type="time"
-                    value={formData.messageTiming3}
-                    onChange={(e) => setFormData({ ...formData, messageTiming3: e.target.value })}
-                    className="pl-10"
-                    required={formData.campaignMessageCount >= 3}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
+          ))}
         </CardContent>
       </Card>
 

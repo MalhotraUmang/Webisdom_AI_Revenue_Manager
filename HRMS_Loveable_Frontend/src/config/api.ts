@@ -11,31 +11,68 @@ export const API_CONFIG = {
   API_KEY: import.meta.env.VITE_API_KEY || '',
 };
 
+// export async function postCampaign(payload: any) {
+//   try {
+//     const response = await fetch(
+//       "https://script.google.com/macros/s/AKfycbzQnNqEnU9afxdLzajHXKfH0lZFfoTi40GkHCOsnMo-H-g2FwvL1JQPsPjLa0jOmARY/exec",
+//       {
+//         method: "POST",
+//         mode: "no-cors",            // 👈 required
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//           campaignText: payload.campaignText,
+//           targetClientCategory: payload.targetClientCategory,
+//           startDateTime: payload.startDateTime,
+//           endDateTime: payload.endDateTime,
+//           campaignMessageCount: payload.campaignMessageCount,
+//           messageTemplate1: payload.messageTemplate1,
+//           messageSendTiming1: payload.messageTiming1,
+//           messageTemplate2: payload.messageTemplate2,
+//           messageSendTiming2: payload.messageTiming2,
+//           messageTemplate3: payload.messageTemplate3,
+//           messageSendTiming3: payload.messageTiming3,
+//         }),
+//       }
+//     );
+
+//     // Can't read the response in no-cors; just assume success
+//     return { success: true };
+//   } catch (error) {
+//     console.error("Error posting campaign:", error);
+//     throw error;
+//   }
+// }
+
 export async function postCampaign(payload: any) {
   try {
+    const body: any = {
+      campaignText: payload.campaignText,
+      targetClientCategory: payload.targetClientCategory,
+      startDateTime: payload.startDateTime,
+      endDateTime: payload.endDateTime,
+      campaignMessageCount: payload.campaignMessageCount,
+    };
+
+    // Dynamically add up to 10 template/timing pairs
+    for (let i = 1; i <= 10; i++) {
+      const t = payload[`messageTemplate${i}`];
+      const tm = payload[`messageTiming${i}`];
+
+      if (t !== undefined) body[`messageTemplate${i}`] = t;
+      if (tm !== undefined) body[`messageSendTiming${i}`] = tm;  
+    }
+
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbzQnNqEnU9afxdLzajHXKfH0lZFfoTi40GkHCOsnMo-H-g2FwvL1JQPsPjLa0jOmARY/exec",
+      // "https://script.google.com/macros/s/AKfycbzQnNqEnU9afxdLzajHXKfH0lZFfoTi40GkHCOsnMo-H-g2FwvL1JQPsPjLa0jOmARY/exec",
+      API_CONFIG.CAMPAIGN_API_URL,
       {
         method: "POST",
-        mode: "no-cors",            // 👈 required
+        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          campaignText: payload.campaignText,
-          targetClientCategory: payload.targetClientCategory,
-          startDateTime: payload.startDateTime,
-          endDateTime: payload.endDateTime,
-          campaignMessageCount: payload.campaignMessageCount,
-          messageTemplate1: payload.messageTemplate1,
-          messageSendTiming1: payload.messageTiming1,
-          messageTemplate2: payload.messageTemplate2,
-          messageSendTiming2: payload.messageTiming2,
-          messageTemplate3: payload.messageTemplate3,
-          messageSendTiming3: payload.messageTiming3,
-        }),
+        body: JSON.stringify(body),
       }
     );
 
-    // Can't read the response in no-cors; just assume success
     return { success: true };
   } catch (error) {
     console.error("Error posting campaign:", error);
