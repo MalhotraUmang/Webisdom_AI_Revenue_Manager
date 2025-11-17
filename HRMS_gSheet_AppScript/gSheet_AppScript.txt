@@ -12,13 +12,6 @@
 
 // --- GLOBAL CONFIGURATION ---
 
-// Twilio SID and Auth Token saved in Script Properties 
-// function setSecret() {
-//   const scriptProps = PropertiesService.getScriptProperties();
-//   scriptProps.setProperty("TWILIO_ACCOUNT_SID", "AC46a3952ed4277698ee4db2dcaf111a4a");
-//   scriptProps.setProperty("TWILIO_AUTH_TOKEN", "2f31d8e591cd9301b6df129bfeb88f5e");
-// }
-
 // Properties service instance for tracking sent status
 const SCRIPT_PROPERTIES = PropertiesService.getScriptProperties();
 
