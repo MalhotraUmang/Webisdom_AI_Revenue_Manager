@@ -12,6 +12,13 @@
 
 // --- GLOBAL CONFIGURATION ---
 
+// Twilio SID and Auth Token saved in Script Properties 
+// function setSecret() {
+//   const scriptProps = PropertiesService.getScriptProperties();
+//   scriptProps.setProperty("TWILIO_ACCOUNT_SID", "AC46a3952ed4277698ee4db2dcaf111a4a");
+//   scriptProps.setProperty("TWILIO_AUTH_TOKEN", "2f31d8e591cd9301b6df129bfeb88f5e");
+// }
+
 // Properties service instance for tracking sent status
 const SCRIPT_PROPERTIES = PropertiesService.getScriptProperties();
 
@@ -153,24 +160,6 @@ function getClientsData() {
  *
  * @returns {Array<Object>} Array of campaign objects.
  */
-// function getCampaignsData() {
-//   const rawData = getDataFromSheet('Campaigns');
-//   return rawData.map(row => ({
-//     id: row['Campaign ID'] || '',
-//     text: row['Campaign Text'] || '',
-//     category: row['Target Client Category'] || '',
-//     start: row['Start Date-Time'] || '',
-//     end: row['End Date-Time'] || '',
-//     count: Number(row['Campaign Message Count']) || 0,
-//     status: row['Campaign Status'] || '',
-//     temp1: row['Message Template #1'] || '',
-//     time1: row['Message Send Timing #1'] || '',
-//     temp2: row['Message Template #2'] || '',
-//     time2: row['Message Send Timing #2'] || '',
-//     temp3: row['Message Template #3'] || '',
-//     time3: row['Message Send Timing #3'] || ''
-//   }));
-// }
 function getCampaignsData() {
   const rawData = getDataFromSheet('Campaigns');
 
@@ -206,14 +195,12 @@ function getCampaignsData() {
  * @param {string} msg_text The message body to be sent via SMS.
  * @returns {boolean} True if the SMS was successfully triggered and accepted by Twilio, false otherwise.
  */
-const TWILIO_ACCOUNT_SID="AC46a3952ed4277698ee4db2dcaf111a4a"
-const TWILIO_AUTH_TOKEN="2f31d8e591cd9301b6df129bfeb88f5e"
 const SMS_MSG_FROM="+18782511984"
 const SMS_MSG_TO="+919986758671"
 function trigger_sms(msg_from, msg_to, msg_text) {
   try {
-    var sid = TWILIO_ACCOUNT_SID;
-    var token = TWILIO_AUTH_TOKEN;
+    var sid = SCRIPT_PROPERTIES.getProperty('TWILIO_ACCOUNT_SID');
+    var token = SCRIPT_PROPERTIES.getProperty('TWILIO_AUTH_TOKEN');
     
     var payload = {
       To: msg_to,
@@ -261,8 +248,8 @@ const WHATSAPP_MSG_FROM="whatsapp:+14155238886"
 const WHATSAPP_MSG_TO="whatsapp:+919986758671"
 function trigger_whatsapp_msg(msg_from, msg_to, msg_text) {
   try {
-    var sid = TWILIO_ACCOUNT_SID;
-    var token = TWILIO_AUTH_TOKEN;
+    var sid = SCRIPT_PROPERTIES.getProperty('TWILIO_ACCOUNT_SID');
+    var token = SCRIPT_PROPERTIES.getProperty('TWILIO_AUTH_TOKEN');
 
     var payload = {
       To: msg_to,
@@ -404,22 +391,6 @@ function main_campaign_runner() {
         // Logger.log(`SKIP: Campaign ${campaign.id} ignored due to status "${campaign.status}"`);
         return;
       }
-
-      // // Define the templates and timings to check based *strictly* on Campaign Message Count
-      // const messages = [];
-
-      // // Rule: If count is 1 or more, check template 1
-      // if (campaign.count >= 1 && campaign.time1 && campaign.temp1) {
-      //       messages.push({ template: campaign.temp1, timing: normalizeTime(campaign.time1), number: 1 });
-      // }
-      // // Rule: If count is 2 or more, check template 2
-      // if (campaign.count >= 2 && campaign.time2 && campaign.temp2) {
-      //       messages.push({ template: campaign.temp2, timing: normalizeTime(campaign.time2), number: 2 });
-      // }
-      // // Rule: If count is 3 or more, check template 3
-      // if (campaign.count >= 3 && campaign.time3 && campaign.temp3) {
-      //       messages.push({ template: campaign.temp3, timing: normalizeTime(campaign.time3), number: 3 });
-      // }
 
       // ==============================================================================================================
       // Define the templates and timings to check based *strictly* on Campaign Message Count dynamically (1–10)
@@ -641,75 +612,6 @@ function ensureCampaignColumns(count) {
 /**
  * Web app endpoint for React frontend to add new Campaigns
  */
-// function doPost(e) {
-//   try {
-//     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Campaigns");
-
-//     if (!e || !e.postData || !e.postData.contents) {
-//       return ContentService.createTextOutput(
-//         JSON.stringify({ status: "error", message: "No POST body received" })
-//       ).setMimeType(ContentService.MimeType.JSON);
-//     }
-
-//     const data = JSON.parse(e.postData.contents);
-//     const {
-//       campaignText,
-//       targetClientCategory,
-//       startDateTime,
-//       endDateTime,
-//       campaignMessageCount,
-//       messageTemplate1,
-//       messageSendTiming1,
-//       messageTemplate2,
-//       messageSendTiming2,
-//       messageTemplate3,
-//       messageSendTiming3
-//     } = data;
-
-//     // Build the row in your sheet’s column order
-//     // Columns: [Campaign ID, Campaign Text, Target Client Category, Start Date-Time,
-//     // End Date-Time, Target Customers Count, Campaign Message Count,
-//     // Campaign Status, Msg #1, Time #1, Msg #2, Time #2, Msg #3, Time #3]
-
-//     const row = [
-//       "",                     // Campaign ID → blank
-//       campaignText,
-//       targetClientCategory,
-//       startDateTime,
-//       endDateTime,
-//       "",                     // Target Customers Count → blank
-//       campaignMessageCount,
-//       "",                     // Campaign Status → blank
-//       "", "", "", "", "", ""  // placeholders for up to 3 message/timing pairs
-//     ];
-
-//     // Fill only as many templates/timings as count specifies
-//     if (campaignMessageCount >= 1) {
-//       row[8]  = messageTemplate1 || "";
-//       row[9]  = messageSendTiming1 || "";
-//     }
-//     if (campaignMessageCount >= 2) {
-//       row[10] = messageTemplate2 || "";
-//       row[11] = messageSendTiming2 || "";
-//     }
-//     if (campaignMessageCount >= 3) {
-//       row[12] = messageTemplate3 || "";
-//       row[13] = messageSendTiming3 || "";
-//     }
-
-//     sheet.appendRow(row);
-
-//     return ContentService.createTextOutput(
-//       JSON.stringify({ status: "success" })
-//     ).setMimeType(ContentService.MimeType.JSON);
-
-//   } catch (err) {
-//     return ContentService.createTextOutput(
-//       JSON.stringify({ status: "error", message: err.message })
-//     ).setMimeType(ContentService.MimeType.JSON);
-//   }
-// }
-
 function doPost(e) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName("Campaigns");

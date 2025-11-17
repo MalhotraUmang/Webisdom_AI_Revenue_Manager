@@ -1,59 +1,64 @@
-7:13:08 PM	Notice	Execution started
-7:13:08 PM	Info	Web App accessed. Starting campaign runner...
-7:13:08 PM	Info	Script execution time (Spreadsheet TZ): 19:13:08
-7:13:09 PM	Info	Loaded 22 campaigns and 101 clients
-7:13:09 PM	Info	SKIP: Campaign CMP-0020 Msg#1.0 already sent today.
-7:13:09 PM	Info	SKIP: Campaign CMP-0020 Msg#2.0 already sent today.
-7:13:09 PM	Info	SKIP: Campaign CMP-0020 Msg#3.0 already sent today.
-7:13:09 PM	Info	SKIP: Campaign CMP-0021 Msg#1.0 already sent today.
-7:13:09 PM	Info	SKIP: Campaign CMP-0021 Msg#2.0 already sent today.
-7:13:09 PM	Info	SKIP: Campaign CMP-0021 Msg#3.0 already sent today.
-7:13:09 PM	Info	SKIP: Campaign CMP-0021 Msg#4.0 already sent today.
-7:13:09 PM	Info	SKIP: Campaign CMP-0021 Msg#5.0 already sent today.
-7:13:09 PM	Info	SENDING: Campaign CMP-0022 Msg#1.0 (09:00)
-7:13:09 PM	Info	Matched 2.0 clients for "unique"
-7:13:09 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #1 - Scheduled at 09:00
-7:13:09 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM162ad8f62dc368aa83e7928657f8c94d)
-7:13:10 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMd1f649dcfeacc2e43e6eff4f3a7128fa)
-7:13:10 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #1 - Scheduled at 09:00
-7:13:10 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SMbe280750f40bf60a716783f9c204a2dc)
-7:13:10 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM1688a4184f63e7070118caafecb236a5)
-7:13:10 PM	Info	Set sent log for key: CMP-0022-1-2025-11-16
-7:13:10 PM	Info	SENDING: Campaign CMP-0022 Msg#2.0 (10:00)
-7:13:10 PM	Info	Matched 2.0 clients for "unique"
-7:13:11 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #2 - Scheduled at 10:00
-7:13:11 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM35230c576dae3b34c7e7ea3037b84879)
-7:13:11 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM57ff099706020342b31f146ba2585bc5)
-7:13:11 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #2 - Scheduled at 10:00
-7:13:12 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM013d28814aa7e9d7ca3ccda2e8cdde30)
-7:13:12 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMf79ccf28aa00f9819cc6b230952df830)
-7:13:12 PM	Info	Set sent log for key: CMP-0022-2-2025-11-16
-7:13:12 PM	Info	SENDING: Campaign CMP-0022 Msg#3.0 (11:00)
-7:13:12 PM	Info	Matched 2.0 clients for "unique"
-7:13:12 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #3 - Scheduled at 11:00
-7:13:12 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SMbf9aa399dffc4631708088e3c67624aa)
-7:13:12 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMa32f062e1e5b8d1f9e2df89a185c0373)
-7:13:13 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #3 - Scheduled at 11:00
-7:13:13 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM0d2506dff5365a4fbd52f64f02962992)
-7:13:13 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMa48a62e137edfe424df75f3fbe8440b9)
-7:13:13 PM	Info	Set sent log for key: CMP-0022-3-2025-11-16
-7:13:13 PM	Info	SENDING: Campaign CMP-0022 Msg#4.0 (12:00)
-7:13:13 PM	Info	Matched 2.0 clients for "unique"
-7:13:13 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #4 - Scheduled at 12:00
-7:13:14 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM8f0841f799de5005dbfda079bbd26e2a)
-7:13:14 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM3a8ffea6ccfc9346690c5c214aa2b237)
-7:13:14 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #4 - Scheduled at 12:00
-7:13:14 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM52212b6e48defd35aaf9408571084e57)
-7:13:15 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM2b3b2625ab26b064037c5797f891cbfa)
-7:13:15 PM	Info	Set sent log for key: CMP-0022-4-2025-11-16
-7:13:15 PM	Info	SENDING: Campaign CMP-0022 Msg#5.0 (13:00)
-7:13:15 PM	Info	Matched 2.0 clients for "unique"
-7:13:15 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #5 - Scheduled at 13:00
-7:13:15 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SMa1272bdcf2680e05195cda4d12ef2f5d)
-7:13:15 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMca610cb8067fe6b9dbbfd58803c86848)
-7:13:16 PM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #5 - Scheduled at 13:00
-7:13:16 PM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM86ca4ad4504ad0c494bd8c2015096c6b)
-7:13:16 PM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM632f3b89359bf59151bbb4eb61291acf)
-7:13:16 PM	Info	Set sent log for key: CMP-0022-5-2025-11-16
-7:13:16 PM	Info	Completed campaigns. Messages triggered: 5.0
-7:13:17 PM	Notice	Execution completed
+9:34:24 AM	Notice	Execution started
+9:34:23 AM	Info	Web App accessed. Starting campaign runner...
+9:34:23 AM	Info	Script execution time (Spreadsheet TZ): 09:34:23
+9:34:24 AM	Info	Loaded 22 campaigns and 101 clients
+9:34:24 AM	Info	SENDING: Campaign CMP-0021 Msg#1.0 (09:00)
+9:34:24 AM	Info	Matched 2.0 clients for "unique"
+9:34:24 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0021] Campaign Message #1 - Scheduled at 09:00
+9:34:25 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM4a4848dccb428fee9761e8d8d4063897)
+9:34:25 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM69042b357c41e052fa1258d1a9b75edb)
+9:34:25 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0021] Campaign Message #1 - Scheduled at 09:00
+9:34:26 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM4a4939f07adde44c38b681a90f614e61)
+9:34:26 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMb10c674dd74b89b76af3bdb5695cc4df)
+9:34:26 AM	Info	Set sent log for key: CMP-0021-1-2025-11-17
+9:34:26 AM	Info	SENDING: Campaign CMP-0021 Msg#2.0 (09:15)
+9:34:26 AM	Info	Matched 2.0 clients for "unique"
+9:34:26 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0021] Campaign Message #2 - Scheduled at 09:15
+9:34:27 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM3de5bed43fe404b5d0fcd65e935cce10)
+9:34:27 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM7e4f8ed686559f781ece8a23f57c07e1)
+9:34:27 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0021] Campaign Message #2 - Scheduled at 09:15
+9:34:28 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM38d3ea9d7465e65155d22c4d8448d5c6)
+9:34:28 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM1fb1d7d23c800ef14efddf47c798c467)
+9:34:28 AM	Info	Set sent log for key: CMP-0021-2-2025-11-17
+9:34:29 AM	Info	SENDING: Campaign CMP-0021 Msg#3.0 (09:30)
+9:34:29 AM	Info	Matched 2.0 clients for "unique"
+9:34:29 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0021] Campaign Message #3 - Scheduled at 09:30
+9:34:29 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM3fdddeb4f048147a228d9b836f37e0dd)
+9:34:29 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMc391e09ca8a1796b5d3a082fe494e4cc)
+9:34:29 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0021] Campaign Message #3 - Scheduled at 09:30
+9:34:30 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM702ca7126f098a23ab460837e19c99eb)
+9:34:30 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM529a4f47edadd2a5552275c5dd3d4e15)
+9:34:30 AM	Info	Set sent log for key: CMP-0021-3-2025-11-17
+9:34:30 AM	Info	SKIP: Campaign CMP-0021 Msg#4 not yet time (09:45)
+9:34:30 AM	Info	SKIP: Campaign CMP-0021 Msg#5 not yet time (10:00)
+9:34:31 AM	Info	SENDING: Campaign CMP-0022 Msg#1.0 (09:00)
+9:34:31 AM	Info	Matched 2.0 clients for "unique"
+9:34:31 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #1 - Scheduled at 09:00
+9:34:31 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SMe6ca1ad50d2a66557b762baa70947f9b)
+9:34:32 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMd01c0caf03f60deab7ff33028cb5f1b4)
+9:34:32 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #1 - Scheduled at 09:00
+9:34:32 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM463081b2f2a6f982d55307d4fbc3046f)
+9:34:32 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMbaef31213c4811ae7b9d95d5ffba729d)
+9:34:33 AM	Info	Set sent log for key: CMP-0022-1-2025-11-17
+9:34:33 AM	Info	SENDING: Campaign CMP-0022 Msg#2.0 (09:15)
+9:34:33 AM	Info	Matched 2.0 clients for "unique"
+9:34:33 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #2 - Scheduled at 09:15
+9:34:33 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SMbf0acae16954348e2a62cfd264a27082)
+9:34:34 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMcf0727cc06394fcdc52e765926eb7742)
+9:34:34 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #2 - Scheduled at 09:15
+9:34:34 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM8248321097fc3b52d0830b7c0d4d9a8c)
+9:34:34 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM1b13475118a3cae4985d565024b6103f)
+9:34:35 AM	Info	Set sent log for key: CMP-0022-2-2025-11-17
+9:34:35 AM	Info	SENDING: Campaign CMP-0022 Msg#3.0 (09:30)
+9:34:35 AM	Info	Matched 2.0 clients for "unique"
+9:34:35 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #3 - Scheduled at 09:30
+9:34:35 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SM627ebf0d6128d5b92a17154b91d7149a)
+9:34:36 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SMeedaa8d65e1cc36040b36efe7a409988)
+9:34:36 AM	Info	SUCCESS: Email sent to UmangMalhotra1980@gmail.com for subject: [CMP-0022] Campaign Message #3 - Scheduled at 09:30
+9:34:36 AM	Info	SUCCESS: SMS sent to +91-9986758671 (SID: SMab3db5ede83cf9b9ab03c363a484df26)
+9:34:37 AM	Info	SUCCESS: WhatsApp message sent to whatsapp:919986758671 (SID: SM5964786afa056d1a05df44a0d7bd81af)
+9:34:37 AM	Info	Set sent log for key: CMP-0022-3-2025-11-17
+9:34:37 AM	Info	SKIP: Campaign CMP-0022 Msg#4 not yet time (09:45)
+9:34:37 AM	Info	SKIP: Campaign CMP-0022 Msg#5 not yet time (10:00)
+9:34:37 AM	Info	Completed campaigns. Messages triggered: 6.0
+9:34:38 AM	Notice	Execution completed
