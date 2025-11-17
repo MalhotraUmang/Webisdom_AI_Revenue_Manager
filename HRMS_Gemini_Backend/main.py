@@ -211,19 +211,38 @@ def generate_campaign_id(existing_ids):
 
 
 def find_matching_clients(df_clients, target_category):
-    """Find clients where Client Category overlaps with campaign Target Category."""
+    """
+    Match clients exactly the same way as Google Apps Script:
+    - Split client categories by commas
+    - Trim whitespace
+    - Lowercase tokens
+    - Campaign category must match one whole token exactly
+    """
     if not target_category:
         return pd.DataFrame()
 
-    target_words = set([w.strip().lower() for w in re.split(r"[ ,;/]+", target_category) if w.strip()])
-    matches = []
+    campaign_category = target_category.strip().lower()
+
+    matched_rows = []
 
     for _, row in df_clients.iterrows():
-        client_cats = str(row.get("Client Category", "")).lower()
-        if any(word in client_cats for word in target_words):
-            matches.append(row)
+        raw_client_cat = str(row.get("Client Category", "")).strip().lower()
 
-    return pd.DataFrame(matches)
+        if not raw_client_cat:
+            continue
+
+        # GAS logic: split by commas only
+        client_tokens = [
+            token.strip()
+            for token in raw_client_cat.split(",")
+            if token.strip()
+        ]
+
+        # exact token match
+        if campaign_category in client_tokens:
+            matched_rows.append(row)
+
+    return pd.DataFrame(matched_rows)
 
 # Add Message Template & Message Send Timing columns based on Campaign Message Count
 def add_message_templates(sheets, df_campaigns):

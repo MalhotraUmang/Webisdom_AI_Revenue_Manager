@@ -87,7 +87,7 @@
 ✅ No new client updates — skipping Clients sheet write.
 ####################################################################################################
 
-📢 Processing 21 campaigns...
+📢 Processing 22 campaigns...
 ⏸️ Skipping CMP-0001 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0002 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0003 — status INACTIVE (no update).
@@ -107,62 +107,21 @@
 ⏸️ Skipping CMP-0017 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0018 — status INACTIVE (no update).
 ⏸️ Skipping CMP-0019 — status INACTIVE (no update).
-🎯 CMP-0020 — Target 'unique' matched 2 clients.
-👥 Matching Clients:
-   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
-   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-🆔 Assigned Campaign ID: CMP-0021
-⏸️ Skipping CMP-0013 — status INACTIVE (no update).
-⏸️ Skipping CMP-0014 — status INACTIVE (no update).
-⏸️ Skipping CMP-0015 — status INACTIVE (no update).
-⏸️ Skipping CMP-0016 — status INACTIVE (no update).
-⏸️ Skipping CMP-0017 — status INACTIVE (no update).
-⏸️ Skipping CMP-0018 — status INACTIVE (no update).
-⏸️ Skipping CMP-0019 — status INACTIVE (no update).
-🎯 CMP-0020 — Target 'unique' matched 2 clients.
-👥 Matching Clients:
-   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
-   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-🆔 Assigned Campaign ID: CMP-0021
-⏸️ Skipping CMP-0015 — status INACTIVE (no update).
-⏸️ Skipping CMP-0016 — status INACTIVE (no update).
-⏸️ Skipping CMP-0017 — status INACTIVE (no update).
-⏸️ Skipping CMP-0018 — status INACTIVE (no update).
-⏸️ Skipping CMP-0019 — status INACTIVE (no update).
-🎯 CMP-0020 — Target 'unique' matched 2 clients.
-👥 Matching Clients:
-   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
-   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-🆔 Assigned Campaign ID: CMP-0021
-⏸️ Skipping CMP-0018 — status INACTIVE (no update).
-⏸️ Skipping CMP-0019 — status INACTIVE (no update).
-🎯 CMP-0020 — Target 'unique' matched 2 clients.
-👥 Matching Clients:
-   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
-   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-🆔 Assigned Campaign ID: CMP-0021
-🎯 CMP-0020 — Target 'unique' matched 2 clients.
-👥 Matching Clients:
-   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
-   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-🆔 Assigned Campaign ID: CMP-0021
-   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
-   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+🆔 Assigned Campaign ID: CMP-0020
+⏸️ Skipping CMP-0020 — status INACTIVE (no update).
+📅 CMP-0020 status set to INACTIVE
 🆔 Assigned Campaign ID: CMP-0021
 🎯 CMP-0021 — Target 'unique' matched 2 clients.
-   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
-🆔 Assigned Campaign ID: CMP-0021
-🎯 CMP-0021 — Target 'unique' matched 2 clients.
-👥 Matching Clients:
-🆔 Assigned Campaign ID: CMP-0021
-🎯 CMP-0021 — Target 'unique' matched 2 clients.
-👥 Matching Clients:
-🎯 CMP-0021 — Target 'unique' matched 2 clients.
-👥 Matching Clients:
 👥 Matching Clients:
    - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
    - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
 📅 CMP-0021 status set to ACTIVE
+🆔 Assigned Campaign ID: CMP-0022
+🎯 CMP-0022 — Target 'unique' matched 2 clients.
+👥 Matching Clients:
+   - Anaya Chanda | UmangMalhotra1980@gmail.com | +91-9986758671
+   - Umang Malhotra | UmangMalhotra1980@gmail.com | +91-9986758671
+📅 CMP-0022 status set to UPCOMING
 📝 Updating columns individually: Campaign ID, Target Customers Count, Campaign Status
 ✅ Column 'Campaign ID' updated (A)
 ✅ Column 'Target Customers Count' updated (F)
