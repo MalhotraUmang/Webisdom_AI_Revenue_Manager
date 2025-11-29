@@ -1,1 +1,2 @@
-# Webisdom_HRMS_AI
+# AI_Revenue_Manager
+AI Revenue Management System
